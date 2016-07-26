@@ -1,4 +1,6 @@
 {
+  "name": "learn2drive3d.mobi",
+  "version": "1.0.0",
   "scripts": {
     "test": "karma start karma.conf.js"
   },
