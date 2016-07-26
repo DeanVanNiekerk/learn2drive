@@ -9,7 +9,7 @@ import {Content} from '../models/content';
 @Injectable()
 export class ContentService {
   
-  private rulesOfTheRoadFilePath = 'content/RulesOfTheRoad.json';
+  private rulesOfTheRoadFilePath = 'content/content.json';
 
   private rulesOfTheRoadData = null;
 
