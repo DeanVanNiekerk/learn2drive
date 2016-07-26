@@ -4,8 +4,9 @@ Learn2Drive3D Mobile Version
 
 ## Installation
 
-1. Make sure NodeJS is installed.
+1. Make sure NodeJS is installed. (NodeJS > v5)
 2. npm install -g ionic@beta
+3. npm install
 
 ## Usage
 
