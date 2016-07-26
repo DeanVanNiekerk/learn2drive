@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import {NavigationItem} from '../models/navigation-item'
+import {NavigationItem} from '../models/navigation-item';
+import {Content} from '../models/content';
 
 
 @Injectable()
-export class NavigationService {
+export class ContentService {
   
-  private rulesOfTheRoadFilePath = "content/RulesOfTheRoad.json";
+  private rulesOfTheRoadFilePath = 'content/RulesOfTheRoad.json';
 
   private rulesOfTheRoadData = null;
 
@@ -41,27 +42,48 @@ export class NavigationService {
           WHERE Node LIKE "${key}.%"`
           , [data]);
 
-        //Get list of nav items one level down
+        // Get list of nav items one level down
         let level = key.split('.').length;
         let oneLevelDown = result.map(function(item){
             let name = item.Node.split('.')[level];
             return `${key}.${name}`;
-        })
-
-        //Filter out duplicates
-        oneLevelDown = oneLevelDown.filter(function(x, i) {
-          return oneLevelDown.indexOf(x) === i
         });
 
-        //Map to model
+        // Filter out duplicates
+        oneLevelDown = oneLevelDown.filter(function(x, i) {
+          return oneLevelDown.indexOf(x) === i;
+        });
+
+        // Map to model
         let models = oneLevelDown.map(function(item){
           return new NavigationItem(item);
-        })
+        });
         
         resolve(models);
-      })
+      });
     });
+  }
 
+  getContent(key: string): Promise<Content[]> {
+
+    return new Promise(resolve => {
+      this.getData().then(data => {
+
+          let result = alasql(`
+            SELECT Heading, Description
+            FROM ? 
+            WHERE Node = "${key}"`
+            , [data]);
+
+          // Map to model
+          let models = result.map(function(item){
+            return new Content(item.Heading, item.Description);
+          });
+        
+          resolve(models);
+
+      });
+    });
   }
 }
 

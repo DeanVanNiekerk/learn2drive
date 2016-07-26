@@ -17,7 +17,7 @@ import {
 } from '@angular/core/testing';
 
 import { MockBackend, MockConnection } from '@angular/http/testing';
-import {NavigationService} from './navigation-service';
+import {ResourceService} from './resource.service';
 
 const mockHttpProvider = {
   deps: [ MockBackend, BaseRequestOptions ],
@@ -26,36 +26,43 @@ const mockHttpProvider = {
   }
 };
  
-describe('Navigation Service', () => {
+describe('Resource Service', () => {
  
     beforeEachProviders(() => {
         return [
             MockBackend,
             BaseRequestOptions,
             provide(Http, mockHttpProvider),
-            NavigationService
+            ResourceService
         ];
     });
 
 
 
-   it('should parse the server response correctly', inject(
-    [NavigationService, MockBackend],
-    fakeAsync((service: NavigationService, backend: MockBackend) => {
+   it('getResourceIndex: multiple items in index', inject(
+    [ResourceService, MockBackend],
+    fakeAsync((service: ResourceService, backend: MockBackend) => {
       backend.connections.subscribe((connection: MockConnection) => {
 
-        let mockResponseBody: any[] = [{
-          Node: '1.1'
-        }];
+        // Given
+        let items: any[] = [
+            { 'Name': 'key1', 'Value': 'val1' },
+            { 'Name': 'key2', 'Value': 'val2' }
+        ];
 
-        let response = new ResponseOptions({body: JSON.stringify(mockResponseBody)});
+        let response = new ResponseOptions({body: JSON.stringify(items)});
         connection.mockRespond(new Response(response));
       });
 
-      const parsedQuote$ = service.getNavigationItems('1')
+      // When
+      service.getResourceIndex()
         .then(items => {
-          expect(items.length).toEqual(1);
+          // Then
+          expect(items['key1']).toEqual('val1');
+          expect(items['key2']).toEqual('val2');
         });
     })));
- 
+
+
+  
 });

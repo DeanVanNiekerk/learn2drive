@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ResourceService {
   
-  private resourceFilePath = "content/strings.json";
+  private resourceFilePath = 'content/strings.json';
 
   private resourceData = null;
 
@@ -33,7 +33,7 @@ export class ResourceService {
     return new Promise(resolve => {
       this.getData().then(data => {
         
-        let result = alasql("SELECT [Name], [Value] FROM ?", [data]);
+        let result = alasql('SELECT [Name], [Value] FROM ?', [data]);
 
         let index = [];
         result.forEach(item => {
@@ -41,7 +41,7 @@ export class ResourceService {
         });
 
         resolve(index);
-      })
+      });
     });
 
   }

@@ -7,8 +7,8 @@
 // By default each design mode includes these shared imports.
 // App Shared Sass variables belong in app.variables.scss.
 
-@import "../pages/about/about";
+@import "../pages/content/content.component";
 
-@import "../pages/contact/contact";
+@import "../pages/mock-test/mock-test";
 
-@import "../pages/home/home";
+@import "../pages/test/test";

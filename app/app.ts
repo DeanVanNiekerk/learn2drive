@@ -3,18 +3,18 @@ import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {TabsPage} from './pages/tabs/tabs';
 
-//Services -----------------------------------------------------
-import {NavigationService} from './services/navigation-service';
-import {ResourceService} from './services/resource-service';
-//---------------------------------------------------------------
+// Services -----------------------------------------------------
+import {ContentService} from './services/content.service';
+import {ResourceService} from './services/resource.service';
+// ---------------------------------------------------------------
 
-//Pipes ---------------------------------------------------------
-import {TranslatePipe} from './pipes/translate-pipe.ts';
-//---------------------------------------------------------------
+// Pipes ---------------------------------------------------------
+import {TranslatePipe} from './pipes/translate.pipe.ts';
+// ---------------------------------------------------------------
 
 
 @Component({
-  providers: [NavigationService,ResourceService],
+  providers: [ContentService, ResourceService],
   pipes: [TranslatePipe],
   template: '<ion-nav [root]="rootPage"></ion-nav>'
 })
