@@ -24,7 +24,7 @@ const mockHttpProvider = {
   useFactory: (backend: MockBackend, defaultOptions: BaseRequestOptions) => {
     return new Http(backend, defaultOptions);
   }
-}
+};
  
 describe('Navigation Service', () => {
  
@@ -32,7 +32,8 @@ describe('Navigation Service', () => {
         return [
             MockBackend,
             BaseRequestOptions,
-            provide(Http, mockHttpProvider)
+            provide(Http, mockHttpProvider),
+            NavigationService
         ];
     });
 
@@ -51,7 +52,7 @@ describe('Navigation Service', () => {
         connection.mockRespond(new Response(response));
       });
 
-      const parsedQuote$ = service.getNavigationItems("1")
+      const parsedQuote$ = service.getNavigationItems('1')
         .then(items => {
           expect(items.length).toEqual(1);
         });

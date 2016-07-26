@@ -1,5 +1,6 @@
 {
   "name": "learn2drive3d.mobi",
+  "description": "Learn2Drive3D Mobile Version",
   "version": "1.0.0",
   "scripts": {
     "test": "karma start karma.conf.js"
@@ -21,9 +22,6 @@
     "alasql": "^0.3.0"
   },
   "devDependencies": {
-    "browserify": "13.0.0",
-    "browserify-istanbul": "2.0.0",
-    "del": "2.2.0",
     "gulp": "3.9.1",
     "gulp-watch": "4.3.5",
     "ionic-gulp-browserify-typescript": "2.0.0",
@@ -41,10 +39,11 @@
     "run-sequence": "1.1.5",
     "tsify": "0.16.0",
     "tslint-ionic-rules": "^0.0.3",
-    "watchify": "^3.7.0"
+    "watchify": "^3.7.0",
+    "browserify": "13.0.0",
+    "browserify-istanbul": "2.0.0",
+    "del": "2.2.0"
   },
-  "name": "l2dmobile",
-  "description": "L2DMobile",
   "cordovaPlugins": [
     "cordova-plugin-device",
     "cordova-plugin-console",
