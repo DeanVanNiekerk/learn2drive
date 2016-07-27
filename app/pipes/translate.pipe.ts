@@ -1,20 +1,23 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {ResourceService} from '../services/resource.service';
 
-@Pipe({name: 'translate'})
+@Pipe({
+    name: 'translate',
+    pure: false
+})
 export class TranslatePipe implements PipeTransform {
 
-    private index = [];
+    private text: string = '';
+    private promise: Promise<string>;
 
     constructor(private resourceService: ResourceService) {
-         this.resourceService
-            .getResourceIndex()
-            .then(index => {
-                this.index = index;
-            })
     }
 
-    transform(value: string): string {
-        return this.index[value];
+    transform(key: string): string {
+        if (!this.promise) {
+            this.promise = this.resourceService.getResource(key);
+            this.promise.then((text: string) => this.text = text);
+        }
+        return this.text;
     }
 }

@@ -13,7 +13,7 @@ export class Question {
         this.answerId = answerId;
         this.text = text;
         this.answers = answers;
-        this.images = images
+        this.images = images;
     }
     
 }

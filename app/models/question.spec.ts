@@ -11,8 +11,8 @@ describe('Question Model', () => {
 
         // Given
         let id = 1;
-        let answerId = 'A'
-        let text = 'this is a question?'
+        let answerId = 'A';
+        let text = 'this is a question?';
         let answer = new Answer('1', 'Answer1');
         let image = 'path/to/image.png';
 

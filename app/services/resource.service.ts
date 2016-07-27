@@ -43,6 +43,22 @@ export class ResourceService {
         resolve(index);
       });
     });
+  }
+
+
+  getResource(key: string): Promise<string> {
+
+    return new Promise(resolve => {
+      this.getData().then(data => {
+        
+        let result = alasql(`
+          SELECT [Name], [Value] 
+          FROM ?
+          WHERE [Name] = "${key}"`, [data]);
+
+        resolve(result[0].Value);
+      });
+    });
 
   }
 }

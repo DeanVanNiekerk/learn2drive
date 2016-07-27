@@ -12,7 +12,7 @@ describe('Answer Model', () => {
 
         // Given
         let id = '1';
-        let text = 'this is an answer'
+        let text = 'this is an answer';
 
         // When
         let answer = new Answer(id, text);

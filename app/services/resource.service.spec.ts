@@ -64,5 +64,29 @@ describe('Resource Service', () => {
     })));
 
 
+    it('getResource: multiple items in index', inject(
+    [ResourceService, MockBackend],
+    fakeAsync((service: ResourceService, backend: MockBackend) => {
+      backend.connections.subscribe((connection: MockConnection) => {
+
+        // Given
+        let items: any[] = [
+            { 'Name': 'key1', 'Value': 'val1' },
+            { 'Name': 'key2', 'Value': 'val2' }
+        ];
+
+        let response = new ResponseOptions({body: JSON.stringify(items)});
+        connection.mockRespond(new Response(response));
+      });
+
+      // When
+      service.getResource('key2')
+        .then(item => {
+          // Then
+          expect(item).toEqual('val2');
+        });
+    })));
+
+
   
 });

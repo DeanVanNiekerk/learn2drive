@@ -3,6 +3,7 @@ import {NavController, NavParams} from 'ionic-angular';
 
 // Services
 import {ContentService} from '../../services/content.service';
+import {ResourceService} from '../../services/resource.service';
 
 // Models
 import {NavigationItem} from '../../models/navigation-item';
@@ -23,7 +24,8 @@ export class ContentComponent implements OnInit {
 
   constructor(private navCtrl: NavController,
     private navParams: NavParams,
-    private contentService: ContentService) {
+    private contentService: ContentService,
+    private resourceService: ResourceService) {
 
       // Get the supplied navigation key, if not supply use default
       var navigationItem = navParams.get('navigationItem');

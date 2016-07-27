@@ -47,16 +47,16 @@ describe('Question Service', () => {
         // Given
         let items: any[] = [
             {
-                "navPath": "1.2",
-                "question": [
+                'navPath': '1.2',
+                'question': [
                     {
-                        "id": "1",
-                        "answer": "A",
-                        "text": "Question 1",
-                        "option": [
+                        'id': '1',
+                        'answer': 'A',
+                        'text': 'Question 1',
+                        'option': [
                             {
-                                "id": "A",
-                                "value": "Answer 1"
+                                'id': 'A',
+                                'value': 'Answer 1'
                             }
                         ]
                     }
@@ -96,18 +96,18 @@ describe('Question Service', () => {
         // Given
         let items: any[] = [
             {
-                "navPath": "1.2",
-                "question": [
+                'navPath': '1.2',
+                'question': [
                     {
-                        "id": "1",
-                        "answer": "A",
-                        "text": {
-                        "list": [
-                            "Q line 1",
-                            "Q line 2"
+                        'id': '1',
+                        'answer': 'A',
+                        'text': {
+                        'list': [
+                            'Q line 1',
+                            'Q line 2'
                         ]
                         },
-                        "option": []
+                        'option': []
                     }
                 ]
             }
@@ -140,30 +140,30 @@ describe('Question Service', () => {
         // Given
         let items: any[] = [
             {
-                "navPath": "1.2",
-                "question": [
+                'navPath': '1.2',
+                'question': [
                     {
-                        "id": "1",
-                        "answer": "A",
-                        "text": "Question 1",
-                        "option": []
+                        'id': '1',
+                        'answer': 'A',
+                        'text': 'Question 1',
+                        'option': []
                     },
                     {
-                        "id": "2",
-                        "answer": "A",
-                        "text": "Question 2",
-                        "option": []
+                        'id': '2',
+                        'answer': 'A',
+                        'text': 'Question 2',
+                        'option': []
                     }
                 ]
             },
             {
-                "navPath": "1.3",
-                "question": [
+                'navPath': '1.3',
+                'question': [
                     {
-                        "id": "3",
-                        "answer": "A",
-                        "text": "Question 3",
-                        "option": []
+                        'id': '3',
+                        'answer': 'A',
+                        'text': 'Question 3',
+                        'option': []
                     }
                 ]
             }
@@ -193,15 +193,15 @@ describe('Question Service', () => {
         // Given
         let items: any[] = [
             {
-                "navPath": "1.2",
-                "question": [
+                'navPath': '1.2',
+                'question': [
                     {
-                        "id": "1",
-                        "answer": "A",
-                        "text": "Question 1",
-                        "image": "path/to/image1.png",
-                        "image2": "path/to/image2.png",
-                        "option": []
+                        'id': '1',
+                        'answer': 'A',
+                        'text': 'Question 1',
+                        'image': 'path/to/image1.png',
+                        'image2': 'path/to/image2.png',
+                        'option': []
                     }
                 ]
             }

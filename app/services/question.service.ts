@@ -45,25 +45,26 @@ export class QuestionService {
         result.forEach(item => {
             item.question.forEach(question => {
 
+                // Get answers
                 let answers = new Array<Answer>();
                 question.option.forEach(option => {
-                    answers.push(new Answer(option.id, option.value))
+                    answers.push(new Answer(option.id, option.value));
                 });
 
+                // Get question text
                 let text = new Array<string>();
-                if(typeof question.text === "string") {
+                if (typeof question.text === 'string') {
                     text.push(question.text);
-                }
-                else {
+                } else {
                     question.text.list.forEach(questionText => {
                         text.push(questionText);
                     });
                 }
 
                 let images = new Array<string>();
-                if(question.image)
+                if (question.image)
                   images.push(question.image);
-                if(question.image2)  
+                if (question.image2)  
                   images.push(question.image2);
 
                 models.push(new Question(parseInt(question.id), question.answer, text, answers, images));

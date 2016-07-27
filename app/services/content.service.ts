@@ -69,14 +69,14 @@ export class ContentService {
       this.getData().then(data => {
 
           let result = alasql(`
-            SELECT Heading, Description
+            SELECT Heading, Description, ImageName
             FROM ? 
             WHERE Node = "${key}"`
             , [data]);
 
           // Map to model
           let models = result.map(function(item){
-            return new Content(item.Heading, item.Description);
+            return new Content(item.Heading, item.Description, item.ImageName);
           });
         
           resolve(models);

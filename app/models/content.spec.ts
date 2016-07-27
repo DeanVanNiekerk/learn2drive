@@ -11,13 +11,15 @@ describe('Content Model', () => {
         // Given
         let heading = 'Heading 1';
         let text = 'Long text here....';
+        let image = 'path/to/image.png';
 
         // When
-        let content = new Content(heading, text);
+        let content = new Content(heading, text, image);
 
         // Then
         expect(content.heading).toBe(heading);
         expect(content.text).toBe(text);
+        expect(content.image).toBe(image);
 
     });
 
