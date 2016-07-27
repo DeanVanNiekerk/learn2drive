@@ -4,16 +4,30 @@
         padding-left: 20px;
     }
 
-    ion-card-header {
-        white-space: normal;
-    }
+    ion-card {
 
-    .image {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: auto;
-        margin-bottom: 15px;
-    }
+        ion-card-header {
+            white-space: normal;
+        }
 
+        ion-card-content {
+            line-height: 1.7;
+
+            img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: auto;
+                margin-bottom: 15px;
+            }
+
+            li ul {
+                margin-top: 5px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+        }
+    }
 }
