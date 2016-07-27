@@ -184,5 +184,45 @@ describe('Question Service', () => {
 
         });
     })));
+
+    it('getQuestions: one question, multiple images', inject(
+    [QuestionService, MockBackend],
+    fakeAsync((service: QuestionService, backend: MockBackend) => {
+      backend.connections.subscribe((connection: MockConnection) => {
+
+        // Given
+        let items: any[] = [
+            {
+                "navPath": "1.2",
+                "question": [
+                    {
+                        "id": "1",
+                        "answer": "A",
+                        "text": "Question 1",
+                        "image": "path/to/image1.png",
+                        "image2": "path/to/image2.png",
+                        "option": []
+                    }
+                ]
+            }
+        ];
+
+        let response = new ResponseOptions({body: JSON.stringify(items)});
+        connection.mockRespond(new Response(response));
+      });
+
+      // When
+      service.getQuestions('1.2')
+        .then(questions => {
+          // Then
+          expect(questions.length).toEqual(1);
+
+          let question = questions[0]; 
+
+          expect(question.images.length).toEqual(2);
+          expect(question.images[0]).toEqual('path/to/image1.png');
+          expect(question.images[1]).toEqual('path/to/image2.png');
+        });
+    })));
   
 });

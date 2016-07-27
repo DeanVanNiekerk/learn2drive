@@ -60,7 +60,13 @@ export class QuestionService {
                     });
                 }
 
-                models.push(new Question(parseInt(question.id), question.answer, text, answers));
+                let images = new Array<string>();
+                if(question.image)
+                  images.push(question.image);
+                if(question.image2)  
+                  images.push(question.image2);
+
+                models.push(new Question(parseInt(question.id), question.answer, text, answers, images));
             });
         });
         

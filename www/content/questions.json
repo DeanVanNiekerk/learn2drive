@@ -2661,7 +2661,7 @@
       {
         "id": "123",
         "answer": "C",
-        "-image": "roadSigns/R217.gif",
+        "image": "roadSigns/R217.gif",
         "text": "If you see this sign, you must:",
         "option": [
           {
@@ -2795,7 +2795,7 @@
       {
         "id": "129",
         "answer": "B",
-        "-image": "roadSigns/TR216.gif",
+        "image": "roadSigns/TR216.gif",
         "text": "You may park in the following area if:",
         "option": [
           {
@@ -5602,7 +5602,7 @@
       {
         "id": "265",
         "answer": "C",
-        "-image": "roadSigns/S8.gif",
+        "image": "roadSigns/S8.gif",
         "text": "When there is a green arrow flashing to the right next to a red traffic light it means that:",
         "option": [
           {
@@ -5622,7 +5622,7 @@
       {
         "id": "266",
         "answer": "B",
-        "-image": "roadSigns/S1B.gif",
+        "image": "roadSigns/S1B.gif",
         "text": "This symbol means that ... may go.",
         "option": [
           {
@@ -5661,7 +5661,7 @@
       {
         "id": "268",
         "answer": "B",
-        "-image": "roadSigns/S1L.gif",
+        "image": "roadSigns/S1L.gif",
         "text": "This signal means that:",
         "option": [
           {
@@ -5850,7 +5850,7 @@
       {
         "id": "277",
         "answer": "B",
-        "-image": "roadSigns/FRD.gif",
+        "image": "roadSigns/FRD.gif",
         "text": "This signal is found at:",
         "option": [
           {
@@ -5870,7 +5870,7 @@
       {
         "id": "278",
         "answer": "C",
-        "-image": "roadSigns/FRD-R1.gif",
+        "image": "roadSigns/FRD-R1.gif",
         "text": "Which of the following is true?",
         "option": [
           {
@@ -5894,7 +5894,7 @@
     "question": {
       "id": "279",
       "answer": "C",
-      "-image": "roadSigns/S18.gif",
+      "image": "roadSigns/S18.gif",
       "text": "This signal means that:",
       "option": [
         {
@@ -5917,7 +5917,7 @@
     "question": {
       "id": "280",
       "answer": "A",
-      "-image": "roadSigns/S16.gif",
+      "image": "roadSigns/S16.gif",
       "text": "When you see this signal you know that:",
       "option": [
         {
@@ -5941,7 +5941,7 @@
       {
         "id": "281",
         "answer": "B",
-        "-image": "roadSigns/SS1C.gif",
+        "image": "roadSigns/SS1C.gif",
         "text": "If you are approaching from the direction this traffic officer is facing, you must:",
         "option": [
           {
@@ -5961,7 +5961,7 @@
       {
         "id": "282",
         "answer": "B",
-        "-image": "roadSigns/SS1C.gif",
+        "image": "roadSigns/SS1C.gif",
         "text": "If you are approaching from the direction of this traffic officer's back, you must:",
         "option": [
           {
@@ -5981,7 +5981,7 @@
       {
         "id": "283",
         "answer": "C",
-        "-image": "roadSigns/SS1A.gif",
+        "image": "roadSigns/SS1A.gif",
         "text": "When you see this signal you must:",
         "option": [
           {
@@ -6005,7 +6005,7 @@
     "question": {
       "id": "284",
       "answer": "C",
-      "-image": "roadSigns/SS2A.gif",
+      "image": "roadSigns/SS2A.gif",
       "text": "This signal means that:",
       "option": [
         {
@@ -6029,7 +6029,7 @@
       {
         "id": "285",
         "answer": "A",
-        "-image": "roadSigns/SS4A.gif",
+        "image": "roadSigns/SS4A.gif",
         "text": "This signal is a:",
         "option": [
           {
@@ -6072,7 +6072,7 @@
     "question": {
       "id": "287",
       "answer": "A",
-      "-image": "roadSigns/RM8.gif",
+      "image": "roadSigns/RM8.gif",
       "text": "This is an example of a:",
       "option": [
         {
@@ -6125,7 +6125,7 @@
       {
         "id": "289",
         "answer": "B",
-        "-image": "roadSigns/RM7.gif",
+        "image": "roadSigns/RM7.gif",
         "text": "This picture shows a reserved parking area. The symbol shows that only ambulances may park there. Which of the following statements is true?",
         "option": [
           {
@@ -6164,7 +6164,7 @@
       {
         "id": "292",
         "answer": "B",
-        "-image": "roadSigns/RTM2.gif",
+        "image": "roadSigns/RTM2.gif",
         "text": {
           "list": [
             "If you see this sign you could be at a:",
@@ -6191,7 +6191,7 @@
       {
         "id": "293",
         "answer": "A",
-        "-image": "roadSigns/RTM3.gif",
+        "image": "roadSigns/RTM3.gif",
         "text": "If you are driving in the direction of one of the black arrows in this picture, you must stop behind the ... white line you come to.",
         "option": [
           {
@@ -6211,8 +6211,8 @@
       {
         "id": "294",
         "answer": "C",
-        "-image": "roadSigns/RTM3.gif",
-        "-image2": "roadSigns/RTM4.gif",
+        "image": "roadSigns/RTM3.gif",
+        "image2": "roadSigns/RTM4.gif",
         "text": "What is the difference between these two road markings?",
         "option": [
           {
@@ -6236,7 +6236,7 @@
     "question": {
       "id": "291",
       "answer": "B",
-      "-image": "roadSigns/WM8.gif",
+      "image": "roadSigns/WM8.gif",
       "text": "If you see this marking then:",
       "option": [
         {
@@ -6260,8 +6260,8 @@
       {
         "id": "295",
         "answer": "A",
-        "-image": "roadSigns/RM1.gif",
-        "-image2": "roadSigns/RM2.1.gif",
+        "image": "roadSigns/RM1.gif",
+        "image2": "roadSigns/RM2.1.gif",
         "text": "What is the difference between these two road markings?",
         "option": [
           {
@@ -6281,7 +6281,7 @@
       {
         "id": "296",
         "answer": "C",
-        "-image": "roadSigns/RM3.gif",
+        "image": "roadSigns/RM3.gif",
         "text": "This is a:",
         "option": [
           {
@@ -6339,7 +6339,7 @@
       {
         "id": "299",
         "answer": "C",
-        "-image": "roadSigns/RM5.2.gif",
+        "image": "roadSigns/RM5.2.gif",
         "text": "This is a:",
         "option": [
           {
@@ -6385,7 +6385,7 @@
       {
         "id": "301",
         "answer": "B",
-        "-image": "roadSigns/RM8.gif",
+        "image": "roadSigns/RM8.gif",
         "text": "This marking means that:",
         "option": [
           {
@@ -6405,7 +6405,7 @@
       {
         "id": "302",
         "answer": "A",
-        "-image": "roadSigns/RM9.gif",
+        "image": "roadSigns/RM9.gif",
         "text": "This marking means that:",
         "option": [
           {
@@ -6425,7 +6425,7 @@
       {
         "id": "303",
         "answer": "A",
-        "-image": "roadSigns/RM17.1.gif",
+        "image": "roadSigns/RM17.1.gif",
         "text": "Which one is true?",
         "option": [
           {
@@ -6445,7 +6445,7 @@
       {
         "id": "304",
         "answer": "C",
-        "-image": "roadSigns/RM10.gif",
+        "image": "roadSigns/RM10.gif",
         "text": "Who may let their vehicle stop over the yellow markings?",
         "option": [
           {
@@ -6465,7 +6465,7 @@
       {
         "id": "305",
         "answer": "B",
-        "-image": "roadSigns/RM10.gif",
+        "image": "roadSigns/RM10.gif",
         "text": {
           "list": [
             "This marking means that:",
@@ -6492,7 +6492,7 @@
       {
         "id": "306",
         "answer": "A",
-        "-image": "roadSigns/RM11.gif",
+        "image": "roadSigns/RM11.gif",
         "text": "With this zig-zag marking you must:",
         "option": [
           {
@@ -6512,7 +6512,7 @@
       {
         "id": "307",
         "answer": "C",
-        "-image": "roadSigns/RM14.gif",
+        "image": "roadSigns/RM14.gif",
         "text": "This marking shows that:",
         "option": [
           {
@@ -6532,7 +6532,7 @@
       {
         "id": "308",
         "answer": "C",
-        "-image": "roadSigns/RM16.gif",
+        "image": "roadSigns/RM16.gif",
         "text": "This marking shows that:",
         "option": [
           {
@@ -6552,7 +6552,7 @@
       {
         "id": "309",
         "answer": "A",
-        "-image": "roadSigns/RM15.gif",
+        "image": "roadSigns/RM15.gif",
         "text": "At this intersection, the rule is:",
         "option": [
           {
@@ -6577,8 +6577,8 @@
       {
         "id": "310",
         "answer": "B",
-        "-image": "roadSigns/WM2.3.gif",
-        "-image2": "roadSigns/WM3.2.gif",
+        "image": "roadSigns/WM2.3.gif",
+        "image2": "roadSigns/WM3.2.gif",
         "text": "What can be said about these two road markings?",
         "option": [
           {
@@ -6598,7 +6598,7 @@
       {
         "id": "311",
         "answer": "C",
-        "-image": "roadSigns/WM1.gif",
+        "image": "roadSigns/WM1.gif",
         "text": "When you see this marking it means that:",
         "option": [
           {
@@ -6618,7 +6618,7 @@
       {
         "id": "312",
         "answer": "C",
-        "-image": "roadSigns/WM6.gif",
+        "image": "roadSigns/WM6.gif",
         "text": "This marking means that:",
         "option": [
           {
@@ -6638,7 +6638,7 @@
       {
         "id": "313",
         "answer": "C",
-        "-image": "roadSigns/WM8.gif",
+        "image": "roadSigns/WM8.gif",
         "text": "If you see these arrows:",
         "option": [
           {
@@ -6658,8 +6658,8 @@
       {
         "id": "314",
         "answer": "B",
-        "-image": "roadSigns/WM9.1.gif",
-        "-image2": "roadSigns/WM9.2.gif",
+        "image": "roadSigns/WM9.1.gif",
+        "image2": "roadSigns/WM9.2.gif",
         "text": {
           "list": [
             "What is true of these two markings?",
@@ -6686,7 +6686,7 @@
       {
         "id": "315",
         "answer": "C",
-        "-image": "roadSigns/WM10.gif",
+        "image": "roadSigns/WM10.gif",
         "text": "When you see this painted on the road then:",
         "option": [
           {
@@ -6706,7 +6706,7 @@
       {
         "id": "316",
         "answer": "C",
-        "-image": "roadSigns/WM11.2.gif",
+        "image": "roadSigns/WM11.2.gif",
         "text": "This means that:",
         "option": [
           {
@@ -6726,7 +6726,7 @@
       {
         "id": "317",
         "answer": "A",
-        "-image": "roadSigns/WM4.gif",
+        "image": "roadSigns/WM4.gif",
         "text": "What is true about this marking?",
         "option": [
           {
@@ -6746,7 +6746,7 @@
       {
         "id": "318",
         "answer": "A",
-        "-image": "roadSigns/WM5.gif",
+        "image": "roadSigns/WM5.gif",
         "text": "This marking means that:",
         "option": [
           {
@@ -6771,7 +6771,7 @@
       {
         "id": "319",
         "answer": "C",
-        "-image": "roadSigns/GM2.gif",
+        "image": "roadSigns/GM2.gif",
         "text": {
           "list": [
             "What is true of this picture?",
@@ -6798,7 +6798,7 @@
       {
         "id": "320",
         "answer": "B",
-        "-image": "roadSigns/GM8.gif",
+        "image": "roadSigns/GM8.gif",
         "text": "This marking is used on:",
         "option": [
           {
@@ -6818,7 +6818,7 @@
       {
         "id": "321",
         "answer": "C",
-        "-image": "roadSigns/GM1.2.gif",
+        "image": "roadSigns/GM1.2.gif",
         "text": "This marking is a lane line, and so:",
         "option": [
           {
@@ -6838,7 +6838,7 @@
       {
         "id": "322",
         "answer": "A",
-        "-image": "roadSigns/GM3.1.gif",
+        "image": "roadSigns/GM3.1.gif",
         "text": "These furcation arrows show that:",
         "option": [
           {
@@ -6877,7 +6877,7 @@
       {
         "id": "324",
         "answer": "A",
-        "-image": "roadSigns/GM5.gif",
+        "image": "roadSigns/GM5.gif",
         "text": {
           "list": [
             "What is true of this picture?",
@@ -6905,7 +6905,7 @@
       {
         "id": "325",
         "answer": "C",
-        "-image": "roadSigns/GM4.1.gif",
+        "image": "roadSigns/GM4.1.gif",
         "text": "This arrow shows:",
         "option": [
           {
@@ -6930,7 +6930,7 @@
       {
         "id": "326",
         "answer": "B",
-        "-image": "roadSigns/W101.gif",
+        "image": "roadSigns/W101.gif",
         "text": "What is ahead if you see this sign?",
         "option": [
           {
@@ -6969,7 +6969,7 @@
       {
         "id": "329",
         "answer": "B",
-        "-image": "roadSigns/R1.gif",
+        "image": "roadSigns/R1.gif",
         "text": {
           "list": [
             "This sign could be found at which of the following places?",
@@ -6996,7 +6996,7 @@
       {
         "id": "330",
         "answer": "B",
-        "-image": "roadSigns/R5.gif",
+        "image": "roadSigns/R5.gif",
         "text": "At this sign:",
         "option": [
           {
@@ -7016,7 +7016,7 @@
       {
         "id": "331",
         "answer": "C",
-        "-image": "roadSigns/R6.gif",
+        "image": "roadSigns/R6.gif",
         "text": "When you see this sign it means that:",
         "option": [
           {
@@ -7036,7 +7036,7 @@
       {
         "id": "332",
         "answer": "A",
-        "-image": "roadSigns/R4.2.gif",
+        "image": "roadSigns/R4.2.gif",
         "text": "Which of the following is true of this sign?",
         "option": [
           {
@@ -7061,7 +7061,7 @@
       {
         "id": "327",
         "answer": "C",
-        "-image": "roadSigns/IN7.gif",
+        "image": "roadSigns/IN7.gif",
         "text": "Where would you find this sign?",
         "option": [
           {
@@ -7081,8 +7081,8 @@
       {
         "id": "385",
         "answer": "B",
-        "-image": "roadSigns/IN2.gif",
-        "-image2": "roadSigns/IN3.gif",
+        "image": "roadSigns/IN2.gif",
+        "image2": "roadSigns/IN3.gif",
         "text": "Which one of these two signs would you encounter first as you were driving along?",
         "option": [
           {
@@ -7102,7 +7102,7 @@
       {
         "id": "386",
         "answer": "C",
-        "-image": "roadSigns/IN25.gif",
+        "image": "roadSigns/IN25.gif",
         "text": "Which is correct regarding this sign?",
         "option": [
           {
@@ -7122,8 +7122,8 @@
       {
         "id": "387",
         "answer": "C",
-        "-image": "roadSigns/IN1.gif",
-        "-image2": "roadSigns/IN10.gif",
+        "image": "roadSigns/IN1.gif",
+        "image2": "roadSigns/IN10.gif",
         "text": {
           "list": [
             "What is true of these two signs?",
@@ -7150,7 +7150,7 @@
       {
         "id": "388",
         "answer": "B",
-        "-image": "roadSigns/IN11.1.gif",
+        "image": "roadSigns/IN11.1.gif",
         "text": "This sign shows that:",
         "option": [
           {
@@ -7201,7 +7201,7 @@
       {
         "id": "334",
         "answer": "B",
-        "-image": "roadSigns/R101.gif",
+        "image": "roadSigns/R101.gif",
         "text": "Which is true of this sign?",
         "option": [
           {
@@ -7221,7 +7221,7 @@
       {
         "id": "335",
         "answer": "A",
-        "-image": "roadSigns/R137.gif",
+        "image": "roadSigns/R137.gif",
         "text": "Where would you find this sign?",
         "option": [
           {
@@ -7241,7 +7241,7 @@
       {
         "id": "336",
         "answer": "B",
-        "-image": "roadSigns/R103.gif",
+        "image": "roadSigns/R103.gif",
         "text": "This sign tells you to:",
         "option": [
           {
@@ -7261,8 +7261,8 @@
       {
         "id": "337",
         "answer": "C",
-        "-image": "roadSigns/R105.gif",
-        "-image2": "roadSigns/R108.gif",
+        "image": "roadSigns/R105.gif",
+        "image2": "roadSigns/R108.gif",
         "text": "What is the difference between these two road signs?",
         "option": [
           {
@@ -7313,7 +7313,7 @@
       {
         "id": "339",
         "answer": "B",
-        "-image": "roadSigns/R201.gif",
+        "image": "roadSigns/R201.gif",
         "text": "If you see this sign:",
         "option": [
           {
@@ -7333,7 +7333,7 @@
       {
         "id": "340",
         "answer": "C",
-        "-image": "roadSigns/R212.gif",
+        "image": "roadSigns/R212.gif",
         "text": "This sign means that:",
         "option": [
           {
@@ -7353,8 +7353,8 @@
       {
         "id": "341",
         "answer": "C",
-        "-image": "roadSigns/R228.gif",
-        "-image2": "roadSigns/R229.gif",
+        "image": "roadSigns/R228.gif",
+        "image2": "roadSigns/R229.gif",
         "text": "What is the difference between these two signs?",
         "option": [
           {
@@ -7374,7 +7374,7 @@
       {
         "id": "342",
         "answer": "B",
-        "-image": "roadSigns/R220.gif",
+        "image": "roadSigns/R220.gif",
         "text": {
           "list": [
             "When you see this sign, then:",
@@ -7406,7 +7406,7 @@
       {
         "id": "343",
         "answer": "C",
-        "-image": "roadSigns/R302.gif",
+        "image": "roadSigns/R302.gif",
         "text": "The yellow dashed line down the side of this sign means that:",
         "option": [
           {
@@ -7426,7 +7426,7 @@
       {
         "id": "344",
         "answer": "B",
-        "-image": "roadSigns/R307.gif",
+        "image": "roadSigns/R307.gif",
         "text": {
           "list": [
             "Which of the following vehicles may use the area of the road where this sign is displayed? ",
@@ -7453,7 +7453,7 @@
       {
         "id": "345",
         "answer": "B",
-        "-image": "roadSigns/R325.gif",
+        "image": "roadSigns/R325.gif",
         "text": "This sign marks a:",
         "option": [
           {
@@ -7492,7 +7492,7 @@
       {
         "id": "347",
         "answer": "C",
-        "-image": "roadSigns/R306P.gif",
+        "image": "roadSigns/R306P.gif",
         "text": "This sign means that:",
         "option": [
           {
@@ -7517,7 +7517,7 @@
       {
         "id": "348",
         "answer": "A",
-        "-image": "roadSigns/R401.gif",
+        "image": "roadSigns/R401.gif",
         "text": "When you see this sign, it means you may not:",
         "option": [
           {
@@ -7537,7 +7537,7 @@
       {
         "id": "349",
         "answer": "C",
-        "-image": "roadSigns/R403.gif",
+        "image": "roadSigns/R403.gif",
         "text": "You would find this sign near a:",
         "option": [
           {
@@ -7557,8 +7557,8 @@
       {
         "id": "350",
         "answer": "A",
-        "-image": "roadSigns/R402.gif",
-        "-image2": "roadSigns/R401.gif",
+        "image": "roadSigns/R402.gif",
+        "image2": "roadSigns/R401.gif",
         "text": "Which of the following is true of these two signs?",
         "option": [
           {
@@ -7582,7 +7582,7 @@
     "question": {
       "id": "351",
       "answer": "C",
-      "-image": "roadSigns/R600.gif",
+      "image": "roadSigns/R600.gif",
       "text": "What is the meaning of this sign?",
       "option": [
         {
@@ -7625,7 +7625,7 @@
       {
         "id": "353",
         "answer": "B",
-        "-image": "roadSigns/R540.gif",
+        "image": "roadSigns/R540.gif",
         "text": "This sign means that:",
         "option": [
           {
@@ -7645,7 +7645,7 @@
       {
         "id": "354",
         "answer": "B",
-        "-image": "roadSigns/R505.gif",
+        "image": "roadSigns/R505.gif",
         "text": "If you would like to park in an area where there is a sign allowing parking accompanied by this sign, and you would like to park for 45 minutes, when may you do it?",
         "option": [
           {
@@ -7665,8 +7665,8 @@
       {
         "id": "355",
         "answer": "A",
-        "-image": "roadSigns/R511.gif",
-        "-image2": "roadSigns/R512.gif",
+        "image": "roadSigns/R511.gif",
+        "image2": "roadSigns/R512.gif",
         "text": "After a tunnel, if there was a sign telling you to switch off your headlights again, it would be most likely to be accompanied by which of these signs?",
         "option": [
           {
@@ -7686,7 +7686,7 @@
       {
         "id": "356",
         "answer": "A",
-        "-image": "roadSigns/R535.gif",
+        "image": "roadSigns/R535.gif",
         "text": "This sign is most likely to be displayed with a ... sign.",
         "option": [
           {
@@ -7711,7 +7711,7 @@
       {
         "id": "357",
         "answer": "B",
-        "-image": "roadSigns/W104.gif",
+        "image": "roadSigns/W104.gif",
         "text": "This sign is a:",
         "option": [
           {
@@ -7763,7 +7763,7 @@
       {
         "id": "358",
         "answer": "B",
-        "-image": "roadSigns/W103.gif",
+        "image": "roadSigns/W103.gif",
         "text": "At the crossroads ahead, what is true?",
         "option": [
           {
@@ -7783,7 +7783,7 @@
       {
         "id": "359",
         "answer": "C",
-        "-image": "roadSigns/W117.gif",
+        "image": "roadSigns/W117.gif",
         "text": "This sign means that:",
         "option": [
           {
@@ -7803,7 +7803,7 @@
       {
         "id": "361",
         "answer": "A",
-        "-image": "roadSigns/W109.gif",
+        "image": "roadSigns/W109.gif",
         "text": "If you see this sign then there are ... ahead.",
         "option": [
           {
@@ -7823,7 +7823,7 @@
       {
         "id": "362",
         "answer": "B",
-        "-image": "roadSigns/W114.gif",
+        "image": "roadSigns/W114.gif",
         "text": "This sign warns you that:",
         "option": [
           {
@@ -7843,7 +7843,7 @@
       {
         "id": "363",
         "answer": "C",
-        "-image": "roadSigns/W115.gif",
+        "image": "roadSigns/W115.gif",
         "text": "This is a:",
         "option": [
           {
@@ -7868,7 +7868,7 @@
       {
         "id": "364",
         "answer": "B",
-        "-image": "roadSigns/W201.gif",
+        "image": "roadSigns/W201.gif",
         "text": "You would find this sign:",
         "option": [
           {
@@ -7888,7 +7888,7 @@
       {
         "id": "365",
         "answer": "C",
-        "-image": "roadSigns/W204.gif",
+        "image": "roadSigns/W204.gif",
         "text": "This sign means that:",
         "option": [
           {
@@ -7908,7 +7908,7 @@
       {
         "id": "366",
         "answer": "B",
-        "-image": "roadSigns/W207.gif",
+        "image": "roadSigns/W207.gif",
         "text": "Where you see this sign:",
         "option": [
           {
@@ -7928,7 +7928,7 @@
       {
         "id": "367",
         "answer": "A",
-        "-image": "roadSigns/W213.gif",
+        "image": "roadSigns/W213.gif",
         "text": "Which one is true when you see this sign?",
         "option": [
           {
@@ -7948,7 +7948,7 @@
       {
         "id": "368",
         "answer": "C",
-        "-image": "roadSigns/W218.gif",
+        "image": "roadSigns/W218.gif",
         "text": "This sign shows that:",
         "option": [
           {
@@ -7973,8 +7973,8 @@
       {
         "id": "369",
         "answer": "C",
-        "-image": "roadSigns/W302.gif",
-        "-image2": "roadSigns/W303.gif",
+        "image": "roadSigns/W302.gif",
+        "image2": "roadSigns/W303.gif",
         "text": {
           "list": [
             "What is true of these two signs?",
@@ -8001,7 +8001,7 @@
       {
         "id": "370",
         "answer": "B",
-        "-image": "roadSigns/W307.gif",
+        "image": "roadSigns/W307.gif",
         "text": "This sign means that:",
         "option": [
           {
@@ -8021,7 +8021,7 @@
       {
         "id": "371",
         "answer": "A",
-        "-image": "roadSigns/W315.gif",
+        "image": "roadSigns/W315.gif",
         "text": "What is up ahead when you see this sign?",
         "option": [
           {
@@ -8041,7 +8041,7 @@
       {
         "id": "372",
         "answer": "C",
-        "-image": "roadSigns/W319.gif",
+        "image": "roadSigns/W319.gif",
         "text": "This sign tells you that:",
         "option": [
           {
@@ -8061,7 +8061,7 @@
       {
         "id": "373",
         "answer": "C",
-        "-image": "roadSigns/W321.gif",
+        "image": "roadSigns/W321.gif",
         "text": "Which of these is true of this sign?",
         "option": [
           {
@@ -8081,7 +8081,7 @@
       {
         "id": "374",
         "answer": "B",
-        "-image": "roadSigns/W324.gif",
+        "image": "roadSigns/W324.gif",
         "text": {
           "list": [
             "Which of the following is true of this sign?",
@@ -8108,7 +8108,7 @@
       {
         "id": "375",
         "answer": "A",
-        "-image": "roadSigns/W328.gif",
+        "image": "roadSigns/W328.gif",
         "text": "This sign means that:",
         "option": [
           {
@@ -8128,7 +8128,7 @@
       {
         "id": "376",
         "answer": "C",
-        "-image": "roadSigns/W332.gif",
+        "image": "roadSigns/W332.gif",
         "text": "This sign means that:",
         "option": [
           {
@@ -8148,7 +8148,7 @@
       {
         "id": "377",
         "answer": "B",
-        "-image": "roadSigns/TW338.gif",
+        "image": "roadSigns/TW338.gif",
         "text": "If you see this sign then:",
         "option": [
           {
@@ -8168,7 +8168,7 @@
       {
         "id": "378",
         "answer": "A",
-        "-image": "roadSigns/TW347.gif",
+        "image": "roadSigns/TW347.gif",
         "text": "This sign would be likely to be found at a:",
         "option": [
           {
@@ -8188,7 +8188,7 @@
       {
         "id": "379",
         "answer": "C",
-        "-image": "roadSigns/W360.gif",
+        "image": "roadSigns/W360.gif",
         "text": "This sign means that:",
         "option": [
           {
@@ -8213,8 +8213,8 @@
       {
         "id": "380",
         "answer": "C",
-        "-image": "roadSigns/W401.gif",
-        "-image2": "roadSigns/W406.gif",
+        "image": "roadSigns/W401.gif",
+        "image2": "roadSigns/W406.gif",
         "text": {
           "list": [
             "What is true of these two signs?",
@@ -8241,7 +8241,7 @@
       {
         "id": "381",
         "answer": "B",
-        "-image": "roadSigns/W410.gif",
+        "image": "roadSigns/W410.gif",
         "text": "Where is this marker found?",
         "option": [
           {
@@ -8261,8 +8261,8 @@
       {
         "id": "382",
         "answer": "C",
-        "-image": "roadSigns/W413.gif",
-        "-image2": "roadSigns/W414.gif",
+        "image": "roadSigns/W413.gif",
+        "image2": "roadSigns/W414.gif",
         "text": "Which of these markers means that there is a division in the road ahead and that you must pass to one or the other side of it?",
         "option": [
           {
@@ -8282,8 +8282,8 @@
       {
         "id": "383",
         "answer": "A",
-        "-image": "roadSigns/W409.gif",
-        "-image2": "roadSigns/W411.gif",
+        "image": "roadSigns/W409.gif",
+        "image2": "roadSigns/W411.gif",
         "text": "Which of these markings would be more likely to move?",
         "option": [
           {
@@ -8303,7 +8303,7 @@
       {
         "id": "384",
         "answer": "B",
-        "-image": "roadSigns/TW412.2.gif",
+        "image": "roadSigns/TW412.2.gif",
         "text": "This sign means that:",
         "option": [
           {
@@ -8366,7 +8366,7 @@
       {
         "id": "391",
         "answer": "A",
-        "-image": "roadSigns/GL4.gif",
+        "image": "roadSigns/GL4.gif",
         "text": "What is true of this sign?",
         "option": [
           {
@@ -8386,7 +8386,7 @@
       {
         "id": "392",
         "answer": "C",
-        "-image": "roadSigns/GL3.gif",
+        "image": "roadSigns/GL3.gif",
         "text": "This sign marks a:",
         "option": [
           {
@@ -8406,7 +8406,7 @@
       {
         "id": "393",
         "answer": "C",
-        "-image": "roadSigns/GL6.gif",
+        "image": "roadSigns/GL6.gif",
         "text": "This sign means that:",
         "option": [
           {
@@ -8431,7 +8431,7 @@
       {
         "id": "394",
         "answer": "C",
-        "-image": "roadSigns/GE9.gif",
+        "image": "roadSigns/GE9.gif",
         "text": "What is not true of this sign?",
         "option": [
           {
@@ -8451,8 +8451,8 @@
       {
         "id": "395",
         "answer": "A",
-        "-image": "roadSigns/GE18.3.gif",
-        "-image2": "roadSigns/GE19.3.gif",
+        "image": "roadSigns/GE18.3.gif",
+        "image2": "roadSigns/GE19.3.gif",
         "text": "What is true of both of these signs?",
         "option": [
           {
@@ -8496,7 +8496,7 @@
       {
         "id": "397",
         "answer": "A",
-        "-image": "roadSigns/GD2.gif",
+        "image": "roadSigns/GD2.gif",
         "text": "This sign is a:",
         "option": [
           {
@@ -8535,7 +8535,7 @@
       {
         "id": "399",
         "answer": "A",
-        "-image": "roadSigns/GD3.gif",
+        "image": "roadSigns/GD3.gif",
         "text": "When you see this sign, which route are you on?",
         "option": [
           {
@@ -8555,7 +8555,7 @@
       {
         "id": "400",
         "answer": "A",
-        "-image": "roadSigns/GD4.gif",
+        "image": "roadSigns/GD4.gif",
         "text": "If you want to go to the Prince Edward High School, you should turn:",
         "option": [
           {
@@ -8580,7 +8580,7 @@
       {
         "id": "401",
         "answer": "B",
-        "-image": "roadSigns/GC1.gif",
+        "image": "roadSigns/GC1.gif",
         "text": "If you want to go to the M1, you should turn:",
         "option": [
           {
@@ -8619,7 +8619,7 @@
       {
         "id": "403",
         "answer": "A",
-        "-image": "roadSigns/GB3.gif",
+        "image": "roadSigns/GB3.gif",
         "text": {
           "list": [
             "This sign means that:",
@@ -8646,7 +8646,7 @@
       {
         "id": "404",
         "answer": "C",
-        "-image": "roadSigns/GA8.gif",
+        "image": "roadSigns/GA8.gif",
         "text": "Which one is true",
         "option": [
           {
@@ -8666,7 +8666,7 @@
       {
         "id": "405",
         "answer": "B",
-        "-image": "roadSigns/GA4.gif",
+        "image": "roadSigns/GA4.gif",
         "text": "What does this sign mean?",
         "option": [
           {
@@ -8691,7 +8691,7 @@
       {
         "id": "406",
         "answer": "A",
-        "-image": "roadSigns/GF12.gif",
+        "image": "roadSigns/GF12.gif",
         "text": "This sign would be helpful to you if:",
         "option": [
           {
@@ -8711,7 +8711,7 @@
       {
         "id": "407",
         "answer": "B",
-        "-image": "roadSigns/GF1.gif",
+        "image": "roadSigns/GF1.gif",
         "text": "If you take the exit you might come to which of the following:",
         "option": [
           {
@@ -8731,7 +8731,7 @@
       {
         "id": "408",
         "answer": "C",
-        "-image": "roadSigns/GF2.gif",
+        "image": "roadSigns/GF2.gif",
         "text": "The T1 is a:",
         "option": [
           {
@@ -8751,7 +8751,7 @@
       {
         "id": "409",
         "answer": "C",
-        "-image": "roadSigns/GF8.gif",
+        "image": "roadSigns/GF8.gif",
         "text": "Which of the following is true?",
         "option": [
           {
@@ -8771,7 +8771,7 @@
       {
         "id": "410",
         "answer": "B",
-        "-image": "roadSigns/GFS-D1-18.gif",
+        "image": "roadSigns/GFS-D1-18.gif",
         "text": "This symbol refers to:",
         "option": [
           {
@@ -8796,7 +8796,7 @@
       {
         "id": "411",
         "answer": "A",
-        "-image": "roadSigns/GS501.gif",
+        "image": "roadSigns/GS501.gif",
         "text": "What is 3km away?",
         "option": [
           {
@@ -8816,7 +8816,7 @@
       {
         "id": "412",
         "answer": "A",
-        "-image": "roadSigns/GS605.gif",
+        "image": "roadSigns/GS605.gif",
         "text": "This sign means that:",
         "option": [
           {
@@ -8836,7 +8836,7 @@
       {
         "id": "413",
         "answer": "B",
-        "-image": "roadSigns/GS403.gif",
+        "image": "roadSigns/GS403.gif",
         "text": "What does this sign mean?",
         "option": [
           {
@@ -8856,7 +8856,7 @@
       {
         "id": "414",
         "answer": "C",
-        "-image": "roadSigns/GS103.gif",
+        "image": "roadSigns/GS103.gif",
         "text": "Which one of these is not true when you see this sign?",
         "option": [
           {
@@ -8876,7 +8876,7 @@
       {
         "id": "415",
         "answer": "B",
-        "-image": "roadSigns/GS205.gif",
+        "image": "roadSigns/GS205.gif",
         "text": "This sign marks:",
         "option": [
           {

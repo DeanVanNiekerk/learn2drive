@@ -14,15 +14,17 @@ describe('Question Model', () => {
         let answerId = 'A'
         let text = 'this is a question?'
         let answer = new Answer('1', 'Answer1');
+        let image = 'path/to/image.png';
 
         // When
-        let question = new Question(id, answerId, [text], [answer]);
+        let question = new Question(id, answerId, [text], [answer], [image]);
 
         // Then
         expect(question.id).toBe(id);
         expect(question.answerId).toBe(answerId);
         expect(question.text[0]).toBe(text);
-        expect(question.answers[0].id).toBe('1');
+        expect(question.answers[0].id).toBe(answer.id);
+        expect(question.images[0]).toBe(image);
 
     });
 
