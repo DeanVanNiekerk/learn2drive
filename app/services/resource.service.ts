@@ -13,7 +13,7 @@ export class ResourceService {
   constructor(private http: Http) {
   }
 
-  getData(): Promise<any> {
+  private getData(): Promise<any> {
     if (this.resourceData) {
       return Promise.resolve(this.resourceData);
     }

@@ -9,24 +9,23 @@ import {Content} from '../models/content';
 @Injectable()
 export class ContentService {
   
-  private rulesOfTheRoadFilePath = 'content/content.json';
-
-  private rulesOfTheRoadData = null;
+  private contentFilePath = 'content/content.json';
+  private contentData = null;
 
   constructor(private http: Http) {
   }
 
-  getData(): Promise<any> {
-    if (this.rulesOfTheRoadData) {
-      return Promise.resolve(this.rulesOfTheRoadData);
+  private getData(): Promise<any> {
+    if (this.contentData) {
+      return Promise.resolve(this.contentData);
     }
 
     return new Promise(resolve => {
-      this.http.get(this.rulesOfTheRoadFilePath)
+      this.http.get(this.contentFilePath)
         .map(res => res.json())
         .subscribe(data => {
-          this.rulesOfTheRoadData = data;
-          resolve(this.rulesOfTheRoadData);
+          this.contentData = data;
+          resolve(this.contentData);
         });
     });
   }
