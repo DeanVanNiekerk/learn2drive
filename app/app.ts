@@ -1,11 +1,16 @@
 import {Component} from '@angular/core';
 import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-import {TabsPage} from './pages/tabs/tabs';
+
+// Components ---------------------------------------------------
+import {ContentComponent} from './components/content/content.component';
+// --------------------------------------------------------------
 
 // Services -----------------------------------------------------
 import {ContentService} from './services/content.service';
 import {ResourceService} from './services/resource.service';
+import {QuestionService} from './services/question.service';
+import {StateService} from './services/state.service';
 // ---------------------------------------------------------------
 
 // Pipes ---------------------------------------------------------
@@ -14,16 +19,16 @@ import {TranslatePipe} from './pipes/translate.pipe.ts';
 
 
 @Component({
-  providers: [ContentService, ResourceService],
+  providers: [ContentService, ResourceService, QuestionService, StateService],
   pipes: [TranslatePipe],
   template: '<ion-nav [root]="rootPage"></ion-nav>'
 })
-export class MyApp {
+export class L2D3DApp {
 
   private rootPage: any;
 
   constructor(private platform: Platform) {
-    this.rootPage = TabsPage;
+    this.rootPage = ContentComponent;
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -33,4 +38,4 @@ export class MyApp {
   }
 }
 
-ionicBootstrap(MyApp);
+ionicBootstrap(L2D3DApp);

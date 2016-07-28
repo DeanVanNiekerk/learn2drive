@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title>{{navigationKey | translate}}</ion-title>
+
+  <ion-buttons end>
+    <button (click)="toggleMode()">
+      <ion-icon name="help"></ion-icon>
+    </button>
+  </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="content">
+  
+  <!-- Navigation -->
+  <navigator [hidden]="!isInLearnMode()"></navigator>
+  
+  <!-- Learn Model -->
+  <learn [hidden]="!isInLearnMode()"></learn>
+
+  <!-- Test Model -->
+  <test [hidden]="!isInTestMode()"></test>
+
+</ion-content>

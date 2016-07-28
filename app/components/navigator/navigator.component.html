@@ -1,0 +1,6 @@
+
+<ion-list>
+    <ion-item *ngFor="let item of navigationItems" (click)="navigateTo(item)">
+        {{item.key | translate}}
+    </ion-item>
+</ion-list>
