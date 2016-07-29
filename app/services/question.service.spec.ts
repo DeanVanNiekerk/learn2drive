@@ -157,12 +157,23 @@ describe('Question Service', () => {
                 ]
             },
             {
-                'navPath': '1.3',
+                'navPath': '1.2.3',
                 'question': [
                     {
                         'id': '3',
                         'answer': 'A',
                         'text': 'Question 3',
+                        'option': []
+                    }
+                ]
+            },
+            {
+                'navPath': '1.4',
+                'question': [
+                    {
+                        'id': '4',
+                        'answer': 'A',
+                        'text': 'Question 4',
                         'option': []
                     }
                 ]
@@ -177,10 +188,11 @@ describe('Question Service', () => {
       service.getQuestions('1.2')
         .then(questions => {
           // Then
-          expect(questions.length).toEqual(2);
+          expect(questions.length).toEqual(3);
 
           expect(questions[0].id).toEqual(1);
           expect(questions[1].id).toEqual(2);
+          expect(questions[2].id).toEqual(3);
 
         });
     })));
@@ -224,5 +236,41 @@ describe('Question Service', () => {
           expect(question.images[1]).toEqual('path/to/image2.png');
         });
     })));
+
+
+    it('getQuestions: one question, no array', inject(
+    [QuestionService, MockBackend],
+    fakeAsync((service: QuestionService, backend: MockBackend) => {
+      backend.connections.subscribe((connection: MockConnection) => {
+
+        // Given
+        let items: any[] = [
+            {
+                'navPath': '1.2',
+                'question': {
+                        'id': '1',
+                        'answer': 'A',
+                        'text': 'Question 1',
+                        'image': 'path/to/image1.png',
+                        'option': []
+                    }
+            }
+        ];
+
+        let response = new ResponseOptions({body: JSON.stringify(items)});
+            connection.mockRespond(new Response(response));
+        });
+
+        // When
+        service.getQuestions('1.2')
+            .then(questions => {
+            // Then
+            expect(questions.length).toEqual(1);
+
+            let question = questions[0]; 
+            expect(question.id).toEqual(1);
+            });
+        })
+    ));
   
 });

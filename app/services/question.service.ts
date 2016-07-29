@@ -36,38 +36,22 @@ export class QuestionService {
       this.getData().then(data => {
         
         let result = alasql(`
-          SELECT question 
+          SELECT TOP 10 question 
           FROM ? 
-          WHERE navPath = "${key}"`
+          WHERE navPath LIKE "${key}%"`
           , [data]);
 
         let models = new Array<Question>();
         result.forEach(item => {
+            
+            if (!Array.isArray(item.question)) {
+              models.push(this.mapQuestion(item.question));
+              return;
+            }
+
+
             item.question.forEach(question => {
-
-                // Get answers
-                let answers = new Array<Answer>();
-                question.option.forEach(option => {
-                    answers.push(new Answer(option.id, option.value));
-                });
-
-                // Get question text
-                let text = new Array<string>();
-                if (typeof question.text === 'string') {
-                    text.push(question.text);
-                } else {
-                    question.text.list.forEach(questionText => {
-                        text.push(questionText);
-                    });
-                }
-
-                let images = new Array<string>();
-                if (question.image)
-                  images.push(question.image);
-                if (question.image2)  
-                  images.push(question.image2);
-
-                models.push(new Question(parseInt(question.id), question.answer, text, answers, images));
+                models.push(this.mapQuestion(question));
             });
         });
         
@@ -75,6 +59,35 @@ export class QuestionService {
 
       });
     });
+  }
+
+  private mapQuestion(question: any): Question {
+
+    // Get answers
+    let answers = new Array<Answer>();
+    question.option.forEach(option => {
+        answers.push(new Answer(option.id, option.value));
+    });
+
+    // Get question text
+    let text = new Array<string>();
+    if (typeof question.text === 'string') {
+        text.push(question.text);
+    } else {
+        question.text.list.forEach(questionText => {
+            text.push(questionText);
+        });
+    }
+
+    // Get images
+    let images = new Array<string>();
+    if (question.image)
+      images.push(question.image);
+    if (question.image2)  
+      images.push(question.image2);
+
+    return new Question(parseInt(question.id), question.answer, text, answers, images);
+
   }
 
 
