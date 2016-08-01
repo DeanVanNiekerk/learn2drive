@@ -17,7 +17,7 @@ ionic serve
 
 npm test
 
-## History
+## Compile for Android
 
 To set up build on windows, browse in app root folder and run in cmd
 
