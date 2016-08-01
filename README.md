@@ -22,4 +22,5 @@ npm test
 To set up build on windows, browse in app root folder and run in cmd
 
 set ANDROID_HOME=C:\Program Files (x86)\Android\android-sdk
+
 set PATH=%PATH%;%ANDROID\_HOME%\tools;%ANDROID\_HOME%\platform-tools
