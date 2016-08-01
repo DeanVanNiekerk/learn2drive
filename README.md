@@ -19,7 +19,7 @@ npm test
 
 ## Compile for Android
 
-To set up build on windows, browse in app root folder and run in cmd
+To set up build on windows, open cmd window browse to app root folder and run
 
 set ANDROID_HOME=C:\Program Files (x86)\Android\android-sdk
 
