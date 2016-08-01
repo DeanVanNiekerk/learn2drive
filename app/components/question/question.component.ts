@@ -1,4 +1,4 @@
-import {Component, Input, Output} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 // Models
 import {Question} from '../../models/question';
@@ -14,7 +14,25 @@ export class QuestionComponent {
   @Input() question: Question;
   @Input() questionNumber: number;
 
-  constructor(private questionService: QuestionService) { 
+  @Output() questionAnsweredEvent: EventEmitter<any> = new EventEmitter<any>();
+
+  selectedAnswerId: string = '';
+
+  constructor() { 
+  }
+
+  selectAnswer(answerId: string) {
+    this.selectedAnswerId = answerId;
+  }
+
+  answerChanged() {
+    if (this.selectedAnswerId === '')
+      return;
+
+    this.questionAnsweredEvent.emit({
+      questionId: this.question.id, 
+      selectedAnswerId: this.selectedAnswerId
+    });
   }
 
 }

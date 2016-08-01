@@ -23,6 +23,7 @@ export class TestComponent implements OnInit {
 
   navigationKey: string = '';
   questions: Question[] = [];
+  answeredQuestions: string[] = [];
 
   constructor(private navCtrl: NavController,
     private navParams: NavParams,
@@ -37,7 +38,16 @@ export class TestComponent implements OnInit {
     this.questionService.getQuestions(this.navigationKey)
       .then(questions => {
         this.questions = questions;
-      }); 
+      });
+  }
+
+  questionAnswered(event) {
+
+    if (this.answeredQuestions.indexOf(event.questionId) !== -1)
+      return;
+
+    this.answeredQuestions.push(event.questionId);
+
   }
 
   markTest() {

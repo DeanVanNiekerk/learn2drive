@@ -1,3 +1,4 @@
+
 <ion-header>
   <ion-navbar danger>
     <ion-title>{{navigationKey | translate}}</ion-title>
@@ -7,7 +8,10 @@
 <ion-content class="test">
 
     <div *ngFor="let question of questions; let i = index">
-        <question [question]="question" [questionNumber]="i + 1"></question>
+        <question 
+          [question]="question" 
+          [questionNumber]="i + 1"
+          (questionAnsweredEvent)="questionAnswered($event)"></question>
     </div>
 
 </ion-content>
@@ -15,6 +19,9 @@
 
 <ion-footer>
   <ion-toolbar danger>
+
+    <ion-title><p favorite>{{answeredQuestions.length}} of {{questions.length}} answered<p></ion-title>
+
     <ion-buttons end>
       <button (click)="markTest()">
         Mark Test
@@ -22,3 +29,4 @@
   </ion-buttons>
   </ion-toolbar>
 </ion-footer>
+
