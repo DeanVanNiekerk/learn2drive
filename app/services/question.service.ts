@@ -45,29 +45,42 @@ export class QuestionService {
         result.forEach(item => {
             
             if (!Array.isArray(item.question)) {
-              // Limit to 10 for now
-              if (models.length < 10) {
-                models.push(this.mapQuestion(item.question));
-              }
+              models.push(this.mapQuestion(item.question));
               return;
             }
 
             item.question.forEach(question => {
-              // Limit to 10 for now
-              if (models.length < 10) {
-                models.push(this.mapQuestion(question));
-              }
+              models.push(this.mapQuestion(question));
             });
             
         });
         
+        // Select random 10
+        models = this.getRandomQuestions(models, 10);
+
         resolve(models);
 
       });
     });
   }
 
-  //private getRandomQuestions
+  private getRandomQuestions(questions: Question[], max): Question[] {
+
+    if (max > questions.length)
+      max = questions.length;
+
+    let result = new Array<Question>(max);
+    let length = questions.length;
+    let taken = new Array(length);
+    
+    while (max--) {
+        var randomIndex = Math.floor(Math.random() * length);
+        result[max] = questions[randomIndex in taken ? taken[randomIndex] : randomIndex];
+        taken[randomIndex] = --length;
+    }
+
+    return result;
+  }
 
   private mapQuestion(question: any): Question {
 

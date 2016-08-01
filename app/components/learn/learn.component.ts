@@ -16,9 +16,7 @@ export class LearnComponent {
 
     contentItems: Content[] = [];
 
-    constructor(private contentService: ContentService) {
-
-    }
+    constructor(private contentService: ContentService) { }
 
     load(key: string) {
          this.contentService

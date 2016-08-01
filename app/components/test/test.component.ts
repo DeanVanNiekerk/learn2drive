@@ -8,11 +8,15 @@ import {QuestionService} from '../../services/question.service';
 import {Question} from '../../models/question';
 import {Answer} from '../../models/answer';
 
+// Components
+import {QuestionComponent} from '../question/question.component';
+
 // Pipes
 import {TranslatePipe} from '../../pipes/translate.pipe.ts';
 
 @Component({
     pipes: [TranslatePipe],
+    directives: [QuestionComponent],
     templateUrl: 'build/components/test/test.component.html'
 })
 export class TestComponent implements OnInit {
@@ -34,6 +38,10 @@ export class TestComponent implements OnInit {
       .then(questions => {
         this.questions = questions;
       }); 
+  }
+
+  markTest() {
+    alert('TODO..');
   }
 
 }

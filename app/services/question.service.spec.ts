@@ -190,6 +190,8 @@ describe('Question Service', () => {
           // Then
           expect(questions.length).toEqual(3);
 
+          questions.sort((q1, q2) => q1.id - q2.id);
+
           expect(questions[0].id).toEqual(1);
           expect(questions[1].id).toEqual(2);
           expect(questions[2].id).toEqual(3);
