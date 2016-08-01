@@ -36,7 +36,7 @@ export class QuestionService {
       this.getData().then(data => {
         
         let result = alasql(`
-          SELECT TOP 10 question 
+          SELECT question
           FROM ? 
           WHERE navPath LIKE "${key}%"`
           , [data]);
@@ -45,14 +45,20 @@ export class QuestionService {
         result.forEach(item => {
             
             if (!Array.isArray(item.question)) {
-              models.push(this.mapQuestion(item.question));
+              // Limit to 10 for now
+              if (models.length < 10) {
+                models.push(this.mapQuestion(item.question));
+              }
               return;
             }
 
-
             item.question.forEach(question => {
+              // Limit to 10 for now
+              if (models.length < 10) {
                 models.push(this.mapQuestion(question));
+              }
             });
+            
         });
         
         resolve(models);
@@ -60,6 +66,8 @@ export class QuestionService {
       });
     });
   }
+
+  //private getRandomQuestions
 
   private mapQuestion(question: any): Question {
 

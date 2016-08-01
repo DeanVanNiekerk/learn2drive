@@ -19,7 +19,7 @@ import {NavigatorComponent} from '../navigator/navigator.component';
 
 @Component({
   pipes: [TranslatePipe],
-  directives: [TestComponent, LearnComponent, NavigatorComponent],
+  directives: [LearnComponent, NavigatorComponent],
   templateUrl: 'build/components/content/content.component.html'
 })
 export class ContentComponent implements OnInit {
@@ -28,7 +28,6 @@ export class ContentComponent implements OnInit {
   navigationItems: NavigationItem[] = [];
 
   @ViewChild(LearnComponent) learnComponent: LearnComponent;
-  @ViewChild(TestComponent) testComponent: TestComponent;
   @ViewChild(NavigatorComponent) navigatorComponent: NavigatorComponent;
 
   mode: string = '';
@@ -39,7 +38,7 @@ export class ContentComponent implements OnInit {
     private stateService: StateService) {
 
       // Get the supplied navigation key, if not supply use default
-      var navigationItem = navParams.get('navigationItem');
+      let navigationItem = navParams.get('navigationItem');
       if (navigationItem)
         this.navigationKey = navigationItem.key;
   }
@@ -47,7 +46,6 @@ export class ContentComponent implements OnInit {
   ngOnInit() {
     this.navigatorComponent.load(this.navigationKey);
     this.learnComponent.load(this.navigationKey);  
-    this.testComponent.load(this.navigationKey);
 
     this.mode = this.stateService.getCurrentMode();
     this.stateService.mode.subscribe(mode => {
@@ -55,16 +53,10 @@ export class ContentComponent implements OnInit {
     });
   }
 
-  toggleMode() {
-    this.stateService.toggleMode();
-  }
-
-  isInLearnMode() {
-    return this.mode === this.stateService.MODE_LEARN;
-  }
-
-  isInTestMode() {
-    return this.mode === this.stateService.MODE_TEST;
+  startTest() {
+    this.navCtrl.push(TestComponent, {
+      navigationKey: this.navigationKey
+    });
   }
 
 }

@@ -6,11 +6,15 @@
 
     ion-card {
 
+        margin-bottom: 25px;
+
         ion-card-header {
             white-space: normal;
+            font-weight: bold;
         }
 
         ion-card-content {
+
             line-height: 1.7;
 
             img {

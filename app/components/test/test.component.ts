@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-
+import {Component, OnInit} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
 
 // Services
 import {QuestionService} from '../../services/question.service';
@@ -8,21 +8,29 @@ import {QuestionService} from '../../services/question.service';
 import {Question} from '../../models/question';
 import {Answer} from '../../models/answer';
 
+// Pipes
+import {TranslatePipe} from '../../pipes/translate.pipe.ts';
 
 @Component({
-    selector: 'test',
+    pipes: [TranslatePipe],
     templateUrl: 'build/components/test/test.component.html'
 })
-export class TestComponent {
+export class TestComponent implements OnInit {
 
   navigationKey: string = '';
   questions: Question[] = [];
 
-  constructor(private questionService: QuestionService) { }
+  constructor(private navCtrl: NavController,
+    private navParams: NavParams,
+    private questionService: QuestionService) { 
 
-  load(key: string) {
+      // Get the supplied navigation key
+      this.navigationKey = navParams.get('navigationKey');
+  }
+ 
+  ngOnInit() {
 
-    this.questionService.getQuestions(key)
+    this.questionService.getQuestions(this.navigationKey)
       .then(questions => {
         this.questions = questions;
       }); 

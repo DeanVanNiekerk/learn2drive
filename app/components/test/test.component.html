@@ -1,24 +1,43 @@
+<ion-header>
+  <ion-navbar secondary>
+    <ion-title>{{navigationKey | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="test">
+
+    <ion-card *ngFor="let question of questions">
+
+    <ion-card-content>
+        
+        <p *ngFor="let text of question.text">
+            {{text}}
+        </p>
+
+        <p *ngFor="let image of question.images">
+            <img class="image" src="content/images/{{image}}">
+        </p>
+        
+        <br/>
+
+      
+        <ion-list radio-group>
+            <ion-grid>
+                <ion-row *ngFor="let answer of question.answers">
+                    <ion-col width-10>
+                        <ion-radio value={{answer.id}}></ion-radio>
+                    </ion-col>
+                    <ion-col width-90>
+                        <p>{{answer.text}}</p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </ion-list>
 
 
+    </ion-card-content>
 
-<ion-card *ngFor="let question of questions">
+    </ion-card>
 
-  <ion-card-content>
-    
-    <div *ngFor="let text of question.text">
-        {{text}}
-    </div>
-
-    <br />
-
-    <ion-list>
-        <ion-item *ngFor="let answer of question.answers">
-            <ion-label>{{answer.text}}</ion-label>
-            <ion-checkbox></ion-checkbox>
-        </ion-item>
-    </ion-list>
-
-
-  </ion-card-content>
-
-</ion-card>
+</ion-content>
