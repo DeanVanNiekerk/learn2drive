@@ -3,6 +3,7 @@ import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 
 // Components ---------------------------------------------------
+import {HomeComponent} from './components/home/home.component';
 import {ContentComponent} from './components/content/content.component';
 // --------------------------------------------------------------
 
@@ -28,7 +29,7 @@ export class L2D3DApp {
   private rootPage: any;
 
   constructor(private platform: Platform) {
-    this.rootPage = ContentComponent;
+    this.rootPage = HomeComponent;
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

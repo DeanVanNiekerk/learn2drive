@@ -35,7 +35,7 @@ export class NavigatorComponent {
 
     navigateTo(navigationItem: NavigationItem) {
       this.navCtrl.push(ContentComponent, {
-        navigationItem: navigationItem
+        navigationKey: navigationItem.key
       });
   }
 

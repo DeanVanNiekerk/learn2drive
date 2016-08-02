@@ -3,7 +3,6 @@ import {NavController, NavParams} from 'ionic-angular';
 
 // Services
 import {ContentService} from '../../services/content.service';
-import {StateService} from '../../services/state.service';
 
 // Models
 import {NavigationItem} from '../../models/navigation-item';
@@ -24,33 +23,25 @@ import {NavigatorComponent} from '../navigator/navigator.component';
 })
 export class ContentComponent implements OnInit {
 
-  navigationKey: string = 'rootNavigation.learner';
-  navigationItems: NavigationItem[] = [];
-
+  navigationKey: string = '';
+  
   @ViewChild(LearnComponent) learnComponent: LearnComponent;
   @ViewChild(NavigatorComponent) navigatorComponent: NavigatorComponent;
 
-  mode: string = '';
-
   constructor(private navCtrl: NavController,
     private navParams: NavParams,
-    private contentService: ContentService,
-    private stateService: StateService) {
+    private contentService: ContentService) {
 
       // Get the supplied navigation key, if not supply use default
-      let navigationItem = navParams.get('navigationItem');
-      if (navigationItem)
-        this.navigationKey = navigationItem.key;
+      this.navigationKey = navParams.get('navigationKey');
+      if(!this.navigationKey)
+        this.navigationKey = 'rootNavigation.learner';
   }
 
   ngOnInit() {
+    console.log(this.navigationKey);
     this.navigatorComponent.load(this.navigationKey);
     this.learnComponent.load(this.navigationKey);  
-
-    this.mode = this.stateService.getCurrentMode();
-    this.stateService.mode.subscribe(mode => {
-      this.mode = mode;
-    });
   }
 
   startTest() {
