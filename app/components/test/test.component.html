@@ -1,6 +1,6 @@
 
 <ion-header>
-  <ion-navbar danger>
+  <ion-navbar secondary>
     <ion-title>{{navigationKey | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
@@ -18,12 +18,12 @@
 
 
 <ion-footer>
-  <ion-toolbar danger>
+  <ion-toolbar secondary>
 
-    <ion-title><p favorite>{{answeredQuestions.length}} of {{questions.length}} answered<p></ion-title>
+    <ion-title><p>{{answeredQuestions.length}} of {{questions.length}} answered<p></ion-title>
 
     <ion-buttons end>
-      <button (click)="markTest()">
+      <button outline (click)="markTest()">
         Mark Test
       </button>
   </ion-buttons>

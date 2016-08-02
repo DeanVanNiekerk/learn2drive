@@ -14,11 +14,7 @@
 // Ionic's default Sass variable values. App Shared Sass imports belong
 // in the app.core.scss file and not this file. Sass variables specific
 // to the mode belong in either the app.ios.scss or app.md.scss files.
-ion-footer {
-  .toolbar-title{
-    font-size: 1.4rem;
-  }
-}
+
 
 // App Shared Color Variables
 // --------------------------------------------------
@@ -29,6 +25,7 @@ ion-footer {
 // Both iOS and MD colors can be further customized if colors
 // are different per mode.
 
+/*
 $colors: (
   primary:    #387ef5,
   secondary:  #32db64,
@@ -37,12 +34,29 @@ $colors: (
   dark:       #222,
   favorite:   #ffcccc
 );
+*/
 
+/*
+Source:
+http://paletton.com/#uid=73y260kp5Xt42+ZbR+yYTyd+jq4
+*/
+$colors: (
+  primary:    #42A4F5,
+  secondary:  #FF3737,
+  danger:     #D00000,
+  light:      #e0e0e0,
+  dark:       #616161,
+  favorite:   #36F936
+);
 
 
 ion-footer {
   .toolbar-title{
     font-size: 1.4rem;
-    color: color($colors, light)
   }
 }
+
+ion-content {
+  background-color: #fbfdff !important;
+}
+
