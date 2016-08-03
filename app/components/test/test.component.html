@@ -11,7 +11,7 @@
         <question 
           [question]="question" 
           [questionNumber]="i + 1"
-          (questionAnsweredEvent)="questionAnswered($event)"></question>
+          (answerChangedEvent)="answerChanged($event)"></question>
     </div>
 
 </ion-content>
@@ -20,13 +20,12 @@
 <ion-footer>
   <ion-toolbar secondary>
 
-    <ion-title><p>{{answeredQuestions.length}} of {{questions.length}} answered<p></ion-title>
-
     <ion-buttons end>
       <button outline (click)="markTest()">
         Mark Test
       </button>
-  </ion-buttons>
+    </ion-buttons>
+    
   </ion-toolbar>
 </ion-footer>
 

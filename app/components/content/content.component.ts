@@ -34,12 +34,9 @@ export class ContentComponent implements OnInit {
 
       // Get the supplied navigation key, if not supply use default
       this.navigationKey = navParams.get('navigationKey');
-      if(!this.navigationKey)
-        this.navigationKey = 'rootNavigation.learner';
   }
 
   ngOnInit() {
-    console.log(this.navigationKey);
     this.navigatorComponent.load(this.navigationKey);
     this.learnComponent.load(this.navigationKey);  
   }

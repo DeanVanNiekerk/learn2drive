@@ -11,6 +11,7 @@ import {ContentComponent} from './components/content/content.component';
 import {ContentService} from './services/content.service';
 import {ResourceService} from './services/resource.service';
 import {QuestionService} from './services/question.service';
+import {TestService} from './services/test.service';
 import {StateService} from './services/state.service';
 // ---------------------------------------------------------------
 
@@ -20,7 +21,11 @@ import {TranslatePipe} from './pipes/translate.pipe.ts';
 
 
 @Component({
-  providers: [ContentService, ResourceService, QuestionService, StateService],
+  providers: [ContentService, 
+      ResourceService, 
+      QuestionService,
+      TestService, 
+      StateService],
   pipes: [TranslatePipe],
   template: '<ion-nav [root]="rootPage"></ion-nav>'
 })

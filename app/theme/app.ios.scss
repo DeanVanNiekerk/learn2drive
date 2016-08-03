@@ -29,3 +29,13 @@
 // App iOS Only Sass
 // --------------------------------------------------
 // CSS that should only apply to the iOS app
+
+//This might have been fixed, check later...
+.toolbar[secondary] .bar-button-outline {
+    border-color: #fff;
+}
+.toolbar[secondary] .bar-button-default, 
+.toolbar[secondary] .bar-button-outline, 
+.toolbar[secondary] .toolbar-title {
+    color: #fff;
+}

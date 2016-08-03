@@ -1,15 +1,19 @@
 import {Component, OnInit} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, ViewController, NavParams, Alert} from 'ionic-angular';
 
 // Services
 import {QuestionService} from '../../services/question.service';
+import {TestService} from '../../services/test.service';
 
 // Models
 import {Question} from '../../models/question';
 import {Answer} from '../../models/answer';
+import {AnsweredQuestion} from '../../models/answered-question';
+import {TestResult} from '../../models/test-result';
 
 // Components
 import {QuestionComponent} from '../question/question.component';
+import {TestResultComponent} from '../test-result/test-result.component';
 
 // Pipes
 import {TranslatePipe} from '../../pipes/translate.pipe.ts';
@@ -23,11 +27,15 @@ export class TestComponent implements OnInit {
 
   navigationKey: string = '';
   questions: Question[] = [];
-  answeredQuestions: string[] = [];
+
+  // AnsweredQuestion Index
+  answeredQuestions: { [id: number]: AnsweredQuestion; } = {};
 
   constructor(private navCtrl: NavController,
     private navParams: NavParams,
-    private questionService: QuestionService) { 
+    private viewCtrl: ViewController,
+    private questionService: QuestionService,
+    private testService: TestService) { 
 
       // Get the supplied navigation key
       this.navigationKey = navParams.get('navigationKey');
@@ -41,17 +49,68 @@ export class TestComponent implements OnInit {
       });
   }
 
-  questionAnswered(event) {
-
-    if (this.answeredQuestions.indexOf(event.questionId) !== -1)
-      return;
-
-    this.answeredQuestions.push(event.questionId);
-
+  answerChanged(answeredQuestion: AnsweredQuestion) {
+    // Update index
+    this.answeredQuestions[answeredQuestion.questionId] = answeredQuestion;
   }
 
   markTest() {
-    alert('TODO..');
+    
+    let answeredQuestions = this.getAnsweredQuestionsList();
+    
+    if (answeredQuestions.length < this.questions.length) {
+      // Show modal
+      this.showMarkTestConfirmation();
+      return;
+    }
+
+    this.navigateToTestResults();  
   }
 
+  navigateToTestResults() {
+
+    this.navCtrl.push(TestResultComponent, {
+      questions: this.questions,
+      answeredQuestions: this.getAnsweredQuestionsList()
+    })
+    .then(() => {
+        // Remove itself from the nav stack, 
+        // so that we go dont come back here after results
+        let index = this.viewCtrl.index;
+        this.navCtrl.remove(index);
+    });
+
+  }
+
+  showMarkTestConfirmation() {
+
+     let confirm = Alert.create({
+      title: 'Hold up!',
+      message: 'Not all questions have been answered, are you sure you want to mark the test?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => { }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.navigateToTestResults();
+          }
+        }
+      ]
+    });
+
+    this.navCtrl.present(confirm);
+
+  }
+
+  getAnsweredQuestionsList(): AnsweredQuestion[] {
+
+    let answeredQuestions: AnsweredQuestion[] = [];
+    for (var questionId in this.answeredQuestions) {
+        answeredQuestions.push(this.answeredQuestions[questionId]);
+    }
+    return answeredQuestions;
+  }
 }

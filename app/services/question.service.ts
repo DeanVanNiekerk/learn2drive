@@ -66,20 +66,12 @@ export class QuestionService {
 
   private getRandomQuestions(questions: Question[], max): Question[] {
 
-    if (max > questions.length)
-      max = questions.length;
+    // Shuffle
+    questions.sort(() => { return 0.5 - Math.random(); } );
 
-    let result = new Array<Question>(max);
-    let length = questions.length;
-    let taken = new Array(length);
-    
-    while (max--) {
-        var randomIndex = Math.floor(Math.random() * length);
-        result[max] = questions[randomIndex in taken ? taken[randomIndex] : randomIndex];
-        taken[randomIndex] = --length;
-    }
+    // Take top
+    return questions.slice(0, max - 1);
 
-    return result;
   }
 
   private mapQuestion(question: any): Question {

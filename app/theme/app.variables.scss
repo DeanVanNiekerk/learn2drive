@@ -26,6 +26,7 @@
 // are different per mode.
 
 /*
+Original
 $colors: (
   primary:    #387ef5,
   secondary:  #32db64,
@@ -50,6 +51,8 @@ $colors: (
 );
 
 
+// Ionic Overrides
+// --------------------------------------------------
 ion-footer {
   .toolbar-title{
     font-size: 1.4rem;
@@ -59,4 +62,5 @@ ion-footer {
 ion-content {
   background-color: #fbfdff !important;
 }
+
 

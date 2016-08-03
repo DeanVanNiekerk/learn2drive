@@ -3,6 +3,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 // Models
 import {Question} from '../../models/question';
 import {Answer} from '../../models/answer';
+import {AnsweredQuestion} from '../../models/answered-question';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class QuestionComponent {
   @Input() question: Question;
   @Input() questionNumber: number;
 
-  @Output() questionAnsweredEvent: EventEmitter<any> = new EventEmitter<any>();
+  @Output() answerChangedEvent: EventEmitter<AnsweredQuestion> = new EventEmitter<AnsweredQuestion>();
 
   selectedAnswerId: string = '';
 
@@ -29,10 +30,9 @@ export class QuestionComponent {
     if (this.selectedAnswerId === '')
       return;
 
-    this.questionAnsweredEvent.emit({
-      questionId: this.question.id, 
-      selectedAnswerId: this.selectedAnswerId
-    });
+    let answeredQuestion = new AnsweredQuestion(this.question.id, this.selectedAnswerId);
+
+    this.answerChangedEvent.emit(answeredQuestion);
   }
 
 }
