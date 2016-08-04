@@ -70,7 +70,7 @@ export class QuestionService {
     questions.sort(() => { return 0.5 - Math.random(); } );
 
     // Take top
-    return questions.slice(0, max - 1);
+    return questions.slice(0, max);
 
   }
 
