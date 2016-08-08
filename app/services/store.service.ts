@@ -12,13 +12,11 @@ export class StoreService {
  
     // Init an empty DB if it does not exist by now!
     constructor() {
-
         this.storage = new Storage(SqlStorage, { name: 'l2d3ddatabase' });
-        this.createScheme();
-        
+        this.createTables();
     }
 
-    createScheme() {
+    createTables() {
         // Create the tests results table
         this.storage.query(`CREATE TABLE IF NOT EXISTS 
                                 testResult (
@@ -27,6 +25,10 @@ export class StoreService {
                                     resultPercent INTEGER,
                                     dateCreated INTEGER
                                 )`);
+    }
+
+    dropTables() {
+        this.storage.query(`DROP TABLE IF EXISTS testResult`);
     }
 
     addTestResult(testResult: TestResult): Promise<any> {
@@ -75,8 +77,8 @@ export class StoreService {
         });
     }
 
-    dropAllTables() {
-        this.storage.query(`DROP TABLE IF EXISTS testResult`);
+    clearTestResults() {
+        this.storage.query(`DELETE FROM testResult`);
     }
 
 }

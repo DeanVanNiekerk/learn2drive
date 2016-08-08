@@ -3,6 +3,8 @@ import {NavController, NavParams} from 'ionic-angular';
 
 // Components
 import {ContentComponent} from '../content/content.component';
+import {SettingsComponent} from '../settings/settings.component';
+
 
 @Component({
   templateUrl: 'build/components/home/home.component.html'
@@ -23,7 +25,7 @@ export class HomeComponent {
   }
 
   navigateToSettings() {
-    alert('todo');
+    this.navCtrl.push(SettingsComponent);
   }
 
 }

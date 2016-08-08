@@ -4,7 +4,6 @@ import {StatusBar} from 'ionic-native';
 
 // Components ---------------------------------------------------
 import {HomeComponent} from './components/home/home.component';
-import {ContentComponent} from './components/content/content.component';
 // --------------------------------------------------------------
 
 // Services -----------------------------------------------------

@@ -28,8 +28,8 @@ describe('Store Service', () => {
        (service: StoreService) => {
 
             // Set up
-            service.dropAllTables();
-            service.createScheme();
+            service.dropTables();
+            service.createTables();
 
 
             // Given
