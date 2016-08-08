@@ -32,7 +32,8 @@ export class StoreService {
     }
 
     addTestResult(testResult: TestResult): Promise<any> {
-        let sql = `INSERT INTO testResult (navigationKey,resultPercent,dateCreated) VALUES (?,?,strftime('%s','now'))`;
+        let sql = `INSERT INTO testResult (navigationKey,resultPercent,dateCreated) 
+                    VALUES (?,?,strftime('%s','now'))`;
         return this.storage.query(sql, [testResult.navigationKey, testResult.resultPercent]);
     }
 
@@ -42,7 +43,9 @@ export class StoreService {
 
             this.storage.query(`SELECT navigationKey,resultPercent,dateCreated 
                                     FROM testResult
-                                    ORDER BY dateCreated DESC 
+                                    WHERE navigationKey = '${navigationKey}'
+                                    ORDER BY dateCreated DESC
+
                                     LIMIT 1`)
                 .then(data => {
                         
@@ -61,7 +64,9 @@ export class StoreService {
 
         return new Promise(resolve => {
 
-            this.storage.query(`SELECT navigationKey,resultPercent,dateCreated FROM testResult`)
+            this.storage.query(`SELECT navigationKey,resultPercent,dateCreated
+                                    WHERE navigationKey = '${navigationKey}' 
+                                    FROM testResult`)
                 .then(data => {
                         
                     let testResults = [];
