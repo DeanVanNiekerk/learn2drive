@@ -32,11 +32,13 @@ describe('Test Service', () => {
             // Given
             let questions: Question[] = [];
             let answeredQuestions: AnsweredQuestion[] = [];
+            let navigationKey: string = 'location.x';
 
             // When
-            let result = service.markTest(questions, answeredQuestions);
+            let result = service.markTest(navigationKey, questions, answeredQuestions);
 
             // Then
+            expect(result.navigationKey).toBe(navigationKey);
             expect(result.resultPercent).toBe(0); 
         }
     ));
@@ -55,7 +57,7 @@ describe('Test Service', () => {
             let answeredQuestions: AnsweredQuestion[] = [];
 
             // When
-            let result = service.markTest(questions, answeredQuestions);
+            let result = service.markTest('', questions, answeredQuestions);
 
             // Then
             expect(result.resultPercent).toBe(0); 
@@ -85,7 +87,7 @@ describe('Test Service', () => {
             let answeredQuestions: AnsweredQuestion[] = [aq1];
 
             // When
-            let result = service.markTest(questions, answeredQuestions);
+            let result = service.markTest('', questions, answeredQuestions);
 
             // Then
             expect(result.resultPercent).toBe(50); 
@@ -127,7 +129,7 @@ describe('Test Service', () => {
             let answeredQuestions: AnsweredQuestion[] = [aq1, aq2, aq3];
 
             // When
-            let result = service.markTest(questions, answeredQuestions);
+            let result = service.markTest('', questions, answeredQuestions);
 
             // Then
             expect(result.resultPercent).toBe(33); 

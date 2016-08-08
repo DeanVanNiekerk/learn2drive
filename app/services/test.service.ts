@@ -10,9 +10,9 @@ import {TestResult} from '../models/test-result';
 @Injectable()
 export class TestService {
 
-    markTest(questions: Question[], answeredQuestions: AnsweredQuestion[]): TestResult  {
+    markTest(navigationKey: string, questions: Question[], answeredQuestions: AnsweredQuestion[]): TestResult  {
     
-        let result = new TestResult();
+        let result = new TestResult(navigationKey);
 
         if (questions.length === 0)
             return result;

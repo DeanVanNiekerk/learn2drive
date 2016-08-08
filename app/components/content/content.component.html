@@ -16,6 +16,11 @@
 
 <ion-footer>
   <ion-toolbar>
+
+    <p secondary *ngIf="lastTestResult != null">
+      Last Test: <b>{{lastTestResult.resultPercent}}%</b>
+    </p>
+
     <ion-buttons end>
       <button secondary outline (click)="startTest()">
         Start Test

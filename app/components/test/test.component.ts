@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NavController, ViewController, NavParams, Alert} from 'ionic-angular';
+import {NavController, ViewController, NavParams, AlertController} from 'ionic-angular';
 
 // Services
 import {QuestionService} from '../../services/question.service';
@@ -34,6 +34,7 @@ export class TestComponent implements OnInit {
   constructor(private navCtrl: NavController,
     private navParams: NavParams,
     private viewCtrl: ViewController,
+    private alertCtrl: AlertController,
     private questionService: QuestionService,
     private testService: TestService) { 
 
@@ -70,6 +71,7 @@ export class TestComponent implements OnInit {
   navigateToTestResults() {
 
     this.navCtrl.push(TestResultComponent, {
+      navigationKey: this.navigationKey,
       questions: this.questions,
       answeredQuestions: this.getAnsweredQuestionsList()
     })
@@ -84,7 +86,7 @@ export class TestComponent implements OnInit {
 
   showMarkTestConfirmation() {
 
-     let confirm = Alert.create({
+     let confirmAlert = this.alertCtrl.create({
       title: 'Hold up!',
       message: 'Not all questions have been answered, are you sure you want to mark the test?',
       buttons: [
@@ -101,8 +103,7 @@ export class TestComponent implements OnInit {
       ]
     });
 
-    this.navCtrl.present(confirm);
-
+    confirmAlert.present();
   }
 
   getAnsweredQuestionsList(): AnsweredQuestion[] {

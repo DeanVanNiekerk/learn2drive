@@ -3,6 +3,7 @@ import {NavController, NavParams} from 'ionic-angular';
 
 // Services
 import {TestService} from '../../services/test.service';
+import {StoreService} from '../../services/store.service';
 
 // Models
 import {Question} from '../../models/question';
@@ -23,8 +24,10 @@ export class TestResultComponent implements OnInit {
 
   constructor(private navCtrl: NavController,
     private navParams: NavParams,
-    private testService: TestService) { 
+    private testService: TestService,
+    private storeService: StoreService) { 
 
+      this.navigationKey = navParams.get('navigationKey');
       this.questions = navParams.get('questions');
       this.answeredQuestions = navParams.get('answeredQuestions');
 
@@ -32,8 +35,10 @@ export class TestResultComponent implements OnInit {
  
   ngOnInit() {
 
-    let result = this.testService.markTest(this.questions, this.answeredQuestions);
+    let result = this.testService.markTest(this.navigationKey, this.questions, this.answeredQuestions);
     this.resultPercent = result.resultPercent;
+
+    this.storeService.addTestResult(result);
 
   }
 
