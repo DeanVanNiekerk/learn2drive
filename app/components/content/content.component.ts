@@ -16,6 +16,7 @@ import {TranslatePipe} from '../../pipes/translate.pipe.ts';
 // Components
 import {LearnComponent} from '../learn/learn.component';
 import {TestComponent} from '../test/test.component';
+import {TestHistoryComponent} from '../test-history/test-history.component';
 import {NavigatorComponent} from '../navigator/navigator.component';
 
 @Component({
@@ -58,6 +59,12 @@ export class ContentComponent implements OnInit {
 
   startTest() {
     this.navCtrl.push(TestComponent, {
+      navigationKey: this.navigationKey
+    });
+  }
+
+  navigateToTestHistory() {
+    this.navCtrl.push(TestHistoryComponent, {
       navigationKey: this.navigationKey
     });
   }

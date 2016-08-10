@@ -17,7 +17,7 @@
 <ion-footer>
   <ion-toolbar>
 
-    <p secondary *ngIf="lastTestResult != null">
+    <p secondary *ngIf="lastTestResult != null" (click)="navigateToTestHistory()">
       Last Test: <b>{{lastTestResult.resultPercent}}%</b>
     </p>
 

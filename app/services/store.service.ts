@@ -23,7 +23,7 @@ export class StoreService {
                                     id INTEGER PRIMARY KEY AUTOINCREMENT, 
                                     navigationKey TEXT, 
                                     resultPercent INTEGER,
-                                    dateCreated INTEGER
+                                    testDate TEXT
                                 )`);
     }
 
@@ -32,30 +32,23 @@ export class StoreService {
     }
 
     addTestResult(testResult: TestResult): Promise<any> {
-        let sql = `INSERT INTO testResult (navigationKey,resultPercent,dateCreated) 
-                    VALUES (?,?,strftime('%s','now'))`;
-        return this.storage.query(sql, [testResult.navigationKey, testResult.resultPercent]);
+        let sql = `INSERT INTO testResult (navigationKey,resultPercent,testDate) 
+                    VALUES (?,?,?)`;
+        return this.storage.query(sql, [testResult.navigationKey, testResult.resultPercent, new Date().getTime()]);
     }
 
     getLatestTestResult(navigationKey: string): Promise<TestResult> {
 
         return new Promise(resolve => {
 
-            this.storage.query(`SELECT navigationKey,resultPercent,dateCreated 
+            this.storage.query(`SELECT navigationKey,resultPercent,testDate 
                                     FROM testResult
                                     WHERE navigationKey = '${navigationKey}'
-                                    ORDER BY dateCreated DESC
-
+                                    ORDER BY testDate DESC
                                     LIMIT 1`)
                 .then(data => {
-                        
-                    let testResult = null;
-                    if (data.res.rows.length > 0) {
-                        let item = data.res.rows.item(0);
-                        testResult = new TestResult(item.navigationKey, item.resultPercent);
-                    }
-                    resolve(testResult);
-
+                    let testResults = this.mapTestResults(data);
+                    resolve(testResults[0]);
                 });
         });
     }
@@ -64,22 +57,26 @@ export class StoreService {
 
         return new Promise(resolve => {
 
-            this.storage.query(`SELECT navigationKey,resultPercent,dateCreated
-                                    WHERE navigationKey = '${navigationKey}' 
-                                    FROM testResult`)
+            this.storage.query(`SELECT navigationKey,resultPercent,testDate
+                                    FROM testResult
+                                    WHERE navigationKey = '${navigationKey}'
+                                    ORDER BY testDate DESC`)
                 .then(data => {
-                        
-                    let testResults = [];
-                    if (data.res.rows.length > 0) {
-                        for (var i = 0; i < data.res.rows.length; i++) {
-                            let item = data.res.rows.item(i);
-                            testResults.push(new TestResult(item.navigationKey, item.resultPercent));
-                        }
-                    }
+                    let testResults = this.mapTestResults(data);
                     resolve(testResults);
-
                 });
         });
+    }
+
+    private mapTestResults(data: any): TestResult[] {
+        let testResults = [];
+        if (data.res.rows.length > 0) {
+            for (var i = 0; i < data.res.rows.length; i++) {
+                let item = data.res.rows.item(i);
+                testResults.push(new TestResult(item.navigationKey, item.resultPercent, new Date(parseInt(item.testDate))));
+            }
+        }
+        return testResults;
     }
 
     clearTestResults() {
