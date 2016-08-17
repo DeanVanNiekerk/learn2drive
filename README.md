@@ -24,3 +24,29 @@ To set up build on windows, open cmd window browse to app root folder and run
 set ANDROID_HOME=C:\Program Files (x86)\Android\android-sdk
 
 set PATH=%PATH%;%ANDROID\_HOME%\tools;%ANDROID\_HOME%\platform-tools
+
+## Links
+
+http://ionicframework.com/docs/v2/
+
+
+## TODO
+
+- Running on iOS - Dylan
+- Mock-test - Dylan
+- Store service tests 
+- Vehicle Controls
+- Home page
+    - Checklist
+    - Whats next?
+    - Directory
+- Content Read Tracking
+- Navigation 
+    - Content Read Progress
+    - Test Progress - Dean
+- Breadcrumb
+- Vet content (kate)
+- Styling (icons)
+- Build server
+- Monetise?
+- Check out competition
