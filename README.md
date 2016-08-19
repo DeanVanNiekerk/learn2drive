@@ -25,6 +25,16 @@ set ANDROID_HOME=C:\Program Files (x86)\Android\android-sdk
 
 set PATH=%PATH%;%ANDROID\_HOME%\tools;%ANDROID\_HOME%\platform-tools
 
+
+## Compile for iOS
+
+### With ios-deploy
+sudo npm install --unsafe-perm=true -g ios-deploy
+
+
+## With XCode
+
+
 ## Links
 
 http://ionicframework.com/docs/v2/
