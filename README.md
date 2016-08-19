@@ -28,11 +28,20 @@ set PATH=%PATH%;%ANDROID\_HOME%\tools;%ANDROID\_HOME%\platform-tools
 
 ## Compile for iOS
 
+Watch out for permission denied errors. You might need to run the following when in the project directory:
+ 
+ ```sudo chown -R dylan:admin /usr/local```
+ ```sudo chown -R dylan:staff ./```
+
+
 ### With ios-deploy
 sudo npm install --unsafe-perm=true -g ios-deploy
 
+ionic run ios
 
 ## With XCode
+
+
 
 
 ## Links
