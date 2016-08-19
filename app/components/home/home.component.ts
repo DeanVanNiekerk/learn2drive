@@ -4,6 +4,7 @@ import {NavController, NavParams} from 'ionic-angular';
 // Components
 import {ContentComponent} from '../content/content.component';
 import {SettingsComponent} from '../settings/settings.component';
+import {MockTestComponent} from '../mock-test/mock-test.component';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class HomeComponent {
   }
 
   navigateToMockTest() {
-   alert('todo');
+   this.navCtrl.push(MockTestComponent);
   }
 
   navigateToSettings() {

@@ -1,0 +1,30 @@
+
+<ion-header>
+  <ion-navbar secondary>
+    <ion-title>Mock Test</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="mock-test">
+
+  <div *ngFor="let question of questions; let i = index">
+    <question
+      [question]="question"
+      [questionNumber]="i + 1"
+      (answerChangedEvent)="answerChanged($event)"></question>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar secondary>
+
+    <ion-buttons end>
+      <button outline (click)="markTest()">
+        Mark Test
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-footer>
+
