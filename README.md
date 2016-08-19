@@ -72,7 +72,8 @@ http://ionicframework.com/docs/v2/
 
 ## TODO
 
-- Running on iOS - Dylan
+- Running on iOS - Dylan (Done)
+- Install ionic on Kate's phone. (She has Gingerbread! )
 - Mock-test - Dylan
 - Store service tests 
 - Vehicle Controls
