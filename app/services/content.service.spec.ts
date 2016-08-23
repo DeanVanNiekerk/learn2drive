@@ -126,4 +126,32 @@ describe('Navigation Service', () => {
         });
     })));
  
+
+    it('getContentSectionCount: multiple items', inject(
+    [ContentService, MockBackend],
+    fakeAsync((service: ContentService, backend: MockBackend) => {
+      backend.connections.subscribe((connection: MockConnection) => {
+
+        // Given
+        let items: any[] = [
+          { Node: '1.2' },
+          { Node: '1.2' },
+          { Node: '1.2.3' },
+          { Node: '1.2.3.4' },
+          { Node: '1.2.3' },
+          { Node: '1.3.4' },
+        ];
+
+        let response = new ResponseOptions({body: JSON.stringify(items)});
+        connection.mockRespond(new Response(response));
+      });
+
+      // When
+      service.getContentSectionCount('1.2')
+        .then(count => {
+          // Then
+          expect(count).toEqual(3);
+        });
+    })));
+ 
 });

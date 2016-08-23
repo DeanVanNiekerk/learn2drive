@@ -84,5 +84,22 @@ export class ContentService {
       });
     });
   }
+
+  getContentSectionCount(key: string): Promise<number> {
+
+    return new Promise(resolve => {
+      this.getData().then(data => {
+
+          let result = alasql(`
+            SELECT COUNT (DISTINCT Node) AS [count]
+            FROM ? 
+            WHERE Node LIKE "${key}%"`
+            , [data]);
+
+          resolve(result[0].count);
+      });
+    });
+  }
+
 }
 

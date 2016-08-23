@@ -38,7 +38,7 @@ export class TestResultComponent implements OnInit {
     let result = this.testService.markTest(this.navigationKey, this.questions, this.answeredQuestions);
     this.resultPercent = result.resultPercent;
 
-    this.storeService.addTestResult(result);
+    this.storeService.insertTestResult(result);
 
   }
 

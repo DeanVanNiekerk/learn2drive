@@ -73,18 +73,18 @@ http://ionicframework.com/docs/v2/
 ## TODO
 
 - Running on iOS - Dylan (Done)
-- Install ionic on Kate's phone. (She has Gingerbread! )
+- Install ionic on Kate's phone. (She has Gingerbread!)
 - Mock-test - Dylan
-- Store service tests 
+- Store service tests, promises not resolving - Dylan 
 - Vehicle Controls
 - Home page
     - Checklist
     - Whats next?
     - Directory
-- Content Read Tracking
+- Content Read Tracking - Dean
 - Navigation 
     - Content Read Progress
-    - Test Progress - Dean
+    - Test Progress - Dean (first pass done)
 - Breadcrumb
 - Vet content (kate)
 - Styling (icons)

@@ -3,6 +3,7 @@ import {Component} from '@angular/core';
 
 // Services
 import {ContentService} from '../../services/content.service';
+import {StoreService} from '../../services/store.service';
 
 // Models
 import {Content} from '../../models/content';
@@ -16,13 +17,17 @@ export class LearnComponent {
 
     contentItems: Content[] = [];
 
-    constructor(private contentService: ContentService) { }
+    constructor(private contentService: ContentService,
+                    private storeService: StoreService) { }
 
-    load(key: string) {
+    load(navigationKey: string) {
          this.contentService
-            .getContent(key)
+            .getContent(navigationKey)
             .then(items => { 
                 this.contentItems = items;
+                
+                if (items.length)
+                    this.storeService.insertContentRead(navigationKey);
             });
     }
 

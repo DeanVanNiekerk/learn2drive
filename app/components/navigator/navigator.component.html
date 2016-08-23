@@ -4,10 +4,14 @@
         <h2>{{item.key | translate}}</h2>
 
         <ion-note item-right>
+            <content-progress
+                [navigationKey]="item.key">
+            </content-progress>
+
             <last-test-result 
-            [navigationKey]="item.key"></last-test-result>
+                [navigationKey]="item.key">
+            </last-test-result>
         </ion-note>
          
-        <!--<p>Content Read: 70%   Last Test: 50%</p>-->
     </ion-item>
 </ion-list>

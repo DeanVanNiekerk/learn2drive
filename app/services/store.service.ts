@@ -25,13 +25,39 @@ export class StoreService {
                                     resultPercent INTEGER,
                                     testDate TEXT
                                 )`);
+
+        this.storage.query(`CREATE TABLE IF NOT EXISTS 
+                                contentRead (
+                                    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                                    navigationKey TEXT, 
+                                    readDate TEXT
+                                )`);
     }
 
     dropTables() {
         this.storage.query(`DROP TABLE IF EXISTS testResult`);
+        this.storage.query(`DROP TABLE IF EXISTS contentRead`);
     }
 
-    addTestResult(testResult: TestResult): Promise<any> {
+    insertContentRead(navigationKey: string): Promise<any> {
+        let sql = `INSERT INTO contentRead (navigationKey,readDate) 
+                    VALUES (?,?)`;
+        return this.storage.query(sql, [navigationKey, new Date().getTime()]);
+    }
+
+    getContentReadCount(navigationKey: string): Promise<number> {
+        
+        return new Promise(resolve => {
+            this.storage.query(`SELECT COUNT(DISTINCT navigationKey) AS count
+                                FROM contentRead 
+                                WHERE navigationKey LIKE ('${navigationKey}%')`)
+                .then(data => {
+                    resolve(data.res.rows.item(0).count);
+                });
+        });
+    }
+
+    insertTestResult(testResult: TestResult): Promise<any> {
         let sql = `INSERT INTO testResult (navigationKey,resultPercent,testDate) 
                     VALUES (?,?,?)`;
         return this.storage.query(sql, [testResult.navigationKey, testResult.resultPercent, new Date().getTime()]);

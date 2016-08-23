@@ -6,7 +6,8 @@ import {
   it,
   inject,
   fakeAsync,
-  beforeEachProviders
+  beforeEachProviders,
+  async
 } from '@angular/core/testing';
 
 import {StoreService} from './store.service';
@@ -23,38 +24,36 @@ describe('Store Service', () => {
     });
 
  
-   it('addTestResult: test result added', inject(
+   it('addTestResult: test result added', async(inject(
        [StoreService], 
-       (service: StoreService) => {
+       fakeAsync((service: StoreService) => {
 
             // Set up
             service.dropTables();
             service.createTables();
 
-
             // Given
             let testResult = new TestResult('nav.key', 75);
 
             // When
-            let insert = service.addTestResult(testResult);
+            let promise = service.insertTestResult(testResult);
+
+           // console.log('inserting..');
 
             // Then
-            insert.then(() => {
-                console.log('inserted');
-                
+            promise.then(() => {
+
+                console.log('this DOESNT GET LOGGED');
+
                 service.getTestResults(testResult.navigationKey)
                     .then(testResults => {
-                        console.log('getTestResults');
                         console.log(testResults);
-                        
                         // expect(testResults.length).toBe(1);
-
+                        expect(false).toBe(true);
                     });
-               
-
             });
             
-        }
-    ));
+        })
+   )));
     
 });

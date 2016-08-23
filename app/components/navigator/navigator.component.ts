@@ -13,11 +13,12 @@ import {TranslatePipe} from '../../pipes/translate.pipe.ts';
 // Components
 import {ContentComponent} from '../content/content.component';
 import {LastTestResultComponent} from '../last-test-result/last-test-result.component';
+import {ContentProgressComponent} from '../content-progress/content-progress.component';
 
 @Component({
     selector: 'navigator',
     pipes: [TranslatePipe],
-    directives: [LastTestResultComponent],
+    directives: [LastTestResultComponent, ContentProgressComponent],
     templateUrl: 'build/components/navigator/navigator.component.html'
 })
 export class NavigatorComponent {
