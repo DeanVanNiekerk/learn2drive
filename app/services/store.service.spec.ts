@@ -23,9 +23,123 @@ describe('Store Service', () => {
         ];
     });
 
- 
+    //OPTION 1
+    it('OPTION 1 - addTestResult: test result added', function(done) {
+
+      // Given
+      let service = new StoreService();
+      service.dropTables();
+      service.createTables();
+
+      let testResult = new TestResult('nav.key', 75);
+
+
+      //When
+      let promise = service.insertTestResult(testResult);
+
+      promise.then(() => {
+        console.log("enter first then");
+
+        service
+          .getTestResults(testResult.navigationKey)
+          .then(testResults => {
+            console.log("enter second then");
+
+            console.log(testResults);
+
+            //Then
+            expect(testResults.length).toBe(1);
+
+            done();
+          });
+
+      });
+
+      console.log("exit function");
+
+    });
+
+
+  //OPTION 2
+  it('OPTION 2 - addTestResult: test result added',
+    async(
+      fakeAsync(() => {
+
+          // Given
+          let service = new StoreService();
+          service.dropTables();
+          service.createTables();
+
+          let testResult = new TestResult('nav.key', 75);
+
+
+          //When
+          let promise = service.insertTestResult(testResult);
+
+          promise.then(() => {
+            console.log("enter first then");
+
+            service
+              .getTestResults(testResult.navigationKey)
+              .then(testResults => {
+                console.log("enter second then");
+
+                console.log(testResults);
+
+                //Then
+                expect(testResults.length).toBe(1);
+
+              });
+
+          });
+
+          console.log("exit function");
+
+        })));
+
+
+  //OPTION 3
+  it('OPTION 3 - addTestResult: test result added',
+    async(
+    fakeAsync(
+    inject([StoreService], (service:StoreService) => {
+
+      // Given
+      service.dropTables();
+      service.createTables();
+
+      let testResult = new TestResult('nav.key', 75);
+
+
+      //When
+      let promise = service.insertTestResult(testResult);
+
+      promise.then(() => {
+        console.log("enter first then");
+
+        service
+          .getTestResults(testResult.navigationKey)
+          .then(testResults => {
+            console.log("enter second then");
+
+            console.log(testResults);
+
+            //Then
+            expect(testResults.length).toBe(1);
+
+          });
+
+      });
+
+      console.log("exit function");
+
+    }))));
+
+
+
+   //Old way
    it('addTestResult: test result added', async(inject(
-       [StoreService], 
+       [StoreService],
        fakeAsync((service: StoreService) => {
 
             // Set up
@@ -40,6 +154,7 @@ describe('Store Service', () => {
 
            // console.log('inserting..');
 
+
             // Then
             promise.then(() => {
 
@@ -52,8 +167,8 @@ describe('Store Service', () => {
                         expect(false).toBe(true);
                     });
             });
-            
+
         })
    )));
-    
+
 });

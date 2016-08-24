@@ -9,7 +9,7 @@ import {TestResult} from '../models/test-result';
 export class StoreService {
 
     private storage: Storage = null;
- 
+
     // Init an empty DB if it does not exist by now!
     constructor() {
         this.storage = new Storage(SqlStorage, { name: 'l2d3ddatabase' });
@@ -46,7 +46,7 @@ export class StoreService {
     }
 
     getContentReadCount(navigationKey: string): Promise<number> {
-        
+
         return new Promise(resolve => {
             this.storage.query(`SELECT COUNT(DISTINCT navigationKey) AS count
                                 FROM contentRead 

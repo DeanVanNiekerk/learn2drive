@@ -24,9 +24,9 @@ describe('Test Service', () => {
             TestService
         ];
     });
- 
+
    it('mark: no questions, no answers - 0%', inject(
-       [TestService], 
+       [TestService],
        (service: TestService) => {
 
             // Given
@@ -39,13 +39,13 @@ describe('Test Service', () => {
 
             // Then
             expect(result.navigationKey).toBe(navigationKey);
-            expect(result.resultPercent).toBe(0); 
+            expect(result.resultPercent).toBe(0);
         }
     ));
 
 
      it('mark: 1 question, no answers - 0%', inject(
-       [TestService], 
+       [TestService],
        (service: TestService) => {
 
             // Given
@@ -60,12 +60,12 @@ describe('Test Service', () => {
             let result = service.markTest('', questions, answeredQuestions);
 
             // Then
-            expect(result.resultPercent).toBe(0); 
+            expect(result.resultPercent).toBe(0);
         }
     ));
 
     it('mark: 2 questions, 1 correct answer - 50%', inject(
-       [TestService], 
+       [TestService],
        (service: TestService) => {
 
             // Given
@@ -90,12 +90,12 @@ describe('Test Service', () => {
             let result = service.markTest('', questions, answeredQuestions);
 
             // Then
-            expect(result.resultPercent).toBe(50); 
+            expect(result.resultPercent).toBe(50);
         }
     ));
 
     it('mark: 3 questions, 1 correct answer, 2 incorrect - 33%', inject(
-       [TestService], 
+       [TestService],
        (service: TestService) => {
 
             // Given
@@ -132,10 +132,10 @@ describe('Test Service', () => {
             let result = service.markTest('', questions, answeredQuestions);
 
             // Then
-            expect(result.resultPercent).toBe(33); 
+            expect(result.resultPercent).toBe(33);
         }
     ));
 
 
-  
+
 });
