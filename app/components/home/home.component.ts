@@ -5,6 +5,7 @@ import {NavController, NavParams} from 'ionic-angular';
 import {ContentComponent} from '../content/content.component';
 import {SettingsComponent} from '../settings/settings.component';
 import {MockTestComponent} from '../mock-test/mock-test.component';
+import {ChecklistComponent} from '../checklist/checklist.component';
 
 
 @Component({
@@ -23,6 +24,10 @@ export class HomeComponent {
 
   navigateToMockTest() {
    this.navCtrl.push(MockTestComponent);
+  }
+
+  navigateToChecklist() {
+    this.navCtrl.push(ChecklistComponent);
   }
 
   navigateToSettings() {

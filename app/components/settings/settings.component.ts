@@ -35,4 +35,26 @@ export class SettingsComponent {
     confirmAlert.present();
   }
 
+  clearContentRead() {
+
+    let confirmAlert = this.alertCtrl.create({
+      title: 'Warning!',
+      message: 'Are you sure you want to clear ALL your study history?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => { }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.storeService.clearContentRead();
+          }
+        }
+      ]
+    });
+
+    confirmAlert.present();
+  }
+
 }

@@ -30,6 +30,7 @@ export class ContentService {
     });
   }
 
+  // Gets a list of navidation items one level down
   getNavigationItems(key: string): Promise<NavigationItem[]> {
 
     return new Promise(resolve => {
@@ -61,6 +62,56 @@ export class ContentService {
         resolve(models);
       });
     });
+  }
+
+  // Gets all navigations items below
+  getAllNavigationItems(key: string): Promise<NavigationItem[]> {
+
+      return new Promise(resolve => {
+
+        this.getData().then(data => {
+        
+          let result = alasql(`
+            SELECT DISTINCT Node 
+            FROM ? 
+            WHERE Node LIKE "${key}.%"`
+            , [data]);
+
+          let items = [];
+
+          // First add top level
+          items.push(key);
+
+          // Get list of nav items
+          let level = key.split('.').length;
+
+          result.forEach(item => {
+
+            let currentKey = key;
+            let split = item.Node.split('.');
+
+            for (var i = level; i < split.length; i++) {
+              currentKey = `${currentKey}.${split[i]}`;
+              items.push(currentKey.toString());
+            }
+            
+          });
+
+          // Filter out duplicates
+          items = items.filter(function(x, i) {
+            return items.indexOf(x) === i;
+          });
+
+          // Map to model
+          let models = items.map(function(item){
+            return new NavigationItem(item);
+          });
+          
+          resolve(models);
+        });
+
+        
+      });
   }
 
   getContent(key: string): Promise<Content[]> {

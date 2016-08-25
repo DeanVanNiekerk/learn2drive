@@ -105,8 +105,33 @@ export class StoreService {
         return testResults;
     }
 
-    clearTestResults() {
-        this.storage.query(`DELETE FROM testResult`);
+    getTestSectionsPassed(): Promise<Array<string>> {
+
+        return new Promise(resolve => {
+
+            this.storage.query(`SELECT DISTINCT navigationKey
+                                    FROM testResult
+                                    WHERE resultPercent = 100`)
+                .then(data => {
+                    let keys = [];
+                    if (data.res.rows.length > 0) {
+                        for (var i = 0; i < data.res.rows.length; i++) {
+                            let item = data.res.rows.item(i);
+                            keys.push(item.navigationKey);
+                        }
+                    }
+                    resolve(keys);
+                });
+        });
+
+    }
+
+    clearTestResults(): Promise<any> {
+        return this.storage.query(`DELETE FROM testResult`);
+    }
+
+    clearContentRead(): Promise<any> {
+        return this.storage.query(`DELETE FROM contentRead`);
     }
 
 }

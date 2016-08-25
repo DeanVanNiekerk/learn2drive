@@ -17,56 +17,224 @@ import {TestResult} from '../models/test-result';
 
 describe('Store Service', () => {
 
-    beforeEachProviders(() => {
-        return [
-            StoreService
-        ];
+  it('insertTestResult: test result added', function (done) {
+
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
+
+    let testResult = new TestResult('nav.key', 75);
+
+    // When
+    let promise = service.insertTestResult(testResult);
+
+    promise.then(() => {
+
+      service
+        .getTestResults(testResult.navigationKey)
+        .then(testResults => {
+          // Then
+          expect(testResults.length).toBe(1);
+
+          var t1 = testResults[0];
+
+          expect(t1.navigationKey).toBe('nav.key');
+          expect(t1.resultPercent).toBe(75);
+          expect(t1.testDate).toBeTruthy(); // Not null
+
+          done();
+        });
     });
+  });
 
-    //OPTION 1
-    it('OPTION 1 - addTestResult: test result added', function(done) {
+  it('getTestSectionsPassed: none', function (done) {
 
-      // Given
-      let service = new StoreService();
-      service.dropTables();
-      service.createTables();
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
 
-      let testResult = new TestResult('nav.key', 75);
+    let testResult = new TestResult('nav.key', 75);
+
+   
+    let promise = service.insertTestResult(testResult);
+
+    promise.then(() => {
+
+      // When
+      service
+        .getTestSectionsPassed()
+        .then(navigationKeys => {
+          
+          // Then
+          expect(navigationKeys.length).toBe(0);
+
+          done();
+        });
+    });
+  });
+
+   it('getTestSectionsPassed: 2 passed section', function (done) {
+
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
 
 
-      //When
-      let promise = service.insertTestResult(testResult);
+    service.insertTestResult(new TestResult('nav.key1', 100));
+    service.insertTestResult(new TestResult('nav.key1', 100));
+    service.insertTestResult(new TestResult('nav.key2', 75));
+    service.insertTestResult(new TestResult('nav.key3', 100));
+    let promise = service.insertTestResult(new TestResult('nav.key1', 75));
 
-      promise.then(() => {
-        console.log("enter first then");
+    promise.then(() => {
 
-        service
-          .getTestResults(testResult.navigationKey)
-          .then(testResults => {
-            console.log("enter second then");
+      // When
+      service
+        .getTestSectionsPassed()
+        .then(navigationKeys => {
+          
+          // Then
+          expect(navigationKeys.length).toBe(2);
 
-            console.log(testResults);
+          expect(navigationKeys[0]).toBe('nav.key1');
+          expect(navigationKeys[1]).toBe('nav.key3');
 
-            //Then
-            expect(testResults.length).toBe(1);
+          done();
+        });
+    });
+  });
+
+  it('insertContentRead: content read added', function (done) {
+
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
+
+    // When
+    let promise = service.insertContentRead('nav.key1');
+
+    promise.then(() => {
+
+      service
+        .getContentReadCount('nav.key1')
+        .then(count => {
+          // Then
+          expect(count).toBe(1);
+
+          done();
+        });
+    });
+  });
+
+  it('getContentReadCount: multiple items', function (done) {
+
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
+
+    // When
+    service.insertContentRead('1.2');       // 1
+    service.insertContentRead('1.2.3');     // 2
+    service.insertContentRead('1');       
+    service.insertContentRead('1.9');
+    service.insertContentRead('1.2.3'); 
+    let promise = service.insertContentRead('1.2.3.4'); // 3
+
+    promise.then(() => {
+
+      service
+        .getContentReadCount('1.2')
+        .then(count => {
+          // Then
+          expect(count).toBe(3);
+
+          done();
+        });
+    });
+  });
+
+
+  it('clearContentRead: content read cleared', function (done) {
+
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
+
+    service.insertContentRead('nav.key1')
+    .then(() => {
+
+      // When
+      service
+        .clearContentRead()
+        .then(() => {
+
+          service.getContentReadCount('')
+          .then(count => {
+
+            // Then
+            expect(count).toBe(0);
 
             done();
+
           });
-
-      });
-
-      console.log("exit function");
-
+        });
     });
+  });
 
 
+  /*
+  //There options didnt work when dean tested
   //OPTION 2
   it('OPTION 2 - addTestResult: test result added',
     async(
       fakeAsync(() => {
 
+        // Given
+        let service = new StoreService();
+        service.dropTables();
+        service.createTables();
+
+        let testResult = new TestResult('nav.key', 75);
+
+
+        //When
+        let promise = service.insertTestResult(testResult);
+
+        promise.then(() => {
+          console.log("enter first then");
+
+          service
+            .getTestResults(testResult.navigationKey)
+            .then(testResults => {
+              console.log("enter second then");
+
+              console.log(testResults);
+
+              //Then
+              expect(testResults.length).toBe(1);
+
+            });
+
+        });
+
+        console.log("exit function");
+
+      })));
+
+
+  //OPTION 3
+  it('OPTION 3 - addTestResult: test result added',
+    async(
+      fakeAsync(
+        inject([StoreService], (service: StoreService) => {
+
           // Given
-          let service = new StoreService();
           service.dropTables();
           service.createTables();
 
@@ -95,80 +263,7 @@ describe('Store Service', () => {
 
           console.log("exit function");
 
-        })));
-
-
-  //OPTION 3
-  it('OPTION 3 - addTestResult: test result added',
-    async(
-    fakeAsync(
-    inject([StoreService], (service:StoreService) => {
-
-      // Given
-      service.dropTables();
-      service.createTables();
-
-      let testResult = new TestResult('nav.key', 75);
-
-
-      //When
-      let promise = service.insertTestResult(testResult);
-
-      promise.then(() => {
-        console.log("enter first then");
-
-        service
-          .getTestResults(testResult.navigationKey)
-          .then(testResults => {
-            console.log("enter second then");
-
-            console.log(testResults);
-
-            //Then
-            expect(testResults.length).toBe(1);
-
-          });
-
-      });
-
-      console.log("exit function");
-
-    }))));
-
-
-
-   //Old way
-   it('addTestResult: test result added', async(inject(
-       [StoreService],
-       fakeAsync((service: StoreService) => {
-
-            // Set up
-            service.dropTables();
-            service.createTables();
-
-            // Given
-            let testResult = new TestResult('nav.key', 75);
-
-            // When
-            let promise = service.insertTestResult(testResult);
-
-           // console.log('inserting..');
-
-
-            // Then
-            promise.then(() => {
-
-                console.log('this DOESNT GET LOGGED');
-
-                service.getTestResults(testResult.navigationKey)
-                    .then(testResults => {
-                        console.log(testResults);
-                        // expect(testResults.length).toBe(1);
-                        expect(false).toBe(true);
-                    });
-            });
-
-        })
-   )));
+        }))));
+    */
 
 });

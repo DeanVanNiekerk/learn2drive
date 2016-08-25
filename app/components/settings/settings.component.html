@@ -8,7 +8,14 @@
 <ion-content>
   
     <ion-list>
-         <ion-list-header>
+        <ion-list-header>
+            Study
+        </ion-list-header>
+        <ion-item (click)="clearContentRead()">
+            Clear Study History
+            <ion-icon name="trash" item-right></ion-icon>
+        </ion-item>
+        <ion-list-header>
             Tests
         </ion-list-header>
         <ion-item (click)="clearTestResults()">

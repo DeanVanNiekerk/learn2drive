@@ -153,5 +153,36 @@ describe('Navigation Service', () => {
           expect(count).toEqual(3);
         });
     })));
+
+
+    it('getAllNavigationItems: multiple items', inject(
+    [ContentService, MockBackend],
+    fakeAsync((service: ContentService, backend: MockBackend) => {
+      backend.connections.subscribe((connection: MockConnection) => {
+
+        // Given
+        let items: any[] = [
+          { Node: '1' },
+          { Node: '1.2' },
+          { Node: '1.2' },
+          { Node: '1.2.3' },
+          { Node: '1.2.3.4' },
+          { Node: '1.2.3' },
+          { Node: '1.2.4' },
+          { Node: '1.3.4' },
+        ];
+
+        let response = new ResponseOptions({body: JSON.stringify(items)});
+        connection.mockRespond(new Response(response));
+      });
+
+      // When
+      service.getAllNavigationItems('1.2')
+        .then(navigationItems => {
+
+          // Then
+          expect(navigationItems.length).toEqual(4);
+        });
+    })));
  
 });

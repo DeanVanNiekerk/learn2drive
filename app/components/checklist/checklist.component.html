@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar dark>
+    <ion-title>Checklist</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+
+  <ion-list>
+      
+        <ion-item>
+            Read all content
+            <p>{{contentReadCount}} of {{contentSectionCount}} sections read</p>
+
+            <ion-icon *ngIf="contentAllRead === null" item-right name="remove"></ion-icon>
+            <ion-icon *ngIf="contentAllRead === true" item-right favorite name="checkmark-circle"></ion-icon>
+            <ion-icon *ngIf="contentAllRead === false" item-right danger name="close-circle"></ion-icon>
+
+        </ion-item>
+
+        <ion-item>
+            Pass a test in each section
+            <p>{{testsPassedCount}} of {{testsSectionCount}} test sections passed</p>
+
+            <ion-icon *ngIf="testsAllPassed === null" item-right name="remove"></ion-icon>
+            <ion-icon *ngIf="testsAllPassed === true" item-right favorite name="checkmark-circle"></ion-icon>
+            <ion-icon *ngIf="testsAllPassed === false" item-right danger name="close-circle"></ion-icon>
+
+        </ion-item>
+
+        <ion-item>
+            Pass the Mock Test 3 times
+
+            <ion-icon *ngIf="mockTestPassed === null" item-right name="remove"></ion-icon>
+            <ion-icon *ngIf="mockTestPassed === true" item-right favorite name="checkmark-circle"></ion-icon>
+            <ion-icon *ngIf="mockTestPassed === false" item-right danger name="close-circle"></ion-icon>
+
+        </ion-item>
+       
+    </ion-list>
+
+</ion-content>

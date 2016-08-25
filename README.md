@@ -72,18 +72,14 @@ http://ionicframework.com/docs/v2/
 
 ## TODO
 
-- Running on iOS - Dylan (Done)
-- Install ionic on Kate's phone. (She has Gingerbread!)
 - Mock-test - Dylan
-- Store service tests, promises not resolving - Dylan 
 - Vehicle Controls
 - Home page
     - Checklist
     - Whats next?
     - Directory
-- Content Read Tracking - Dean
 - Navigation 
-    - Content Read Progress
+    - Content Read Progress - Dean (first pass done)
     - Test Progress - Dean (first pass done)
 - Breadcrumb
 - Vet content (kate)
@@ -94,7 +90,12 @@ http://ionicframework.com/docs/v2/
 - Apple App/Bundle ID
 - Launcher icon
 - rename application to l2d3d.mobi not L2D3D Mobile (maybe get rid of space)
+- Install ionic on Kate's phone. (She has Gingerbread!)
 
+Done
+- Running on iOS - Dylan (Done)
+- Store service tests, promises not resolving - Dylan (Done)
+- Content Read Tracking - Dean
 
 Testing on iPhone 5
 - Navigateion into an item seems sluggish and locks up sometimes half way through screen change.
