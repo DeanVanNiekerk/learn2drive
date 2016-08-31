@@ -20,9 +20,7 @@ export class LastTestResultComponent implements OnInit {
     private storeService: StoreService) { }
 
   ngOnInit() {
-      this.navCtrl.viewDidEnter.subscribe((view) => {
-        this.loadLastTestResult();
-      });
+      this.loadLastTestResult();
   }
 
   loadLastTestResult() {

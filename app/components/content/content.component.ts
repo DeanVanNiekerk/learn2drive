@@ -41,13 +41,13 @@ export class ContentComponent implements OnInit {
     this.navigationKey = navParams.get('navigationKey');
   }
 
-  ngOnInit() {
+  ionViewDidEnter() {
     this.navigatorComponent.load(this.navigationKey);
-    this.learnComponent.load(this.navigationKey);  
+    this.loadLastTestResult();
+  }
 
-    this.navCtrl.viewDidEnter.subscribe((view) => {
-      this.loadLastTestResult();
-    });
+  ngOnInit() {
+    this.learnComponent.load(this.navigationKey);  
   }
 
   loadLastTestResult() {
