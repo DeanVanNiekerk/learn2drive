@@ -21,9 +21,6 @@ export class ChecklistItemComponent {
     }
 
     showInformation() {
-        console.log('pushing');
-        console.log(this.heading);
-        
         this.navCtrl.push(ChecklistItemInfoComponent, {
             heading: this.heading,
             information: this.information
