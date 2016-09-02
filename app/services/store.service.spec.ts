@@ -188,31 +188,82 @@ describe('Store Service', () => {
     });
   });
 
-  // it('updateChecklistItem: checklist item inserted', function (done) {
+  it('getChecklistItem: null returned', function (done) {
 
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
 
-  //   // When
-  //   let promise = service.updateChecklistItem('key1', true);
+    // When
+    let promise = service.getChecklistItem('key1');
 
-  //   promise.then(() => {
+    promise.then((item) => {
 
-  //     service
-  //       .getChecklistItem('key1')
-  //       .then(item => {
+      expect(item).toBe(null);
+      done();
 
-  //         // Then
-  //         expect(item.key).toBe('key1');
-  //         expect(item.complete).toBe(true);
+    });
 
-  //         done();
-  //       });
-  //   });
-  // });
+     
+  });
 
+  
+  it('updateChecklistItem: checklist item inserted', function (done) {
+
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
+
+    // When
+    let promise = service.updateChecklistItem('key1', true);
+
+    promise.then(() => {
+
+      service
+        .getChecklistItem('key1')
+        .then(item => {
+          
+          // Then
+          expect(item.key).toBe('key1');
+          expect(item.complete).toBe(true);
+
+          done();
+        });
+    });
+  });
+
+  it('updateChecklistItem: checklist item updated', function (done) {
+
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
+
+    // When
+    let promise = service.updateChecklistItem('key1', true);
+
+    promise.then(() => {
+
+      service.updateChecklistItem('key1', false).then(() => {
+
+        service
+        .getChecklistItem('key1')
+        .then(item => {
+          
+          // Then
+          expect(item.key).toBe('key1');
+          expect(item.complete).toBe(false);
+
+          done();
+        });
+
+      });
+
+    });
+  });
+  
 
   /*
   //There options didnt work when dean tested

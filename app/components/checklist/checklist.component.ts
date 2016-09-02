@@ -4,8 +4,12 @@ import {Component, OnInit} from '@angular/core';
 import {StoreService} from '../../services/store.service';
 import {ContentService} from '../../services/content.service';
 
+// Components
+import {ChecklistItemComponent} from '../checklist-item/checklist-item.component';
+
 @Component({
-  templateUrl: 'build/components/checklist/checklist.component.html'
+    directives: [ChecklistItemComponent],
+    templateUrl: 'build/components/checklist/checklist.component.html'
 })
 export class ChecklistComponent implements OnInit {
 
@@ -16,11 +20,6 @@ export class ChecklistComponent implements OnInit {
   contentReadCount: number = null;
   contentSectionCount: number = null;
 
-  // Tests
-  testsAllPassed: boolean = null;
-  testsPassedCount: number = null;
-  testsSectionCount: number = null;
-
   // Mock Test
   mockTestPassed: boolean = false;
 
@@ -30,7 +29,6 @@ export class ChecklistComponent implements OnInit {
 
   ngOnInit() {
       this.loadContentRead();
-      this.loadTestsPassed();
   }
 
 
@@ -44,20 +42,6 @@ export class ChecklistComponent implements OnInit {
               this.contentAllRead = readCount >= sectionCount;
               this.contentReadCount = readCount;
               this.contentSectionCount = sectionCount;
-          });
-      });
-  }
-
-  loadTestsPassed() {
-      this.storeService.getTestSectionsPassed()
-      .then(passedSections => {
-        
-        this.contentService.getAllNavigationItems(this.rootNavigationKey)
-          .then(navigationItems => {
-
-              this.testsAllPassed = passedSections.length >= navigationItems.length;
-              this.testsPassedCount = passedSections.length;
-              this.testsSectionCount = navigationItems.length;
           });
       });
   }

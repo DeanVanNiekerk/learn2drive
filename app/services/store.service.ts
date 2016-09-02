@@ -39,7 +39,7 @@ export class StoreService {
                                 checklist (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT, 
                                     key TEXT, 
-                                    complete BIT
+                                    complete INTEGER
                                 )`);
     }
 
@@ -139,59 +139,49 @@ export class StoreService {
     updateChecklistItem(key: string, complete: boolean): Promise<boolean> {
         
          return new Promise(resolve => {
-        //      let item = null;
-        //    let sql = ``;
 
-        //             //Insert
-        //             if (item == null) {
-        //                 sql = `INSERT INTO checklist (key,complete) VALUES (?,?)`;
-        //             }
-        //             //Update
-        //             else{
-        //                 sql = `UPDATE checklist 
-        //                             SET complete = ${complete}
-        //                             WHERE key = '${key}'`;
-        //             }
+            this.getChecklistItem(key)
+                .then(item => {
+                    let promise = null;
+                    //Insert
+                    if (item == null) {
+                        let sql = `INSERT INTO checklist (key,complete) VALUES (?,?)`;
+                        promise = this.storage.query(sql, [key, complete ? 1 : 0]).then(() => { resolve(); });
+                    }
+                    //Update
+                    else{
+                        let sql = `UPDATE checklist 
+                                    SET complete = ${complete ? 1 : 0}
+                                    WHERE key = '${key}'`;
+                        promise = this.storage.query(sql)
+                    }
 
-                    //console.log(sql);
-                    console.log(complete);
-                    console.log(key);
-
-                    this.storage.query(`INSERT INTO contentRead (navigationKey,readDate) VALUES (?,?)`, [key, complete])
-                    .then((a) => {
-                        
-                        resolve(true);
-                    });  
-
-
-            // this.getChecklistItem(key)
-            //     .then(item => {
-                    
-                    
-            //     });
+                    promise.then(() => { resolve(); });
+                });
         });
-
-
     }
+    
 
     getChecklistItem(key: string): Promise<ChecklistItem> {
 
          return new Promise(resolve => {
 
-            this.storage.query(`SELECT *
+            this.storage.query(`SELECT id, key, complete
                     FROM checklist
                     WHERE key = '${key}'`)
                 .then(data => {
-                    let item = null;
+                    let checklistitem = null;
                     if (data.res.rows.length > 0) {
                         let item = data.res.rows.item(0);
-                        item = new ChecklistItem(item.id, item.key, item.complete);
+                        checklistitem = new ChecklistItem(item.id, item.key, item.complete === 1);
                     }
-                    resolve(item);
+                    
+                    resolve(checklistitem);
                 });
         });
     }
 
+    /*
     isChecklistItemComplete(key: string): Promise<boolean> {
 
          return new Promise(resolve => {
@@ -206,6 +196,7 @@ export class StoreService {
                 });
         });
     }
+    */
 
     clearTestResults(): Promise<any> {
         return this.storage.query(`DELETE FROM testResult`);
