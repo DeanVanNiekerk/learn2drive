@@ -1,3 +1,4 @@
 
 
-<span>{{progress}}</span>
+<span *ngIf="!complete">{{progress}}</span>
+<ion-icon favorite name="done-all" *ngIf="complete"></ion-icon>

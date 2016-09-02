@@ -11,20 +11,30 @@
   
   <learn></learn>
 
+  <button (click)="startTest()" class="test-button" fab fab-right fab-bottom fab-fixed secondary>
+      <ion-icon name="school"></ion-icon>
+  </button>
+
 </ion-content>
 
 
-<ion-footer>
+<ion-footer class="content-footer">
   <ion-toolbar>
+    
+      <p padding-left secondary outline *ngIf="lastTestResult != null">
+        Last Test Result for this Section: <b>{{lastTestResult.resultPercent}}%</b>
+      </p>
 
-    <p secondary *ngIf="lastTestResult != null" (click)="navigateToTestHistory()">
-      Last Test: <b>{{lastTestResult.resultPercent}}%</b>
-    </p>
+      <p padding-left secondary outline *ngIf="lastTestResult == null">
+        No Test Written for this Section yet
+      </p>
 
-    <ion-buttons end>
-      <button secondary outline (click)="startTest()">
-        Start Test
-      </button>
-  </ion-buttons>
+      <ion-buttons padding-right end *ngIf="lastTestResult != null">
+        <button secondary (click)="navigateToTestHistory()" >
+          <ion-icon name="list-box"></ion-icon>
+        </button>
+      </ion-buttons>
+    
+ 
   </ion-toolbar>
 </ion-footer>

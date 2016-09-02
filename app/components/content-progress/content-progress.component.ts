@@ -13,7 +13,9 @@ import {ContentService} from '../../services/content.service';
 export class ContentProgressComponent implements OnInit {
 
   @Input() navigationKey: string = '';
+
   progress: string = '';
+  complete: boolean = false;
   
   constructor(private navCtrl: NavController,
     private storeService: StoreService,
@@ -27,19 +29,14 @@ export class ContentProgressComponent implements OnInit {
 
   loadContentProgress() {
 
-    console.log(`ContentProgress START: ${this.navigationKey}`);
-
     this.storeService.getContentReadCount(this.navigationKey)
       .then(readCount => {
 
-        console.log(`ContentProgress Content Read Count: ${this.navigationKey}`);
-        
         this.contentService.getContentSectionCount(this.navigationKey)
           .then(sectionCount => {
 
-            console.log(`ContentProgress Content Section Count: ${this.navigationKey}`);
-
             this.progress = `${readCount}/${sectionCount}`;
+            this.complete = readCount >= sectionCount;
 
           });
       });

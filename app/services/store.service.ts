@@ -143,13 +143,16 @@ export class StoreService {
             this.getChecklistItem(key)
                 .then(item => {
                     let promise = null;
-                    //Insert
+                    
                     if (item == null) {
+                        
+                        // Insert
                         let sql = `INSERT INTO checklist (key,complete) VALUES (?,?)`;
                         promise = this.storage.query(sql, [key, complete ? 1 : 0]).then(() => { resolve(); });
-                    }
-                    //Update
-                    else{
+                        
+                    } else {
+                        
+                        // Update
                         let sql = `UPDATE checklist 
                                     SET complete = ${complete ? 1 : 0}
                                     WHERE key = '${key}'`;
@@ -180,23 +183,6 @@ export class StoreService {
                 });
         });
     }
-
-    /*
-    isChecklistItemComplete(key: string): Promise<boolean> {
-
-         return new Promise(resolve => {
-
-            this.getChecklistItem(key)
-                .then(item => {
-                    let complete = false;
-                    if (item != null) {
-                        complete = item.complete;
-                    }
-                    resolve(complete);
-                });
-        });
-    }
-    */
 
     clearTestResults(): Promise<any> {
         return this.storage.query(`DELETE FROM testResult`);

@@ -8,7 +8,8 @@
 <ion-content class="checklist">
 
   
-        <checklist-item heading="Apply for an ID document if you don't already have one"
+        <checklist-item key="HaveId"
+                        heading="Apply for an ID document if you don't already have one"
                         information="Where can I go to get an ID document?
  <ul>
  <li>
@@ -63,8 +64,9 @@
                 </checklist-item>
 
 
-                <checklist-item heading="Make sure you meet all the requirements for a Learner's Licence"
-                    information="<ul>
+                <checklist-item key="MeetRequirements"
+                        heading="Make sure you meet all the requirements for a Learner's Licence"
+                        information="<ul>
  <li>
  For light motor vehicles you need to be 17 years or older.
  </li>
@@ -91,8 +93,9 @@
 
       
 
-        <checklist-item heading="Practise the eye test, or do a free eye test at an optometrist"
-                    information="<ul>
+        <checklist-item key="EyeTest"
+                        heading="Practise the eye test, or do a free eye test at an optometrist"
+                        information="<ul>
  <li>
  You need to have a Snellen rating of at least 6/12 in both eyes, or if one eye is less than this the other must be 6/9.
  </li> 
@@ -115,13 +118,15 @@
         </checklist-item>
 
 
-        <checklist-item heading="Get four ID photos"
-                    information="These should be 40mm x 30mm passport size photos and can be black and white or colour.">
+        <checklist-item key="IdPhotots"
+                        heading="Get four ID photos"
+                        information="These should be 40mm x 30mm passport size photos and can be black and white or colour.">
         </checklist-item>
 
 
-        <checklist-item heading="Book for your Learner's Licence test at the Test Centre"
-                    information="Where can I go to book for my Learner's Licence?
+        <checklist-item key="BookLearners"
+                        heading="Book for your Learner's Licence test at the Test Centre"
+                        information="Where can I go to book for my Learner's Licence?
  <ul>
  <li>
  You need to go to a Learner's Licence Test Centre. Enquire from your nearest Traffic Department.
@@ -165,7 +170,8 @@
                    
                     <ion-row>
                         <ion-col width-10>
-                            <ion-checkbox favorite></ion-checkbox>
+                            <ion-icon name="radio-button-off" *ngIf="!contentAllRead"></ion-icon>
+                            <ion-icon primary name="checkmark-circle" *ngIf="contentAllRead"></ion-icon>
                         </ion-col>
                         <ion-col width-90>
                              Read all content
@@ -176,41 +182,7 @@
 
                 <p>{{contentReadCount}} of {{contentSectionCount}} sections read</p>
 
-                <!--
-                <ion-icon *ngIf="contentAllRead === null" item-right name="remove"></ion-icon>
-                <ion-icon *ngIf="contentAllRead === true" item-right favorite name="checkmark-circle"></ion-icon>
-                <ion-icon *ngIf="contentAllRead === false" item-right danger name="close-circle"></ion-icon>
-                -->
-
             </ion-card-content>
-
-<!--
-    <ul>
- <li>
- The main sections are:
- <ul><li>
- Vehicle controls
- </li>
- <li>
- Rules of the road
- </li>
- <li>
- Road signals
- </li>
- <li>
- Road signs
- </li>
- <li>
- Road markings
- </li><ul/>
- <li>
- Keep track of your progress and which sections you still need to cover using the Learn2Drive3D logbook.
- </li>
- <li>
- Test yourself on each sub-section as you complete it, and revise when you get to the end of a major section.
- </li>
- </ul>
-    -->
 
         </ion-card>
 
@@ -221,7 +193,8 @@
                     
                      <ion-row>
                         <ion-col width-10>
-                            <ion-checkbox></ion-checkbox>
+                            <ion-icon name="radio-button-off" *ngIf="!mockTestPassed"></ion-icon>
+                            <ion-icon primary name="checkmark-circle" *ngIf="mockTestPassed"></ion-icon>
                         </ion-col>
                         <ion-col width-90>
                              Pass the Mock Test 3 times
@@ -230,18 +203,13 @@
 
                 </ion-card-title>
 
-                <!--
-                <ion-icon *ngIf="mockTestPassed === null" item-right name="remove"></ion-icon>
-                <ion-icon *ngIf="mockTestPassed === true" item-right favorite name="checkmark-circle"></ion-icon>
-                <ion-icon *ngIf="mockTestPassed === false" item-right danger name="close-circle"></ion-icon>
-                -->
-
             </ion-card-content>
             
         </ion-card>
 
-        <checklist-item heading="Go to the Test Centre to write your test"
-                    information="What should I take with me to the test?
+        <checklist-item key="GoToTestCenter"
+                        heading="Go to the Test Centre to write your test"
+                        information="What should I take with me to the test?
  <ul>
  <li>
  The test fee receipt you received when you booked your test.
