@@ -74,12 +74,18 @@ export class MockTestComponent implements OnInit {
     //this.navigationKey = navParams.get('navigationKey');
   }
 
-  ngOnInit() {
+  ngOnInit(): Promise<any> {
 
-    this.questionService.getQuestions(this.navigationKey)
+    return new Promise(resolve => {
+
+      this.questionService.getQuestions(this.navigationKey)
       .then(questions => {
         this.questions = questions;
+
+        resolve();
       });
+    });
+
   }
 
   answerChanged(answeredQuestion: AnsweredQuestion) {
