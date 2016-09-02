@@ -3,7 +3,9 @@ import 'rxjs/add/operator/map';
 
 import {Storage, SqlStorage} from 'ionic-angular';
 
+//Models
 import {TestResult} from '../models/test-result';
+import {ChecklistItem} from '../models/checklist-item';
 
 @Injectable()
 export class StoreService {
@@ -32,11 +34,19 @@ export class StoreService {
                                     navigationKey TEXT, 
                                     readDate TEXT
                                 )`);
+
+        this.storage.query(`CREATE TABLE IF NOT EXISTS 
+                                checklist (
+                                    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                                    key TEXT, 
+                                    complete BIT
+                                )`);
     }
 
     dropTables() {
         this.storage.query(`DROP TABLE IF EXISTS testResult`);
         this.storage.query(`DROP TABLE IF EXISTS contentRead`);
+        this.storage.query(`DROP TABLE IF EXISTS checklist`);
     }
 
     insertContentRead(navigationKey: string): Promise<any> {
@@ -126,6 +136,77 @@ export class StoreService {
 
     }
 
+    updateChecklistItem(key: string, complete: boolean): Promise<boolean> {
+        
+         return new Promise(resolve => {
+        //      let item = null;
+        //    let sql = ``;
+
+        //             //Insert
+        //             if (item == null) {
+        //                 sql = `INSERT INTO checklist (key,complete) VALUES (?,?)`;
+        //             }
+        //             //Update
+        //             else{
+        //                 sql = `UPDATE checklist 
+        //                             SET complete = ${complete}
+        //                             WHERE key = '${key}'`;
+        //             }
+
+                    //console.log(sql);
+                    console.log(complete);
+                    console.log(key);
+
+                    this.storage.query(`INSERT INTO contentRead (navigationKey,readDate) VALUES (?,?)`, [key, complete])
+                    .then((a) => {
+                        
+                        resolve(true);
+                    });  
+
+
+            // this.getChecklistItem(key)
+            //     .then(item => {
+                    
+                    
+            //     });
+        });
+
+
+    }
+
+    getChecklistItem(key: string): Promise<ChecklistItem> {
+
+         return new Promise(resolve => {
+
+            this.storage.query(`SELECT *
+                    FROM checklist
+                    WHERE key = '${key}'`)
+                .then(data => {
+                    let item = null;
+                    if (data.res.rows.length > 0) {
+                        let item = data.res.rows.item(0);
+                        item = new ChecklistItem(item.id, item.key, item.complete);
+                    }
+                    resolve(item);
+                });
+        });
+    }
+
+    isChecklistItemComplete(key: string): Promise<boolean> {
+
+         return new Promise(resolve => {
+
+            this.getChecklistItem(key)
+                .then(item => {
+                    let complete = false;
+                    if (item != null) {
+                        complete = item.complete;
+                    }
+                    resolve(complete);
+                });
+        });
+    }
+
     clearTestResults(): Promise<any> {
         return this.storage.query(`DELETE FROM testResult`);
     }
@@ -135,3 +216,4 @@ export class StoreService {
     }
 
 }
+

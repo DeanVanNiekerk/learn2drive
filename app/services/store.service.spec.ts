@@ -14,6 +14,7 @@ import {StoreService} from './store.service';
 
 // Models
 import {TestResult} from '../models/test-result';
+import {ChecklistItem} from '../models/checklist-item';
 
 describe('Store Service', () => {
 
@@ -186,6 +187,31 @@ describe('Store Service', () => {
         });
     });
   });
+
+  // it('updateChecklistItem: checklist item inserted', function (done) {
+
+  //   // Given
+  //   let service = new StoreService();
+  //   service.dropTables();
+  //   service.createTables();
+
+  //   // When
+  //   let promise = service.updateChecklistItem('key1', true);
+
+  //   promise.then(() => {
+
+  //     service
+  //       .getChecklistItem('key1')
+  //       .then(item => {
+
+  //         // Then
+  //         expect(item.key).toBe('key1');
+  //         expect(item.complete).toBe(true);
+
+  //         done();
+  //       });
+  //   });
+  // });
 
 
   /*

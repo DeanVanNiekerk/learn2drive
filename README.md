@@ -73,15 +73,15 @@ http://ionicframework.com/docs/v2/
 ## TODO
 
 - Mock-test - Dylan
-- Vehicle Controls
 - Home page
-    - Checklist
+    - Checklist - Dean
     - Whats next?
     - Directory
 - Navigation 
     - Content Read Progress - Dean (first pass done)
     - Test Progress - Dean (first pass done)
 - Breadcrumb
+- Add numbers to Vehicle Controls Image 
 - Vet content (kate)
 - Styling (icons)
 - Build server
@@ -93,6 +93,7 @@ http://ionicframework.com/docs/v2/
 - Install ionic on Kate's phone. (She has Gingerbread!)
 
 Done
+- Vehicle Controls - Dean (Done)
 - Running on iOS - Dylan (Done)
 - Store service tests, promises not resolving - Dylan (Done)
 - Content Read Tracking - Dean

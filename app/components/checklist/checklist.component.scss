@@ -1,0 +1,20 @@
+.checklist {
+
+    ion-card {
+
+        margin-bottom: 20px;
+
+        ion-card-title {
+            font-size: 1.2em;
+
+            ion-checkbox {
+                margin-top: 3px;
+            }
+        }
+
+        p {
+            float:right;
+        }
+       
+    }
+}
