@@ -5,7 +5,7 @@ import {ChecklistItem} from './checklist-item';
 
 
 
-describe('Answer Model', () => {
+describe('Checklist Item Model', () => {
 
 
     it('Instantiate', () => {
@@ -16,12 +16,12 @@ describe('Answer Model', () => {
         let complete = true;
 
         // When
-        let answer = new ChecklistItem(id, key, complete);
+        let item = new ChecklistItem(id, key, complete);
 
         // Then
-        expect(answer.id).toBe(id);
-        expect(answer.key).toBe(key);
-        expect(answer.complete).toBe(complete);
+        expect(item.id).toBe(id);
+        expect(item.key).toBe(key);
+        expect(item.complete).toBe(complete);
 
     });
 

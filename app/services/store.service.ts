@@ -3,9 +3,10 @@ import 'rxjs/add/operator/map';
 
 import {Storage, SqlStorage} from 'ionic-angular';
 
-//Models
+// Models
 import {TestResult} from '../models/test-result';
 import {ChecklistItem} from '../models/checklist-item';
+import {Message} from '../models/message';
 
 @Injectable()
 export class StoreService {
@@ -41,12 +42,21 @@ export class StoreService {
                                     key TEXT, 
                                     complete INTEGER
                                 )`);
+
+        this.storage.query(`CREATE TABLE IF NOT EXISTS 
+                                message (
+                                    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                                    key TEXT,
+                                    shown INTEGER, 
+                                    showAgain INTEGER
+                                )`);
     }
 
     dropTables() {
         this.storage.query(`DROP TABLE IF EXISTS testResult`);
         this.storage.query(`DROP TABLE IF EXISTS contentRead`);
         this.storage.query(`DROP TABLE IF EXISTS checklist`);
+        this.storage.query(`DROP TABLE IF EXISTS message`);
     }
 
     insertContentRead(navigationKey: string): Promise<any> {
@@ -136,7 +146,7 @@ export class StoreService {
 
     }
 
-    updateChecklistItem(key: string, complete: boolean): Promise<boolean> {
+    updateChecklistItem(key: string, complete: boolean): Promise<any> {
         
          return new Promise(resolve => {
 
@@ -180,6 +190,56 @@ export class StoreService {
                     }
                     
                     resolve(checklistitem);
+                });
+        });
+    }
+
+    updateMessage(message: Message): Promise<any> {
+        
+         return new Promise(resolve => {
+
+            this.getMessage(message.key)
+                .then(m => {
+                    let promise = null;
+                    
+                    if (m.id == null) {
+                        
+                        // Insert
+                        let sql = `INSERT INTO message (key,shown,showAgain) VALUES (?,?,?)`;
+                        promise = this.storage.query(sql, [message.key, message.shown ? 1 : 0, message.showAgain ? 1 : 0]).then(() => { resolve(); });
+                        
+                    } else {
+                        
+                        // Update
+                        let sql = `UPDATE message 
+                                    SET shown = ${message.shown ? 1 : 0},
+                                    showAgain = ${message.showAgain ? 1 : 0}
+                                    WHERE key = '${message.key}'`;
+                        promise = this.storage.query(sql);
+                    }
+
+                    promise.then(() => { resolve(); });
+                });
+        });
+    }
+
+    getMessage(key: string): Promise<Message> {
+
+         return new Promise(resolve => {
+
+            this.storage.query(`SELECT id, key, shown, showAgain
+                    FROM message
+                    WHERE key = '${key}'`)
+                .then(data => {
+                    let message = null;
+                    if (data.res.rows.length > 0) {
+                        let item = data.res.rows.item(0);
+                        message = new Message(item.id, item.key, item.shown === 1, item.showAgain === 1);
+                    } else {
+                        message = new Message(null, key, false, true);
+                    }
+                    
+                    resolve(message);
                 });
         });
     }

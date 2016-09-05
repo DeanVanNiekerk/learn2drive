@@ -4,12 +4,15 @@ import {NavController, ViewController, NavParams, AlertController} from 'ionic-a
 // Services
 import {QuestionService} from '../../services/question.service';
 import {TestService} from '../../services/test.service';
+import {StoreService} from '../../services/store.service';
+import {ResourceService} from '../../services/resource.service';
 
 // Models
 import {Question} from '../../models/question';
 import {Answer} from '../../models/answer';
 import {AnsweredQuestion} from '../../models/answered-question';
 import {TestResult} from '../../models/test-result';
+import {Message} from '../../models/message';
 
 // Components
 import {QuestionComponent} from '../question/question.component';
@@ -28,6 +31,8 @@ export class TestComponent implements OnInit {
   navigationKey: string = '';
   questions: Question[] = [];
 
+  testInformationMessageKey: string = 'TestInformation';
+
   // AnsweredQuestion Index
   answeredQuestions: { [id: number]: AnsweredQuestion; } = {};
 
@@ -36,7 +41,9 @@ export class TestComponent implements OnInit {
     private viewCtrl: ViewController,
     private alertCtrl: AlertController,
     private questionService: QuestionService,
-    private testService: TestService) { 
+    private testService: TestService,
+    private storeService: StoreService,
+    private resourceService: ResourceService) { 
 
       // Get the supplied navigation key
       this.navigationKey = navParams.get('navigationKey');
@@ -48,6 +55,13 @@ export class TestComponent implements OnInit {
       .then(questions => {
         this.questions = questions;
       });
+
+    this.storeService.getMessage(this.testInformationMessageKey)
+      .then(message => {
+          if (message.showAgain === true) 
+            this.showTestInformation(message);
+      });  
+    
   }
 
   answerChanged(answeredQuestion: AnsweredQuestion) {
@@ -80,6 +94,42 @@ export class TestComponent implements OnInit {
         // so that we go dont come back here after results
         let index = this.viewCtrl.index;
         this.navCtrl.remove(index);
+    });
+
+  }
+
+  showTestInformation(message: Message) {
+
+    this.resourceService.getResource(this.navigationKey)
+    .then(sectionName => {
+
+      let infoAlert = this.alertCtrl.create({
+        title: 'Information',
+        message: `This test contains a set of questions <b>randomly</b> drawn from the <b>'${sectionName}'</b> section. 
+                    <br/><br/>Tests will contain a maximum of 10 questions.`,
+        inputs: [
+        {
+          name: 'show-again',
+          label: 'Show this message again?',
+          checked: true,
+          type: 'checkbox'
+        }
+        ],
+        buttons: [
+          {
+            text: 'Okay',
+            handler: data => {
+              let showAgain = data.length === 1;
+              message.showAgain = showAgain;
+              message.shown = true;
+              this.storeService.updateMessage(message);
+            }
+          }
+        ]
+      });
+
+      infoAlert.present();
+      
     });
 
   }

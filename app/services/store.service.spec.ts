@@ -15,6 +15,7 @@ import {StoreService} from './store.service';
 // Models
 import {TestResult} from '../models/test-result';
 import {ChecklistItem} from '../models/checklist-item';
+import {Message} from '../models/message';
 
 describe('Store Service', () => {
 
@@ -255,6 +256,96 @@ describe('Store Service', () => {
           // Then
           expect(item.key).toBe('key1');
           expect(item.complete).toBe(false);
+
+          done();
+        });
+
+      });
+
+    });
+  });
+
+
+  it('getMessage: default returned', function (done) {
+
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
+
+    // When
+    let promise = service.getMessage('key1');
+
+    promise.then((message) => {
+
+      expect(message.id).toBe(null);
+      expect(message.key).toBe('key1');
+      expect(message.shown).toBe(false);
+      expect(message.showAgain).toBe(true);
+      done();
+
+    });
+
+     
+  });
+
+  it('updateMessage: message inserted', function (done) {
+
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
+
+    let message = new Message(null, 'key1', true, false);
+
+    // When
+    let promise = service.updateMessage(message);
+
+    promise.then(() => {
+
+      service
+        .getMessage(message.key)
+        .then(actual => {
+          
+          // Then
+          expect(actual.id).toBe(1);
+          expect(actual.key).toBe(message.key);
+          expect(actual.shown).toBe(message.shown);
+          expect(actual.showAgain).toBe(message.showAgain);
+
+          done();
+        });
+    });
+  });
+
+  it('updateMessage: message updated', function (done) {
+
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
+
+    let message = new Message(null, 'key2', false, true);
+
+    // When
+    let promise = service.updateMessage(message);
+
+    promise.then(() => {
+
+      message.shown = true;
+      message.showAgain = false;
+
+      service.updateMessage(message).then(() => {
+
+        service
+        .getMessage(message.key)
+        .then(actual => {
+          
+          // Then
+          expect(actual.id).toBe(1);
+          expect(actual.key).toBe(message.key);
+          expect(actual.shown).toBe(message.shown);
+          expect(actual.showAgain).toBe(message.showAgain);
 
           done();
         });

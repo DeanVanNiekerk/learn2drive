@@ -77,9 +77,6 @@ http://ionicframework.com/docs/v2/
     - Checklist - Dean
     - Whats next?
     - Directory
-- Navigation 
-    - Content Read Progress - Dean (first pass done)
-    - Test Progress - Dean (first pass done)
 - Breadcrumb
 - Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides)
 - Toast on Settings after save (http://ionicframework.com/docs/v2/components/#toast)
@@ -96,6 +93,9 @@ http://ionicframework.com/docs/v2/
 - Install ionic on Kate's phone. (She has Gingerbread!)
 
 Done
+- Navigation 
+    - Content Read Progress - Dean 
+    - Test Progress - Dean 
 - Vehicle Controls - Dean (Done)
 - Running on iOS - Dylan (Done)
 - Store service tests, promises not resolving - Dylan (Done)

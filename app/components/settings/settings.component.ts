@@ -57,4 +57,28 @@ export class SettingsComponent {
     confirmAlert.present();
   }
 
+  recreateSqliteDb () {
+
+    let confirmAlert = this.alertCtrl.create({
+      title: 'Warning!',
+      message: 'Are you sure you want to re-create the sqlite db?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => { }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.storeService.dropTables();
+            this.storeService.createTables();
+          }
+        }
+      ]
+    });
+
+    confirmAlert.present();
+
+  }
+
 }
