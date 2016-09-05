@@ -7,13 +7,14 @@
         ion-card-title {
             font-size: 1.2em;
 
-            ion-checkbox {
-                margin-top: 4px;
+            ion-icon {
+                font-size: 2.5rem;
             }
         }
 
         p {
             float:right;
+            color: color($colors, secondary)
         }
        
     }

@@ -1,21 +1,23 @@
  
  
- 
- <ion-card>
-    <ion-card-content>
-        <ion-card-title>
-            <ion-row>
-                <ion-col width-10>
-                    <ion-checkbox></ion-checkbox>
-                </ion-col>
-                <ion-col width-90>
-                    {{heading}}
-                </ion-col>
-            </ion-row>
-            
-        </ion-card-title>
+ <div class="checklist-item">
+    <ion-card>
+        <ion-card-content>
+            <ion-card-title (click)="toggleComplete()">
+                <ion-row>
+                    <ion-col width-10>
+                        <ion-icon name="radio-button-off" *ngIf="!complete"></ion-icon>
+                        <ion-icon primary name="checkmark-circle" *ngIf="complete"></ion-icon>
+                    </ion-col>
+                    <ion-col width-90>
+                        {{heading}}
+                    </ion-col>
+                </ion-row>
+                
+            </ion-card-title>
 
-        <p (click)="showInformation()" >More info..</p>
+            <p (click)="showInformation()" >More info..</p>
 
-    </ion-card-content>
-</ion-card>
+        </ion-card-content>
+    </ion-card>
+ </div>
