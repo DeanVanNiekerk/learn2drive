@@ -81,6 +81,9 @@ http://ionicframework.com/docs/v2/
     - Content Read Progress - Dean (first pass done)
     - Test Progress - Dean (first pass done)
 - Breadcrumb
+- Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides)
+- Toast on Settings after save (http://ionicframework.com/docs/v2/components/#toast)
+- Search for Content? (http://ionicframework.com/docs/v2/components/#searchbar)
 - Add numbers to Vehicle Controls Image 
 - Vet content (kate)
 - Styling (icons)
