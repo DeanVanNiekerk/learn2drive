@@ -80,6 +80,7 @@ Phase 1
     - Checklist to top of page (checklist status)
     - Mocktest status
     - Settings to top menu
+    - Progress Dials like http://blog.ionic.io/built-with-ionic-neumob/
 - Checklist - info popup for readonly checkboxes - Dean
 - Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides)
 - Add numbers to Vehicle Controls Image - Dylan 
@@ -94,11 +95,14 @@ Phase 2
 --------
 - Whats next?
 - Directory
+    - http://blog.ionic.io/google-maps-component-in-ionic-creator/
 - Breadcrumb
 - Toast on Settings after save (http://ionicframework.com/docs/v2/components/#toast)
 - Search for Content? (http://ionicframework.com/docs/v2/components/#searchbar)
 - Tabs for sections (instead of current home page)
 - Free and Paid Versions (lite version)
+- Multi Language
+    - http://blog.ionic.io/localize-your-app-with-ng2-translate/
 
 Done
 -------
