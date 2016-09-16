@@ -17,21 +17,21 @@ export class QuestionComponent {
 
   @Output() answerChangedEvent: EventEmitter<AnsweredQuestion> = new EventEmitter<AnsweredQuestion>();
 
-  private innerSelectedAnswerId: string = '';
+  selectedAnswerId: string = '';
 
   constructor() {
   }
 
-  get selectedAnswerId() : string {
-    return this.innerSelectedAnswerId;
-  }
-
-  set selectedAnswerId(v: string) {
-    if (v !== this.innerSelectedAnswerId) {
-      this.innerSelectedAnswerId = v;
-      //this.onChangeCallback(v);
-    }
-  }
+  // get selectedAnswerId() : string {
+  //   return this.innerSelectedAnswerId;
+  // }
+  //
+  // set selectedAnswerId(v: string) {
+  //   if (v !== this.innerSelectedAnswerId) {
+  //     this.innerSelectedAnswerId = v;
+  //     //this.onChangeCallback(v);
+  //   }
+  // }
 
   selectAnswer(answerId: string) {
     this.selectedAnswerId = answerId;
