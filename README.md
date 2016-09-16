@@ -72,27 +72,40 @@ http://ionicframework.com/docs/v2/
 
 ## TODO
 
+Phase 1
+-------
 - Mock-test - Dylan
 - Home page
-    - Checklist - Dean
-    - Whats next?
-    - Directory
-- Breadcrumb
+    - Status on Learners Content
+    - Checklist to top of page (checklist status)
+    - Mocktest status
+    - Settings to top menu
+- Checklist - info popup for readonly checkboxes
 - Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides)
+- Add numbers to Vehicle Controls Image - Dylan 
+- Vet content (intro, checklist more info)
+- Styling 
+- Icons (laucher, intro etc)
+- Build server
+- Final Naming: rename application to Learn2Drive (L2D) not L2D3D Mobile (maybe get rid of space)
+
+
+Phase 2
+--------
+- Whats next?
+- Directory
+- Breadcrumb
 - Toast on Settings after save (http://ionicframework.com/docs/v2/components/#toast)
 - Search for Content? (http://ionicframework.com/docs/v2/components/#searchbar)
-- Add numbers to Vehicle Controls Image 
-- Vet content (kate)
-- Styling (icons)
-- Build server
-- Monetise?
-- Check out competition
-- Apple App/Bundle ID
-- Launcher icon
-- rename application to l2d3d.mobi not L2D3D Mobile (maybe get rid of space)
-- Install ionic on Kate's phone. (She has Gingerbread!)
+- Tabs for sections (instead of current home page)
+- Free and Paid Versions (lite version)
 
 Done
+-------
+- Checklist - Dean
+- Install ionic on Kate's phone. (She has Gingerbread!)
+- Apple App/Bundle ID
+- Check out competition
 - Navigation 
     - Content Read Progress - Dean 
     - Test Progress - Dean 
