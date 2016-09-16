@@ -17,9 +17,20 @@ export class QuestionComponent {
 
   @Output() answerChangedEvent: EventEmitter<AnsweredQuestion> = new EventEmitter<AnsweredQuestion>();
 
-  selectedAnswerId: string = '';
+  private innerSelectedAnswerId: string = '';
 
-  constructor() { 
+  constructor() {
+  }
+
+  get selectedAnswerId() : string {
+    return this.innerSelectedAnswerId;
+  }
+
+  set selectedAnswerId(v: string) {
+    if (v !== this.innerSelectedAnswerId) {
+      this.innerSelectedAnswerId = v;
+      //this.onChangeCallback(v);
+    }
   }
 
   selectAnswer(answerId: string) {

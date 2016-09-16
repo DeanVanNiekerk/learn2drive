@@ -7,7 +7,7 @@
     </ion-card-header>
 
     <ion-card-content>
-        
+
         <p *ngFor="let text of question.text">
             {{text}}
         </p>
@@ -15,12 +15,14 @@
         <p *ngFor="let image of question.images">
             <img class="image" src="content/images/{{image}}">
         </p>
-        
+
         <br/>
 
-    
-        <ion-list radio-group [(ngModel)]="selectedAnswerId" (ionChange)="answerChanged()">
-            <ion-grid>
+
+        <!--<ion-list radio-group [(ngModel)]="selectedAnswerId" (ionChange)="answerChanged()">-->
+          <ion-list radio-group (ionChange)="answerChanged()">
+
+          <ion-grid>
                 <ion-row *ngFor="let answer of question.answers">
                     <ion-col width-10>
                         <ion-radio value="{{answer.id}}"></ion-radio>

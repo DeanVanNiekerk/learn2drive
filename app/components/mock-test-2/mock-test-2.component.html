@@ -1,0 +1,10 @@
+<ion-content class="mock-test">
+
+  <div *ngFor="let question of questions; let i = index">
+    <question
+      [question]="question"
+      [questionNumber]="i + 1"></question>
+  </div>
+
+</ion-content>
+

@@ -5,16 +5,16 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="mock-test">
+  <ion-content class="mock-test">
 
-  <div *ngFor="let question of questions; let i = index">
-    <question
-      [question]="question"
-      [questionNumber]="i + 1"
-      (answerChangedEvent)="answerChanged($event)"></question>
-  </div>
+    <div *ngFor="let question of questions; let i = index">
+      <question
+        [question]="question"
+        [questionNumber]="i + 1"
+        (answerChangedEvent)="answerChanged($event)"></question>
+    </div>
 
-</ion-content>
+  </ion-content>
 
 <ion-footer>
   <ion-toolbar secondary>
