@@ -80,7 +80,7 @@ Phase 1
     - Checklist to top of page (checklist status)
     - Mocktest status
     - Settings to top menu
-- Checklist - info popup for readonly checkboxes
+- Checklist - info popup for readonly checkboxes - Dean
 - Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides)
 - Add numbers to Vehicle Controls Image - Dylan 
 - Vet content (intro, checklist more info)

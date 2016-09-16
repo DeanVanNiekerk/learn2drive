@@ -173,6 +173,24 @@ export class StoreService {
                 });
         });
     }
+
+    getCompleteChecklistItemCount(): Promise<number> {
+        
+         return new Promise(resolve => {
+
+            this.storage.query(`SELECT COUNT(*) AS count
+                                    FROM checklist
+                                    WHERE complete = 1`)
+                .then(data => {
+                    let count = 0;
+                    if (data.res.rows.length > 0) {
+                        let item = data.res.rows.item(0);
+                        count = item.count;
+                    }
+                    resolve(count);
+                });
+        });
+    }
     
 
     getChecklistItem(key: string): Promise<ChecklistItem> {

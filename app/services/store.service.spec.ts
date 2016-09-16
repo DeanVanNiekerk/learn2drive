@@ -266,6 +266,73 @@ describe('Store Service', () => {
   });
 
 
+  it('getCompleteChecklistItemCount: no checklist items', function (done) {
+
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
+
+    // When
+    let promise = service.getCompleteChecklistItemCount();
+
+    promise.then((count) => {
+
+      expect(count).toBe(0);
+      done();
+
+    });
+     
+  });
+
+
+  it('getCompleteChecklistItemCount: 1 checklist item, not complete', function (done) {
+
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
+
+    // When
+    let promise = service.updateChecklistItem('key1', false);
+
+    promise.then(() => {
+
+      service.getCompleteChecklistItemCount().then((count) => {
+
+        expect(count).toBe(0);
+        done();
+
+      });
+    });
+     
+  });
+
+
+  it('getCompleteChecklistItemCount: 2 checklist items, 1 complete', function (done) {
+
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
+
+    // When
+    service.updateChecklistItem('key1', false);
+    let promise = service.updateChecklistItem('key2', true);
+
+    promise.then(() => {
+
+      service.getCompleteChecklistItemCount().then((count) => {
+
+        expect(count).toBe(1);
+        done();
+
+      });
+    });
+     
+  });
+
+
   it('getMessage: default returned', function (done) {
 
     // Given

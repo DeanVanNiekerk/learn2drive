@@ -1,13 +1,13 @@
  
  
  <div class="checklist-item">
-    <ion-card>
+    <ion-card [class.complete]="complete">
         <ion-card-content>
             <ion-card-title (click)="toggleComplete()">
                 <ion-row>
                     <ion-col width-10>
                         <ion-icon name="radio-button-off" *ngIf="!complete"></ion-icon>
-                        <ion-icon primary name="checkmark-circle" *ngIf="complete"></ion-icon>
+                        <ion-icon favorite name="checkmark-circle" *ngIf="complete"></ion-icon>
                     </ion-col>
                     <ion-col width-90>
                         {{heading}}

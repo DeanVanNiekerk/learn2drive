@@ -1,11 +1,20 @@
+
 <ion-header>
-  <ion-navbar dark>
+<ion-navbar dark>
+  <ion-toolbar>
     <ion-title>Checklist</ion-title>
-  </ion-navbar>
+    <ion-buttons end>
+        <button royal class="title">
+            <checklist-progress></checklist-progress>
+        </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-navbar>
 </ion-header>
 
 
-<ion-content class="checklist">
+
+<ion-content class="checklist" (click)="checklistChanged()">
 
   
         <checklist-item key="HaveId"
@@ -166,7 +175,7 @@
          <ion-card>
 
             <ion-card-content>
-                <ion-card-title>
+                <ion-card-title (click)="toggleContentAllRead()">
                    
                     <ion-row>
                         <ion-col width-10>
@@ -189,12 +198,12 @@
 
         <ion-card>
              <ion-card-content>
-                <ion-card-title>
+                <ion-card-title (click)="toggleMockTestsPassed()">
                     
                      <ion-row>
                         <ion-col width-10>
-                            <ion-icon name="radio-button-off" *ngIf="!mockTestPassed"></ion-icon>
-                            <ion-icon primary name="checkmark-circle" *ngIf="mockTestPassed"></ion-icon>
+                            <ion-icon name="radio-button-off" *ngIf="!mockTestsPassed"></ion-icon>
+                            <ion-icon primary name="checkmark-circle" *ngIf="mockTestsPassed"></ion-icon>
                         </ion-col>
                         <ion-col width-90>
                              Pass the Mock Test 3 times
@@ -279,3 +288,4 @@
 
 
 </ion-content>
+

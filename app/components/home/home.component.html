@@ -10,7 +10,7 @@
     <ion-card class="learners" (click)="navigateToContent()">
         <ion-card-content>
             <ion-card-title>
-                Learners License Content
+                Learners License Content <content-progress [navigationKey]="rootNavigationKey"></content-progress>
             </ion-card-title>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.
@@ -32,7 +32,7 @@
     <ion-card class="settings" (click)="navigateToChecklist()">
          <ion-card-content>
             <ion-card-title>
-                Checklist
+                Checklist <checklist-progress></checklist-progress>
             </ion-card-title>
             <p>
                Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.

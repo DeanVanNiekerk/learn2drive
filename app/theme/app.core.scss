@@ -70,6 +70,12 @@ ion-card {
     }
 }
 
+ion-navbar {
+    .title {
+        font-size: 2rem;
+    }
+}
+
 ul.numbered {
     list-style: decimal;
 }
