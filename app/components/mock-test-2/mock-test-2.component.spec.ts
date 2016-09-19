@@ -1,58 +1,38 @@
-import {
-  describe,
-  it,
-  beforeEach,
-  expect,
-  async,
-  inject,
-  TestComponentBuilder,
-} from '@angular/core/testing';
+import { beforeEach, beforeEachProviders, describe, expect, it }          from '@angular/core/testing';
+import { asyncCallbackFactory, injectAsyncWrapper, providers }            from '../../../test/ionic-test-shim';
 
-
-// import {setBaseTestProviders} from '@angular/core/testing';
-// import {
-//   TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS,
-//   TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS
-// } from '@angular/platform-browser-dynamic/testing';
 
 import {MockTest2Component} from './mock-test-2.component';
 
 
+this.builder = null;
+this.fixture = null;
+this.instance = null;
+
+
 describe('MockTest2 Component Tests', () => {
 
-  let fixture;
-  let builder : TestComponentBuilder;
 
-  // setBaseTestProviders(TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS,
-  //   TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
-
-  beforeEach(async(inject([TestComponentBuilder], (tcb) => {
-    builder = tcb;
-    fixture = builder
-      // .overrideProviders(MockTestComponent,
-      //    [
-      //      QuestionService, {useValue: questionService},
-      //    ])
-      .createAsync(MockTest2Component)
-      .then((f) => {
-        fixture = f;
-      });
-  })));
+  let beforeEachFn: Function = ((testSpec) => {
+    //testSpec.instance['clicker'] = { name: 'TEST CLICKER' };
+    //testSpec.instance['clicker'].getCount = function(): number { return 10; };
+  });
 
 
-  it('shows a list of questions by default', done => {
+  beforeEachProviders(() => providers);
+  beforeEach(injectAsyncWrapper(asyncCallbackFactory(MockTest2Component, this, false, beforeEachFn)));
 
-       let nativeElement = fixture.nativeElement;
 
-       fixture.detectChanges();
 
-       console.log(nativeElement);
+   it('shows a list of questions by default', () => {
+
+       let nativeElement = this.fixture.nativeElement;
+
+       this.fixture.detectChanges();
 
        expect(nativeElement
          .querySelectorAll('question').length).toBe(3);
 
-
-          done();
  });
 
 

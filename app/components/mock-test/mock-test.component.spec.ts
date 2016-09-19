@@ -39,25 +39,25 @@ class MockTestService extends TestService  {
 
 
 
-describe('MockTest unit tests', () => {
-  var mocktest : MockTestComponent;
-
-  beforeEach(() => {
-    let questionService = new MockQuestionService();
-    mocktest = new MockTestComponent(null, null, null, null, questionService, null);
-  });
-
-  it('shows list of questions by default', (done) => {
-    let promise = mocktest.ngOnInit();
-
-    promise.then(() => {
-      expect(mocktest.questions.length).toBe(1);
-
-      done();
-
-    });
-  });
-});
+// describe('MockTest unit tests', () => {
+//   var mocktest : MockTestComponent;
+//
+//   beforeEach(() => {
+//     let questionService = new MockQuestionService();
+//     mocktest = new MockTestComponent(null, null, null, null, questionService, null);
+//   });
+//
+//   it('shows list of questions by default', (done) => {
+//     let promise = mocktest.ngOnInit();
+//
+//     promise.then(() => {
+//       expect(mocktest.questions.length).toBe(1);
+//
+//       done();
+//
+//     });
+//   });
+// });
 
 
 // import {setBaseTestProviders} from '@angular/core/testing';

@@ -1,4 +1,6 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {RadioGroup} from 'ionic-angular';
+
 
 // Models
 import {Question} from '../../models/question';
@@ -8,7 +10,8 @@ import {AnsweredQuestion} from '../../models/answered-question';
 
 @Component({
     selector: 'question',
-    templateUrl: 'build/components/question/question.component.html'
+    templateUrl: 'build/components/question/question.component.html',
+    directives: [RadioGroup],
 })
 export class QuestionComponent {
 
@@ -21,17 +24,6 @@ export class QuestionComponent {
 
   constructor() {
   }
-
-  // get selectedAnswerId() : string {
-  //   return this.innerSelectedAnswerId;
-  // }
-  //
-  // set selectedAnswerId(v: string) {
-  //   if (v !== this.innerSelectedAnswerId) {
-  //     this.innerSelectedAnswerId = v;
-  //     //this.onChangeCallback(v);
-  //   }
-  // }
 
   selectAnswer(answerId: string) {
     this.selectedAnswerId = answerId;

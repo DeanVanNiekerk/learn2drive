@@ -14,11 +14,10 @@
             <img class="image" src="content/images/{{image}}">
         </p>
 
+
         <br/>
 
-
         <ion-list radio-group [(ngModel)]="selectedAnswerId" (ionChange)="answerChanged()">
-          <!--<ion-list radio-group (ionChange)="answerChanged()">-->
 
           <ion-grid>
                 <ion-row *ngFor="let answer of question.answers">

@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '../',
 
 
     // frameworks to use
@@ -22,7 +22,6 @@ module.exports = function(config) {
       'node_modules/zone.js/dist/async-test.js',
       'node_modules/zone.js/dist/fake-async-test.js',
       'node_modules/alasql/dist/alasql.min.js',
-      {pattern: 'karma-test-shim.ts', included: true, watched: true},
       'app/**/*.spec.ts',
       {pattern: 'node_modules/reflect-metadata/Reflect.js.map', included: false, served: true}, // 404 on the same
       {pattern: 'www/build/**/*.html', included: false},
@@ -32,7 +31,8 @@ module.exports = function(config) {
     // list of files to exclude
     exclude: [
       'node_modules/angular2/**/*_spec.js',
-      'node_modules/ionic-angular/**/*spec*'
+      'node_modules/ionic-angular/**/*spec*',
+      'test/karma.conf.js',
     ],
 
 
@@ -100,6 +100,18 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+
+    customContextFile: "test/karma-static/context.html",
+
+    customDebugFile: "test/karma-static/debug.html",
+
+    // plugins: [
+    //   'karma-browserify',
+    //   'karma-spec-reporter'
+    //   ]
+
+
   })
 }
