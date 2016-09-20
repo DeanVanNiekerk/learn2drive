@@ -5,6 +5,7 @@ import {AlertController} from 'ionic-angular';
 import {StoreService} from '../../services/store.service';
 
 @Component({
+  providers: [StoreService],
   templateUrl: 'build/components/settings/settings.component.html'
 })
 export class SettingsComponent {

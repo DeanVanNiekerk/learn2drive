@@ -1,11 +1,29 @@
 <ion-header>
   <ion-navbar primary>
     <ion-title>Learn2Drive</ion-title>
+
+    <ion-buttons end>
+      <button (click)="showHomeMenu($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+    
   </ion-navbar>
 </ion-header>
 
 
 <ion-content class="home">
+
+    <ion-card class="checklist" (click)="navigateToChecklist()">
+         <ion-card-content>
+            <ion-card-title>
+                Checklist <checklist-progress></checklist-progress>
+            </ion-card-title>
+            <p>
+               Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
+            </p> 
+        </ion-card-content>
+    </ion-card>
   
     <ion-card class="learners" (click)="navigateToContent()">
         <ion-card-content>
@@ -25,28 +43,6 @@
             </ion-card-title>
             <p>
                 Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. 
-            </p> 
-        </ion-card-content>
-    </ion-card>
-
-    <ion-card class="settings" (click)="navigateToChecklist()">
-         <ion-card-content>
-            <ion-card-title>
-                Checklist <checklist-progress></checklist-progress>
-            </ion-card-title>
-            <p>
-               Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
-            </p> 
-        </ion-card-content>
-    </ion-card>
-
-    <ion-card class="settings" (click)="navigateToSettings()">
-         <ion-card-content>
-            <ion-card-title>
-                Settings
-            </ion-card-title>
-            <p>
-               Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
             </p> 
         </ion-card-content>
     </ion-card>

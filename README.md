@@ -76,12 +76,11 @@ Phase 1
 -------
 - Mock-test - Dylan
 - Home page
-    - Status on Learners Content
-    - Checklist to top of page (checklist status)
     - Mocktest status
-    - Settings to top menu
-    - Progress Dials like http://blog.ionic.io/built-with-ionic-neumob/
-- Checklist - info popup for readonly checkboxes - Dean
+    - Settings to top menu - Dean
+    - Restyle home page
+        - Progress Dials like http://blog.ionic.io/built-with-ionic-neumob/
+            or http://progressbarjs.readthedocs.io/en/latest/
 - Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides)
 - Add numbers to Vehicle Controls Image - Dylan 
 - Vet content (intro, checklist more info)
@@ -106,7 +105,11 @@ Phase 2
 
 Done
 -------
+- Home page
+    - Status on Learners Content - Dean
+    - Checklist to top of page (checklist status) - Dean
 - Checklist - Dean
+- Checklist - info popup for readonly checkboxes - Dean
 - Install ionic on Kate's phone. (She has Gingerbread!)
 - Apple App/Bundle ID
 - Check out competition
