@@ -10,9 +10,11 @@ import {ContentProgressComponent} from '../content-progress/content-progress.com
 import {ChecklistProgressComponent} from '../checklist-progress/checklist-progress.component';
 import {HomeMenuComponent} from '../home-menu/home-menu.component';
 
+// Directives
+import {ProgressDirective} from '../../directives/progress.directive';
 
 @Component({
-  directives: [ChecklistProgressComponent, ContentProgressComponent],
+  directives: [ChecklistProgressComponent, ContentProgressComponent, ProgressDirective],
   templateUrl: 'build/components/home/home.component.html'
 })
 export class HomeComponent implements OnInit {
@@ -29,8 +31,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.viewCtrl.didEnter.subscribe(() => {
-      this.checklistProgressComponent.loadChecklistProgress();
-      this.contentProgressComponent.loadContentProgress();
+      //this.checklistProgressComponent.loadChecklistProgress();
+      //this.contentProgressComponent.loadContentProgress();
     });
   }
 

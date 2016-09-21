@@ -77,7 +77,6 @@ Phase 1
 - Mock-test - Dylan
 - Home page
     - Mocktest status
-    - Settings to top menu - Dean
     - Restyle home page
         - Progress Dials like http://blog.ionic.io/built-with-ionic-neumob/
             or http://progressbarjs.readthedocs.io/en/latest/
@@ -102,12 +101,16 @@ Phase 2
 - Free and Paid Versions (lite version)
 - Multi Language
     - http://blog.ionic.io/localize-your-app-with-ng2-translate/
+- Use gulp to copy alasql and progressbar.js from nodemodules into the www/dependencies folder 
+- Check for progressbar.js typings file (doesnt currently exit) 
+
 
 Done
 -------
 - Home page
     - Status on Learners Content - Dean
     - Checklist to top of page (checklist status) - Dean
+    - Settings to top menu - Dean
 - Checklist - Dean
 - Checklist - info popup for readonly checkboxes - Dean
 - Install ionic on Kate's phone. (She has Gingerbread!)
