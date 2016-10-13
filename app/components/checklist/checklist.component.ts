@@ -53,7 +53,7 @@ export class ChecklistComponent implements OnInit {
 
   toggleContentAllRead() {
        
-    if(this.contentAllRead == true)
+    if (this.contentAllRead === true)
         return;
 
     let infoAlert = this.alertCtrl.create({
@@ -71,7 +71,7 @@ export class ChecklistComponent implements OnInit {
 
   toggleMockTestsPassed() {
        
-    if(this.mockTestsPassed == true)
+    if (this.mockTestsPassed === true)
         return;
 
     let infoAlert = this.alertCtrl.create({

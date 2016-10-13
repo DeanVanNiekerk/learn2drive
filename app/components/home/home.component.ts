@@ -1,38 +1,49 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NavController, NavParams, ViewController, PopoverController} from 'ionic-angular';
 
+// Services
+import {ProgressService} from '../../services/progress.service';
+
 // Components
 import {ContentComponent} from '../content/content.component';
 import {SettingsComponent} from '../settings/settings.component';
 import {MockTestComponent} from '../mock-test/mock-test.component';
 import {ChecklistComponent} from '../checklist/checklist.component';
-import {ContentProgressComponent} from '../content-progress/content-progress.component';
-import {ChecklistProgressComponent} from '../checklist-progress/checklist-progress.component';
 import {HomeMenuComponent} from '../home-menu/home-menu.component';
-
-// Directives
-import {ProgressDirective} from '../../directives/progress.directive';
+import {ProgressBarComponent} from '../progressbar/progressbar.component';
 
 @Component({
-  directives: [ChecklistProgressComponent, ContentProgressComponent, ProgressDirective],
+  directives: [ProgressBarComponent],
   templateUrl: 'build/components/home/home.component.html'
 })
 export class HomeComponent implements OnInit {
 
   rootNavigationKey: string = 'rootNavigation.learner';
 
-  @ViewChild(ContentProgressComponent) contentProgressComponent: ContentProgressComponent;
-  @ViewChild(ChecklistProgressComponent) checklistProgressComponent: ChecklistProgressComponent;
+  @ViewChild('checklistprogressbar') checklistProgressComponent: ProgressBarComponent;
+  @ViewChild('contentprogressbar') contentProgressComponent: ProgressBarComponent;
 
   constructor(private navCtrl: NavController,
       private viewCtrl: ViewController,
-      private popoverCtrl: PopoverController) {
+      private popoverCtrl: PopoverController,
+      private progressService: ProgressService) {
   }
 
   ngOnInit() {
     this.viewCtrl.didEnter.subscribe(() => {
-      //this.checklistProgressComponent.loadChecklistProgress();
-      //this.contentProgressComponent.loadContentProgress();
+
+      this.progressService.getChecklistProgress().
+        then(progress => {
+          this.checklistProgressComponent.update(progress.percent());
+        }
+      );
+
+      this.progressService.getContentProgress(this.rootNavigationKey).
+        then(progress => {
+          this.contentProgressComponent.update(progress.percent());
+        }
+      );
+      
     });
   }
 

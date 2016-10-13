@@ -2,8 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {NavController} from 'ionic-angular';
 
 // Services
-import {StoreService} from '../../services/store.service';
-import {ContentService} from '../../services/content.service';
+import {ProgressService} from '../../services/progress.service';
 
 
 @Component({
@@ -18,8 +17,7 @@ export class ContentProgressComponent implements OnInit {
   complete: boolean = false;
   
   constructor(private navCtrl: NavController,
-    private storeService: StoreService,
-    private contentService: ContentService) { 
+    private progressService: ProgressService) { 
 
   }
 
@@ -29,16 +27,10 @@ export class ContentProgressComponent implements OnInit {
 
   loadContentProgress() {
 
-    this.storeService.getContentReadCount(this.navigationKey)
-      .then(readCount => {
-
-        this.contentService.getContentSectionCount(this.navigationKey)
-          .then(sectionCount => {
-
-            this.progress = `${readCount}/${sectionCount}`;
-            this.complete = readCount >= sectionCount;
-
-          });
+    this.progressService.getContentProgress(this.navigationKey)
+      .then(progress => {
+          this.progress = `${progress.complete}/${progress.total}`;
+          this.complete = progress.isComplete();
       });
   }
 

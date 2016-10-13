@@ -14,11 +14,13 @@
 
 <ion-content class="home">
 
-    <div (click)="navigateToChecklist()" class="quater" progress>
+    <div (click)="navigateToChecklist()" class="quater">
         Checklist
+        <progressbar #checklistprogressbar key='checklist-progressbar'></progressbar>
     </div>
     <div (click)="navigateToContent()" class="quater">
         Content
+        <progressbar #contentprogressbar key='content-progressbar'></progressbar>
     </div>
     <div (click)="navigateToMockTest()" class="quater">
         Mock Test

@@ -12,6 +12,7 @@ import {ResourceService} from './services/resource.service';
 import {QuestionService} from './services/question.service';
 import {TestService} from './services/test.service';
 import {StoreService} from './services/store.service';
+import {ProgressService} from './services/progress.service';
 // ---------------------------------------------------------------
 
 // Pipes ---------------------------------------------------------
@@ -24,7 +25,8 @@ import {TranslatePipe} from './pipes/translate.pipe.ts';
       ResourceService, 
       QuestionService,
       TestService, 
-      StoreService],
+      StoreService,
+      ProgressService],
   pipes: [TranslatePipe],
   template: '<ion-nav [root]="rootPage"></ion-nav>'
 })
