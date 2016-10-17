@@ -14,9 +14,13 @@
 
 <ion-content class="home">
 
+<!--
     <div (click)="navigateToChecklist()" class="quater">
-        Checklist
+        
         <progressbar #checklistprogressbar key='checklist-progressbar'></progressbar>
+
+         <h2>Checklist</h2>   
+
     </div>
     <div (click)="navigateToContent()" class="quater">
         Content
@@ -27,43 +31,80 @@
     </div>
     <div class="quater">
         Settngs?
-    </div>
+    </div>-->
 
 
 
 
-    <!--<ion-card class="checklist" (click)="navigateToChecklist()">
+    <ion-card class="checklist" (click)="navigateToChecklist()">
          <ion-card-content>
-            <ion-card-title>
-                Checklist <checklist-progress></checklist-progress>
-            </ion-card-title>
-            <p>
-               Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
-            </p> 
+           
+            <ion-row>
+                <ion-col width-80>
+                     <ion-card-title>
+                        <ion-icon name="clipboard"></ion-icon> Checklist 
+                    </ion-card-title>
+                    <p>
+                        The <b>Checklist</b> helps you keep track of all the tasks you'll need to do before you write your test.
+                    </p> 
+                </ion-col>
+                <ion-col width-20 class="progress">
+                    <progressbar #checklistprogressbar 
+                        key='checklist-progressbar'
+                        colorFrom='#616161'
+                        colorTo='#616161'>
+                    </progressbar>
+                </ion-col>
+            </ion-row>
         </ion-card-content>
     </ion-card>
   
     <ion-card class="learners" (click)="navigateToContent()">
         <ion-card-content>
-            <ion-card-title>
-                Learners License Content <content-progress [navigationKey]="rootNavigationKey"></content-progress>
-            </ion-card-title>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.
-            </p> 
+            
+            <ion-row>
+                <ion-col width-80>
+                    <ion-card-title>
+                        <ion-icon name="list-box"></ion-icon>
+                        Learner's License Content
+                    </ion-card-title>
+                    <p>
+                        The <b>Learner's License Content</b> section contains everything you need to know to pass your Learner's Licence test.
+                    </p> 
+                </ion-col>
+                <ion-col width-20 class="progress">
+                    <progressbar #contentprogressbar 
+                        key='content-progressbar'
+                        colorFrom='#42A4F5'
+                        colorTo='#42A4F5'>
+                    </progressbar>
+                </ion-col>
+            </ion-row>
         </ion-card-content>
     </ion-card>
 
     <ion-card class="mock-test" (click)="navigateToMockTest()">
          <ion-card-content>
-            <ion-card-title>
-                Mock Test
-            </ion-card-title>
-            <p>
-                Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. 
-            </p> 
+            <ion-row>
+                <ion-col width-80>
+                    <ion-card-title>
+                        <ion-icon name="school"></ion-icon> Mock Test
+                    </ion-card-title>
+                    <p>
+                        <b>Mock Tests</b> are set up in the same way as the Learner's Licence test you'll write at the traffic department.
+                    </p> 
+                    </ion-col>
+                <ion-col width-20 class="progress">
+                    <progressbar #mocktestprogressbar 
+                        key='mocktest-progressbar'
+                        colorFrom='#FF3737'
+                        colorTo='#FF3737'
+                        outOf='3'>
+                    </progressbar>
+                </ion-col>
+            </ion-row>
         </ion-card-content>
-    </ion-card>-->
+    </ion-card>
 
 </ion-content>
 

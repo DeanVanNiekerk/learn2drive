@@ -9,6 +9,10 @@ export class ProgressBarComponent implements OnInit {
 
     @Input() key: string;
 
+    @Input() colorFrom: string;
+    @Input() colorTo: string;
+    @Input() outOf: number;
+
     private progressBar: any = null;
 
     constructor() { 
@@ -16,42 +20,54 @@ export class ProgressBarComponent implements OnInit {
 
     ngOnInit() {
 
-      
-
     }
 
      update(percent: number) {
 
-        // var bar = new ProgressBar.Line('#abc', {easing: 'easeInOut'});
-        // bar.animate(1); 
-
-        if (this.progressBar == null) {
-                this.progressBar = new ProgressBar.Circle('#' + this.key, {
-                                color: '#555',
-                                trailColor: '#eee',
-                                strokeWidth: 10,
-                                duration: 1500,
-                                easing: 'easeInOut',
-                                // Set default step function for all animate calls
-                                step: function(state, circle) {
-                                    //circle.path.setAttribute('stroke', state.color);
-                                    //circle.path.setAttribute('stroke-width', state.width);
-
-                                    var value = Math.round(circle.value() * 100);
-                                    if (value === 0) {
-                                    circle.setText('0%');
-                                    } else {
-                                    circle.setText(value + '%');
-                                    }
-
-                                }
-                            });
-
-                this.progressBar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-                this.progressBar.text.style.fontSize = '2rem';
-        }
+        this.initialize();
       
         this.progressBar.animate(percent / 100);
+     }
+
+     private initialize() {
+
+        if (this.progressBar != null)
+            return;
+
+        let outOf = this.outOf;
+
+        this.progressBar = new ProgressBar.Circle('#' + this.key, {
+            color: this.colorFrom,
+            trailColor: '#eee',
+            strokeWidth: 6,
+            duration: 1400,
+            easing: 'easeInOut',
+            from: {color: this.colorFrom},
+            to: {color: this.colorTo},
+            // Set default step function for all animate calls
+            step: function(state, circle) {
+                
+                circle.path.setAttribute('stroke', state.color);
+
+                let value = Math.round(circle.value() * 100);
+                let displayText = '';
+
+                if (outOf) {
+                    // let x = 1 / outOf * 100;
+                    let done = Math.round(value / (1 / outOf * 100));
+                    displayText = done + '/' + outOf;
+                } else {
+                    displayText = value + '%';
+                }
+               
+                circle.setText(displayText);
+
+                circle.text.style.color = state.color;
+            }
+        });
+
+        this.progressBar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+        this.progressBar.text.style.fontSize = '1.2rem';
      }
 
 }

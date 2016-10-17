@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('checklistprogressbar') checklistProgressComponent: ProgressBarComponent;
   @ViewChild('contentprogressbar') contentProgressComponent: ProgressBarComponent;
+  @ViewChild('mocktestprogressbar') mockTestProgressComponent: ProgressBarComponent;
 
   constructor(private navCtrl: NavController,
       private viewCtrl: ViewController,
@@ -43,6 +44,9 @@ export class HomeComponent implements OnInit {
           this.contentProgressComponent.update(progress.percent());
         }
       );
+
+      // TODO: get proper value
+      this.mockTestProgressComponent.update(66);
       
     });
   }
