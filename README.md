@@ -77,10 +77,7 @@ Phase 1
 - Mock-test - Dylan
 - Home page
     - Mocktest status
-    - Restyle home page
-        - Progress Dials like http://blog.ionic.io/built-with-ionic-neumob/
-            or http://progressbarjs.readthedocs.io/en/latest/
-- Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides)
+- Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides) - Dean
 - Add numbers to Vehicle Controls Image - Dylan 
 - Vet content (intro, checklist more info)
 - Styling 
@@ -92,6 +89,10 @@ Phase 1
 Phase 2
 --------
 - Whats next?
+ Home page
+    - Restyle home page
+        - Progress Dials like http://blog.ionic.io/built-with-ionic-neumob/
+            or http://progressbarjs.readthedocs.io/en/latest/
 - Directory
     - http://blog.ionic.io/google-maps-component-in-ionic-creator/
 - Breadcrumb

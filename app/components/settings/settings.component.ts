@@ -62,7 +62,7 @@ export class SettingsComponent {
 
     let confirmAlert = this.alertCtrl.create({
       title: 'Warning!',
-      message: 'Are you sure you want to re-create the sqlite db?',
+      message: 'Are you sure you want to delete ALL user data?',
       buttons: [
         {
           text: 'No',

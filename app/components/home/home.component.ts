@@ -3,6 +3,7 @@ import {NavController, NavParams, ViewController, PopoverController} from 'ionic
 
 // Services
 import {ProgressService} from '../../services/progress.service';
+import {StoreService} from '../../services/store.service';
 
 // Components
 import {ContentComponent} from '../content/content.component';
@@ -11,6 +12,7 @@ import {MockTestComponent} from '../mock-test/mock-test.component';
 import {ChecklistComponent} from '../checklist/checklist.component';
 import {HomeMenuComponent} from '../home-menu/home-menu.component';
 import {ProgressBarComponent} from '../progressbar/progressbar.component';
+import {IntroductionSlidesComponent} from '../introduction-slides/introduction-slides.component';
 
 @Component({
   directives: [ProgressBarComponent],
@@ -18,7 +20,10 @@ import {ProgressBarComponent} from '../progressbar/progressbar.component';
 })
 export class HomeComponent implements OnInit {
 
+  hidden: boolean = true;
+
   rootNavigationKey: string = 'rootNavigation.learner';
+  introductionMessageKey: string = 'IntroductionSlidesShown';
 
   @ViewChild('checklistprogressbar') checklistProgressComponent: ProgressBarComponent;
   @ViewChild('contentprogressbar') contentProgressComponent: ProgressBarComponent;
@@ -27,10 +32,12 @@ export class HomeComponent implements OnInit {
   constructor(private navCtrl: NavController,
       private viewCtrl: ViewController,
       private popoverCtrl: PopoverController,
-      private progressService: ProgressService) {
+      private progressService: ProgressService,
+      private storeService: StoreService) {
   }
 
   ngOnInit() {
+
     this.viewCtrl.didEnter.subscribe(() => {
 
       this.progressService.getChecklistProgress().
@@ -47,14 +54,31 @@ export class HomeComponent implements OnInit {
 
       // TODO: get proper value
       this.mockTestProgressComponent.update(66);
+
+      this.storeService.getMessage(this.introductionMessageKey)
+        .then(message => {
+          if (message.showAgain === true) 
+            this.navigateToIntroductionSlides();
+          else
+            this.hidden = false;
+        }
+      ); 
       
     });
+
+    
+
+    
   }
 
   navigateToContent() {
     this.navCtrl.push(ContentComponent, {
       navigationKey: 'rootNavigation.learner'
     });
+  }
+
+  navigateToIntroductionSlides() {
+    this.navCtrl.push(IntroductionSlidesComponent);
   }
 
   navigateToMockTest() {
