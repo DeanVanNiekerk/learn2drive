@@ -1,0 +1,55 @@
+
+
+<ion-header>
+  <ion-navbar secondary>
+    <ion-title>Mock Test Result</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="mock-test-result">
+
+    <ion-card>
+        <ion-card-header>
+            <h1>Your Mark: 
+                <!--{{resultPercent}}%-->
+            </h1>
+        </ion-card-header>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header class="section-header">
+        <span secondary class="main">Section A</span>
+        <span class="secondary">8 Questions</span>
+      </ion-card-header>
+    </ion-card>
+
+    <test-result-questions
+        [questions]="questionsA"
+        [answeredQuestions]="answeredQuestionsA">
+    </test-result-questions>
+
+    <ion-card>
+      <ion-card-header class="section-header">
+        <span secondary class="main">Section B</span>
+        <span class="secondary">28 Questions</span>
+      </ion-card-header>
+    </ion-card>
+
+    <test-result-questions
+        [questions]="questionsB"
+        [answeredQuestions]="answeredQuestionsB">
+    </test-result-questions>
+
+    <ion-card>
+      <ion-card-header class="section-header">
+        <span secondary class="main">Section C</span>
+        <span class="secondary">28 Questions</span>
+      </ion-card-header>
+    </ion-card>
+
+    <test-result-questions
+        [questions]="questionsC"
+        [answeredQuestions]="answeredQuestionsC">
+    </test-result-questions>
+
+</ion-content>

@@ -69,7 +69,7 @@ describe('Question Service', () => {
       });
 
       // When
-      service.getQuestions('1.2')
+      service.getQuestions('1.2', 10)
         .then(questions => {
           // Then
           expect(questions.length).toEqual(1);
@@ -118,7 +118,7 @@ describe('Question Service', () => {
       });
 
       // When
-      service.getQuestions('1.2')
+      service.getQuestions('1.2', 10)
         .then(questions => {
           // Then
           expect(questions.length).toEqual(1);
@@ -185,7 +185,75 @@ describe('Question Service', () => {
       });
 
       // When
-      service.getQuestions('1.2')
+      service.getQuestions('1.2', 10)
+        .then(questions => {
+          // Then
+          expect(questions.length).toEqual(3);
+
+          questions = questions.sort((q1, q2) => q1.id - q2.id);
+
+          expect(questions[0].id).toEqual(1);
+          expect(questions[1].id).toEqual(2);
+          expect(questions[2].id).toEqual(3);
+
+        });
+    })));
+
+
+    it('getQuestions: multiple keys, multiple questions', inject(
+    [QuestionService, MockBackend],
+    fakeAsync((service: QuestionService, backend: MockBackend) => {
+      backend.connections.subscribe((connection: MockConnection) => {
+
+        // Given
+        let items: any[] = [
+            {
+                'navPath': '1.2',
+                'question': [
+                    {
+                        'id': '1',
+                        'answer': 'A',
+                        'text': 'Question 1',
+                        'option': []
+                    },
+                    {
+                        'id': '2',
+                        'answer': 'A',
+                        'text': 'Question 2',
+                        'option': []
+                    }
+                ]
+            },
+            {
+                'navPath': '1.3',
+                'question': [
+                    {
+                        'id': '3',
+                        'answer': 'A',
+                        'text': 'Question 3',
+                        'option': []
+                    }
+                ]
+            },
+            {
+                'navPath': '1.4',
+                'question': [
+                    {
+                        'id': '4',
+                        'answer': 'A',
+                        'text': 'Question 4',
+                        'option': []
+                    }
+                ]
+            }
+        ];
+
+        let response = new ResponseOptions({body: JSON.stringify(items)});
+        connection.mockRespond(new Response(response));
+      });
+
+      // When
+      service.getQuestionsByKeys(['1.2', '1.3'], 10)
         .then(questions => {
           // Then
           expect(questions.length).toEqual(3);
@@ -226,7 +294,7 @@ describe('Question Service', () => {
       });
 
       // When
-      service.getQuestions('1.2')
+      service.getQuestions('1.2', 10)
         .then(questions => {
           // Then
           expect(questions.length).toEqual(1);
@@ -264,7 +332,7 @@ describe('Question Service', () => {
         });
 
         // When
-        service.getQuestions('1.2')
+        service.getQuestions('1.2', 10)
             .then(questions => {
             // Then
             expect(questions.length).toEqual(1);

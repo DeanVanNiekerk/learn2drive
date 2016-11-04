@@ -30,15 +30,24 @@ export class QuestionService {
     });
   }
 
-  getQuestions(key: string): Promise<Question[]> {
+  getQuestionsByKeys(keys: string[], count: number): Promise<Question[]> {
 
     return new Promise(resolve => {
       this.getData().then(data => {
         
+        let whereClause = `WHERE `
+        keys.forEach((key, index) => {
+
+          if(index != 0)
+            whereClause += ` OR `;
+
+          whereClause += `navPath LIKE "${key}%"`;
+        });
+
         let result = alasql(`
           SELECT question
           FROM ? 
-          WHERE navPath LIKE "${key}%"`
+          ${whereClause}`
           , [data]);
 
         let models = new Array<Question>();
@@ -55,13 +64,17 @@ export class QuestionService {
             
         });
         
-        // Select random 10
-        models = this.getRandomQuestions(models, 10);
+        // Select random questions
+        models = this.getRandomQuestions(models, count);
 
         resolve(models);
 
       });
     });
+  }
+
+  getQuestions(key: string, count: number): Promise<Question[]> {
+    return this.getQuestionsByKeys([ key ], count);
   }
 
   private getRandomQuestions(questions: Question[], max): Question[] {

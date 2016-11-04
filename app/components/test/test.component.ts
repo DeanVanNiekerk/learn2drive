@@ -51,7 +51,7 @@ export class TestComponent implements OnInit {
  
   ngOnInit() {
 
-    this.questionService.getQuestions(this.navigationKey)
+    this.questionService.getQuestions(this.navigationKey, 10)
       .then(questions => {
         this.questions = questions;
       });

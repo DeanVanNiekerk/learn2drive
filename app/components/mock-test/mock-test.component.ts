@@ -45,7 +45,7 @@ import {TestResult} from '../../models/test-result';
 
 // Components
 import {QuestionComponent} from '../question/question.component';
-import {TestResultComponent} from '../test-result/test-result.component';
+import {MockTestResultComponent} from '../mock-test-result/mock-test-result.component';
 
 // Pipes
 import {TranslatePipe} from '../../pipes/translate.pipe.ts';
@@ -57,61 +57,96 @@ import {TranslatePipe} from '../../pipes/translate.pipe.ts';
 })
 export class MockTestComponent implements OnInit {
 
-  navigationKey: string = '';
-  questions: Question[] = [];
+  questionsA: Question[] = [];
+  questionsB: Question[] = [];
+  questionsC: Question[] = [];
 
-  // AnsweredQuestion Index
-  answeredQuestions: { [id: number]: AnsweredQuestion; } = {};
+  questionCountA: number = 8;
+  questionCountB: number = 28;
+  questionCountC: number = 28;
+
+  // AnsweredQuestion Dictionaries
+  answeredQuestionsA: { [id: number]: AnsweredQuestion; } = {};
+  answeredQuestionsB: { [id: number]: AnsweredQuestion; } = {};
+  answeredQuestionsC: { [id: number]: AnsweredQuestion; } = {};
 
   constructor(private navCtrl: NavController,
-              private navParams: NavParams,
               private viewCtrl: ViewController,
               private alertCtrl: AlertController,
               private questionService: QuestionService,
               private testService: TestService) {
-
-    // Get the supplied navigation key
-    //this.navigationKey = navParams.get('navigationKey');
   }
 
-  ngOnInit(): Promise<any> {
+  ngOnInit() {
 
-    return new Promise(resolve => {
-
-      this.questionService.getQuestions(this.navigationKey)
+      this.questionService.getQuestions('rootNavigation.learner.vehicleControls', this.questionCountA)
       .then(questions => {
-        this.questions = questions;
-
-        resolve();
+        this.questionsA = questions;
       });
-    });
+
+      this.questionService.getQuestionsByKeys(
+         ['rootNavigation.learner.rulesOfTheRoad', 
+          'rootNavigation.learner.defensiveDriving', 
+          'rootNavigation.learner.roadSignals'], this.questionCountB)
+      .then(questions => {
+        this.questionsB = questions;
+      });
+
+      this.questionService.getQuestionsByKeys(
+         ['rootNavigation.learner.signs', 
+          'rootNavigation.learner.defensiveDriving', 
+          'rootNavigation.learner.roadMarkings'], this.questionCountC)
+      .then(questions => {
+        this.questionsC = questions;
+      });
 
   }
 
-  answerChanged(answeredQuestion: AnsweredQuestion) {
-    // Update index
-    this.answeredQuestions[answeredQuestion.questionId] = answeredQuestion;
+  answerChangedA(answeredQuestion: AnsweredQuestion) {
+    this.answeredQuestionsA[answeredQuestion.questionId] = answeredQuestion;
   }
+
+  answerChangedB(answeredQuestion: AnsweredQuestion) {
+    this.answeredQuestionsB[answeredQuestion.questionId] = answeredQuestion;
+  }
+
+  answerChangedC(answeredQuestion: AnsweredQuestion) {
+    this.answeredQuestionsC[answeredQuestion.questionId] = answeredQuestion;
+  }
+
 
   markTest() {
 
-    let answeredQuestions = this.getAnsweredQuestionsList();
+    let totalQuestions = this.questionCountA +
+                            this.questionCountA + 
+                            this.questionCountA;
 
-    if (answeredQuestions.length < this.questions.length) {
+    let answerQuestionListA = this.getAnsweredQuestionsList(this.answeredQuestionsA);
+    let answerQuestionListB = this.getAnsweredQuestionsList(this.answeredQuestionsB);
+    let answerQuestionListC = this.getAnsweredQuestionsList(this.answeredQuestionsC);
+
+    let totalAnsweredQuestions = answerQuestionListA.length +
+                                  answerQuestionListB.length + 
+                                  answerQuestionListC.length;
+
+    if (totalAnsweredQuestions < totalQuestions) {
       // Show modal
-      this.showMarkTestConfirmation();
+      this.showMarkTestConfirmation(answerQuestionListA, answerQuestionListB, answerQuestionListC);
       return;
     }
 
-    this.navigateToTestResults();
+    this.navigateToTestResults(answerQuestionListA, answerQuestionListB, answerQuestionListC);
   }
 
-  navigateToTestResults() {
+  navigateToTestResults(answerQuestionListA: AnsweredQuestion[], answerQuestionListB: AnsweredQuestion[], answerQuestionListC: AnsweredQuestion[]) {
 
-    this.navCtrl.push(TestResultComponent, {
-      navigationKey: this.navigationKey,
-      questions: this.questions,
-      answeredQuestions: this.getAnsweredQuestionsList()
+    this.navCtrl.push(MockTestResultComponent, {
+      questionsA: this.questionsA,
+      questionsB: this.questionsB,
+      questionsC: this.questionsC,
+      answerQuestionListA: answerQuestionListA,
+      answerQuestionListB: answerQuestionListB,
+      answerQuestionListC: answerQuestionListC
     })
       .then(() => {
         // Remove itself from the nav stack,
@@ -122,7 +157,7 @@ export class MockTestComponent implements OnInit {
 
   }
 
-  showMarkTestConfirmation() {
+  showMarkTestConfirmation(answerQuestionListA: AnsweredQuestion[], answerQuestionListB: AnsweredQuestion[], answerQuestionListC: AnsweredQuestion[]) {
 
     let confirmAlert = this.alertCtrl.create({
       title: 'Hold up!',
@@ -135,7 +170,7 @@ export class MockTestComponent implements OnInit {
         {
           text: 'Yes',
           handler: () => {
-            this.navigateToTestResults();
+            this.navigateToTestResults(answerQuestionListA, answerQuestionListB, answerQuestionListC);
           }
         }
       ]
@@ -144,12 +179,13 @@ export class MockTestComponent implements OnInit {
     confirmAlert.present();
   }
 
-  getAnsweredQuestionsList(): AnsweredQuestion[] {
+  getAnsweredQuestionsList(dictionary): AnsweredQuestion[] {
 
     let answeredQuestions: AnsweredQuestion[] = [];
-    for (var questionId in this.answeredQuestions) {
-      answeredQuestions.push(this.answeredQuestions[questionId]);
+    for (var questionId in dictionary) {
+      answeredQuestions.push(dictionary[questionId]);
     }
     return answeredQuestions;
   }
+  
 }
