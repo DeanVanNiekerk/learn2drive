@@ -118,8 +118,8 @@ export class MockTestComponent implements OnInit {
   markTest() {
 
     let totalQuestions = this.questionCountA +
-                            this.questionCountA + 
-                            this.questionCountA;
+                            this.questionCountB + 
+                            this.questionCountC;
 
     let answerQuestionListA = this.getAnsweredQuestionsList(this.answeredQuestionsA);
     let answerQuestionListB = this.getAnsweredQuestionsList(this.answeredQuestionsB);

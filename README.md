@@ -74,7 +74,8 @@ http://ionicframework.com/docs/v2/
 
 Phase 1
 -------
-- Mock-test - Dylan
+- Mock-test - Dean
+    - Scroll to section in results
 - Home page
     - Mocktest status
 - Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides) - Dean

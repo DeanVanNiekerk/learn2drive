@@ -37,20 +37,23 @@ export class TestService {
         return result;
     }
 
-    // markTestMock(questionsA: Question[], answeredQuestionsA: AnsweredQuestion[],
-    //                 questionsB: Question[], answeredQuestionsB: AnsweredQuestion[],
-    //                 questionsC: Question[], answeredQuestionsC: AnsweredQuestion[]): MockTestResult  {
+    markTestMock(questionsA: Question[], answeredQuestionsA: AnsweredQuestion[],
+                    questionsB: Question[], answeredQuestionsB: AnsweredQuestion[],
+                    questionsC: Question[], answeredQuestionsC: AnsweredQuestion[]): MockTestResult  {
     
-    //     let resultA = this.markTest('mocktestA', questionsA, answeredQuestionsA);
-    //     let resultB = this.markTest('mocktestB', questionsB, answeredQuestionsB);
-    //     let resultC = this.markTest('mocktestC', questionsC, answeredQuestionsC);
+        let resultA = this.markTest('mocktestA', questionsA, answeredQuestionsA);
+        let resultB = this.markTest('mocktestB', questionsB, answeredQuestionsB);
+        let resultC = this.markTest('mocktestC', questionsC, answeredQuestionsC);
 
+        return new MockTestResult(resultA.totalQuestions,
+                                    resultA.correctAnswers,
+                                    7,
+                                    resultB.totalQuestions,
+                                    resultB.correctAnswers,
+                                    23,
+                                    resultC.totalQuestions,
+                                    resultC.correctAnswers,
+                                    24);
 
-
-
-    //     return new MockTestResult();
-
-
-
-    // }
+    }
 }

@@ -6,7 +6,8 @@
 
             <ion-card-header>
                 Question {{i + 1}}
-                <ion-icon *ngIf="isQuestionCorrectlyAnswered(question)" favorite name="checkmark-circle"></ion-icon>
+
+                <ion-icon *ngIf="isQuestionCorrectlyAnswered(question)" favorite name="checkmark-circle-outline"></ion-icon>
                 <ion-icon *ngIf="!isQuestionCorrectlyAnswered(question)" danger name="close-circle"></ion-icon>
             </ion-card-header>
 

@@ -9,11 +9,57 @@
 <ion-content class="mock-test-result">
 
     <ion-card>
-        <ion-card-header>
-            <h1>Your Mark: 
-                <!--{{resultPercent}}%-->
-            </h1>
+        <ion-card-header class="main-header">
+            <div *ngIf="testPassed === true">
+              <h1 favorite>
+                Congratulations!
+                <ion-icon name="happy"></ion-icon>
+              </h1>
+              <h2>You passed</h2>
+            </div>
+            <div *ngIf="testPassed === false">
+              <h1 danger>
+                Bad Luck..
+                <ion-icon name="sad"></ion-icon>
+              </h1>
+              <h2>You failed</h2>
+            </div>
         </ion-card-header>
+
+        <ion-card-content class="section-summary">
+
+          <ion-list>
+            <ion-item>
+              <ion-icon *ngIf="result.sectionAPassed()" favorite name="thumbs-up" item-left></ion-icon>
+              <ion-icon *ngIf="!result.sectionAPassed()" danger name="thumbs-down" item-left></ion-icon>
+              <h2>Section A</h2>
+              <p>Pass mark {{result.passCountA}}/{{result.questionCountA}}</p>
+              <ion-note item-right [class.pass]="result.sectionAPassed()" [class.fail]="!result.sectionAPassed()">
+                {{result.correntAnswersA}}/{{result.questionCountA}}
+              </ion-note>
+            </ion-item>
+            <ion-item>
+              <ion-icon *ngIf="result.sectionBPassed()" favorite name="thumbs-up" item-left></ion-icon>
+              <ion-icon *ngIf="!result.sectionBPassed()" danger name="thumbs-down" item-left></ion-icon>
+              <h2>Section B</h2>
+              <p>Pass mark {{result.passCountB}}/{{result.questionCountB}}</p>
+              <ion-note item-right [class.pass]="result.sectionBPassed()" [class.fail]="!result.sectionBPassed()">
+                {{result.correntAnswersB}}/{{result.questionCountB}}
+              </ion-note>
+            </ion-item>
+            <ion-item>
+              <ion-icon *ngIf="result.sectionCPassed()" favorite name="thumbs-up" item-left></ion-icon>
+              <ion-icon *ngIf="!result.sectionCPassed()" danger name="thumbs-down" item-left></ion-icon>
+              <h2>Section C</h2>
+              <p>Pass mark {{result.passCountC}}/{{result.questionCountC}}</p>
+              <ion-note item-right [class.pass]="result.sectionCPassed()" [class.fail]="!result.sectionCPassed()">
+                {{result.correntAnswersC}}/{{result.questionCountC}}
+              </ion-note>
+            </ion-item>
+          </ion-list>
+
+        </ion-card-content>
+
     </ion-card>
 
     <ion-card>

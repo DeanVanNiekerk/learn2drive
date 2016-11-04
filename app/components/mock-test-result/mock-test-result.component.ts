@@ -12,7 +12,7 @@ import {TestResultQuestionsComponent} from '../test-result-questions/test-result
 import {Question} from '../../models/question';
 import {Answer} from '../../models/answer';
 import {AnsweredQuestion} from '../../models/answered-question';
-import {TestResult} from '../../models/test-result';
+import {MockTestResult} from '../../models/mock-test-result';
 
 @Component({
     directives: [TestResultQuestionsComponent],
@@ -28,10 +28,11 @@ export class MockTestResultComponent implements OnInit {
   answeredQuestionsB: AnsweredQuestion[] = [];
   answeredQuestionsC: AnsweredQuestion[] = [];
 
-  resultPercent: number = null;
+  testPassed: boolean = null;
 
-  constructor(private navCtrl: NavController,
-    private navParams: NavParams,
+  result: MockTestResult;
+
+  constructor(private navParams: NavParams,
     private testService: TestService,
     private storeService: StoreService) { 
 
@@ -46,10 +47,10 @@ export class MockTestResultComponent implements OnInit {
  
   ngOnInit() {
 
-    //let result = this.testService.markTest(this.navigationKey, this.questions, this.answeredQuestions);
-    //this.resultPercent = result.resultPercent;
+    this.result = this.testService.markTestMock(this.questionsA, this.answeredQuestionsA,
+                                                  this.questionsB, this.answeredQuestionsB,
+                                                  this.questionsC, this.answeredQuestionsC);
 
-    //this.storeService.insertTestResult(result);
-
+    this.testPassed = this.result.passed();
   }
 }

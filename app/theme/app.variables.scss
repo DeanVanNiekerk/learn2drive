@@ -41,12 +41,13 @@ $colors: (
 /*
 Source:
 http://paletton.com/#uid=73y260kp5Xt42+ZbR+yYTyd+jq4
+color($colors, primary)
 */
 $colors: (
   primary:    #42A4F5,
   secondary:  #FF3737,
   danger:     #D00000, 
-  light:      #e0e0e0,
+  light:      #f4f4f4,
   dark:       #616161,
   favorite:   #00D000
 );

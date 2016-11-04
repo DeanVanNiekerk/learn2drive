@@ -3,38 +3,45 @@
 export class MockTestResult {
     
     questionCountA: number;
-    questionCountB: number;
-    questionCountC: number;
-
     correntAnswersA: number;
-    correntAnswersB: number;
-    correntAnswersC: number;
-
     passCountA: number;
+
+    questionCountB: number;
+    correntAnswersB: number;
     passCountB: number;
+
+    questionCountC: number;
+    correntAnswersC: number;
     passCountC: number;
 
     testDate: Date;
     
     constructor(questionCountA: number,
-                questionCountB: number,
-                questionCountC: number,
                 correntAnswersA: number,
-                correntAnswersB: number,
-                correntAnswersC: number,
                 passCountA: number,
+
+                questionCountB: number,
+                correntAnswersB: number,
                 passCountB: number,
-                passCountC: number, 
+
+                questionCountC: number,
+                correntAnswersC: number,
+                passCountC: number,
+
                 testDate: Date = null) {
+        
         this.questionCountA = questionCountA;
-        this.questionCountB = questionCountB;
-        this.questionCountC = questionCountC;
         this.correntAnswersA = correntAnswersA;
-        this.correntAnswersB = correntAnswersB;
-        this.correntAnswersC = correntAnswersC;
         this.passCountA = passCountA;
+
+        this.questionCountB = questionCountB;
+        this.correntAnswersB = correntAnswersB;
         this.passCountB = passCountB;
+        
+        this.questionCountC = questionCountC;
+        this.correntAnswersC = correntAnswersC;
         this.passCountC = passCountC;
+
         this.testDate = testDate;
      }
 
