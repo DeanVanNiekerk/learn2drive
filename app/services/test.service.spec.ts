@@ -39,7 +39,7 @@ describe('Test Service', () => {
 
             // Then
             expect(result.navigationKey).toBe(navigationKey);
-            expect(result.resultPercent).toBe(0);
+            expect(result.resultPercent()).toBe(0);
         }
     ));
 
@@ -60,7 +60,7 @@ describe('Test Service', () => {
             let result = service.markTest('', questions, answeredQuestions);
 
             // Then
-            expect(result.resultPercent).toBe(0);
+            expect(result.resultPercent()).toBe(0);
         }
     ));
 
@@ -90,7 +90,7 @@ describe('Test Service', () => {
             let result = service.markTest('', questions, answeredQuestions);
 
             // Then
-            expect(result.resultPercent).toBe(50);
+            expect(result.resultPercent()).toBe(50);
         }
     ));
 
@@ -132,7 +132,7 @@ describe('Test Service', () => {
             let result = service.markTest('', questions, answeredQuestions);
 
             // Then
-            expect(result.resultPercent).toBe(33);
+            expect(result.resultPercent()).toBe(33);
         }
     ));
 

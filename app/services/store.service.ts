@@ -25,7 +25,8 @@ export class StoreService {
                                 testResult (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT, 
                                     navigationKey TEXT, 
-                                    resultPercent INTEGER,
+                                    totalQuestions INTEGER,
+                                    correctAnswers INTEGER,
                                     testDate TEXT
                                 )`);
 
@@ -78,16 +79,16 @@ export class StoreService {
     }
 
     insertTestResult(testResult: TestResult): Promise<any> {
-        let sql = `INSERT INTO testResult (navigationKey,resultPercent,testDate) 
-                    VALUES (?,?,?)`;
-        return this.storage.query(sql, [testResult.navigationKey, testResult.resultPercent, new Date().getTime()]);
+        let sql = `INSERT INTO testResult (navigationKey,totalQuestions,correctAnswers,testDate) 
+                    VALUES (?,?,?,?)`;
+        return this.storage.query(sql, [testResult.navigationKey, testResult.totalQuestions, testResult.correctAnswers, new Date().getTime()]);
     }
 
     getLatestTestResult(navigationKey: string): Promise<TestResult> {
 
         return new Promise(resolve => {
 
-            this.storage.query(`SELECT navigationKey,resultPercent,testDate 
+            this.storage.query(`SELECT navigationKey,totalQuestions,correctAnswers,testDate 
                                     FROM testResult
                                     WHERE navigationKey = '${navigationKey}'
                                     ORDER BY testDate DESC
@@ -103,7 +104,7 @@ export class StoreService {
 
         return new Promise(resolve => {
 
-            this.storage.query(`SELECT navigationKey,resultPercent,testDate
+            this.storage.query(`SELECT navigationKey,totalQuestions,correctAnswers,testDate
                                     FROM testResult
                                     WHERE navigationKey = '${navigationKey}'
                                     ORDER BY testDate DESC`)
@@ -119,7 +120,7 @@ export class StoreService {
         if (data.res.rows.length > 0) {
             for (var i = 0; i < data.res.rows.length; i++) {
                 let item = data.res.rows.item(i);
-                testResults.push(new TestResult(item.navigationKey, item.resultPercent, new Date(parseInt(item.testDate))));
+                testResults.push(new TestResult(item.navigationKey, item.totalQuestions, item.correctAnswers, new Date(parseInt(item.testDate))));
             }
         }
         return testResults;
@@ -131,7 +132,7 @@ export class StoreService {
 
             this.storage.query(`SELECT DISTINCT navigationKey
                                     FROM testResult
-                                    WHERE resultPercent = 100`)
+                                    WHERE totalQuestions = correctAnswers`)
                 .then(data => {
                     let keys = [];
                     if (data.res.rows.length > 0) {

@@ -26,7 +26,7 @@ describe('Store Service', () => {
     service.dropTables();
     service.createTables();
 
-    let testResult = new TestResult('nav.key', 75);
+    let testResult = new TestResult('nav.key', 100, 75);
 
     // When
     let promise = service.insertTestResult(testResult);
@@ -42,7 +42,7 @@ describe('Store Service', () => {
           var t1 = testResults[0];
 
           expect(t1.navigationKey).toBe('nav.key');
-          expect(t1.resultPercent).toBe(75);
+          expect(t1.resultPercent()).toBe(75);
           expect(t1.testDate).toBeTruthy(); // Not null
 
           done();
@@ -57,7 +57,7 @@ describe('Store Service', () => {
     service.dropTables();
     service.createTables();
 
-    let testResult = new TestResult('nav.key', 75);
+    let testResult = new TestResult('nav.key', 100, 75);
 
    
     let promise = service.insertTestResult(testResult);
@@ -85,11 +85,11 @@ describe('Store Service', () => {
     service.createTables();
 
 
-    service.insertTestResult(new TestResult('nav.key1', 100));
-    service.insertTestResult(new TestResult('nav.key1', 100));
-    service.insertTestResult(new TestResult('nav.key2', 75));
-    service.insertTestResult(new TestResult('nav.key3', 100));
-    let promise = service.insertTestResult(new TestResult('nav.key1', 75));
+    service.insertTestResult(new TestResult('nav.key1', 100, 100));
+    service.insertTestResult(new TestResult('nav.key1', 100, 100));
+    service.insertTestResult(new TestResult('nav.key2', 100, 75));
+    service.insertTestResult(new TestResult('nav.key3', 100, 100));
+    let promise = service.insertTestResult(new TestResult('nav.key1', 100, 75));
 
     promise.then(() => {
 
