@@ -22,7 +22,7 @@
   <ion-toolbar>
     
       <p padding-left secondary outline *ngIf="lastTestResult != null">
-        Last Test Result for this Section: <b>{{lastTestResult.resultPercent}}%</b>
+        Last Test Result for this Section: <b>{{lastTestResult.resultPercent()}}%</b>
       </p>
 
       <p padding-left secondary outline *ngIf="lastTestResult == null">

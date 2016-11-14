@@ -52,5 +52,7 @@ export class MockTestResultComponent implements OnInit {
                                                   this.questionsC, this.answeredQuestionsC);
 
     this.testPassed = this.result.passed();
+
+    this.storeService.insertMockTestResult(this.result);
   }
 }

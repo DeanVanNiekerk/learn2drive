@@ -5,6 +5,7 @@ import {Storage, SqlStorage} from 'ionic-angular';
 
 // Models
 import {TestResult} from '../models/test-result';
+import {MockTestResult} from '../models/mock-test-result';
 import {ChecklistItem} from '../models/checklist-item';
 import {Message} from '../models/message';
 
@@ -27,6 +28,15 @@ export class StoreService {
                                     navigationKey TEXT, 
                                     totalQuestions INTEGER,
                                     correctAnswers INTEGER,
+                                    testDate TEXT
+                                )`);
+
+        this.storage.query(`CREATE TABLE IF NOT EXISTS 
+                                mockTestResult (
+                                    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                                    sectionAPassed INTEGER,
+                                    sectionBPassed INTEGER,
+                                    sectionCPassed INTEGER,
                                     testDate TEXT
                                 )`);
 
@@ -55,6 +65,7 @@ export class StoreService {
 
     dropTables() {
         this.storage.query(`DROP TABLE IF EXISTS testResult`);
+        this.storage.query(`DROP TABLE IF EXISTS mockTestResult`);
         this.storage.query(`DROP TABLE IF EXISTS contentRead`);
         this.storage.query(`DROP TABLE IF EXISTS checklist`);
         this.storage.query(`DROP TABLE IF EXISTS message`);
@@ -142,6 +153,28 @@ export class StoreService {
                         }
                     }
                     resolve(keys);
+                });
+        });
+
+    }
+
+    insertMockTestResult(result: MockTestResult): Promise<any> {
+        let sql = `INSERT INTO mockTestResult (sectionAPassed,sectionBPassed,sectionCPassed,testDate) 
+                    VALUES (?,?,?,?)`;
+        return this.storage.query(sql, [result.sectionAPassed() ? 1 : 0, result.sectionAPassed() ? 1 : 0, result.sectionAPassed() ? 1 : 0, new Date().getTime()]);
+    }
+
+    getMockTestsPassed(): Promise<number> {
+
+        return new Promise(resolve => {
+
+            this.storage.query(`SELECT COUNT(*) AS count
+                                    FROM mockTestResult
+                                    WHERE sectionAPassed = 1
+                                    AND sectionBPassed = 1
+                                    AND sectionCPassed = 1`)
+                .then(data => {
+                    resolve(data.res.rows.item(0).count);
                 });
         });
 

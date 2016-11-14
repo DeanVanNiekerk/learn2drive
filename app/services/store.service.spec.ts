@@ -14,6 +14,7 @@ import {StoreService} from './store.service';
 
 // Models
 import {TestResult} from '../models/test-result';
+import {MockTestResult} from '../models/mock-test-result';
 import {ChecklistItem} from '../models/checklist-item';
 import {Message} from '../models/message';
 
@@ -103,6 +104,56 @@ describe('Store Service', () => {
 
           expect(navigationKeys[0]).toBe('nav.key1');
           expect(navigationKeys[1]).toBe('nav.key3');
+
+          done();
+        });
+    });
+  });
+
+  it('insertMockTestResult: mock test result added', function (done) {
+
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
+
+    let testResult = new MockTestResult(1, 1, 1, 1, 1, 1, 1, 1, 1);
+
+    // When
+    let promise = service.insertMockTestResult(testResult);
+
+    promise.then(() => {
+
+      service
+        .getMockTestsPassed()
+        .then(count => {
+          // Then
+          expect(count).toBe(1);
+
+          done();
+        });
+    });
+  });
+
+  it('getMockTestsPassed: 2 passed 1 failed', function (done) {
+
+    // Given
+    let service = new StoreService();
+    service.dropTables();
+    service.createTables();
+
+    // When
+    service.insertMockTestResult(new MockTestResult(1, 1, 1, 1, 1, 1, 1, 1, 1)); // Pass
+    service.insertMockTestResult(new MockTestResult(1, 0, 1, 1, 0, 1, 1, 0, 1)); // Fail
+    let promise = service.insertMockTestResult(new MockTestResult(1, 1, 1, 1, 1, 1, 1, 1, 1)); // Pass
+
+    promise.then(() => {
+
+      service
+        .getMockTestsPassed()
+        .then(count => {
+          // Then
+          expect(count).toBe(2);
 
           done();
         });

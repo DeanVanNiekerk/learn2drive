@@ -27,7 +27,7 @@ export class LastTestResultComponent implements OnInit {
     this.storeService.getLatestTestResult(this.navigationKey)
       .then(testResult => {
           if (testResult)
-            this.result = `${testResult.resultPercent}%`;
+            this.result = `${testResult.resultPercent()}%`;
       });
   }
 

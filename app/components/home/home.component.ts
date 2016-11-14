@@ -21,6 +21,7 @@ import {IntroductionSlidesComponent} from '../introduction-slides/introduction-s
 export class HomeComponent implements OnInit {
 
   hidden: boolean = true;
+  mockTestPassTarget: number = 3;
 
   rootNavigationKey: string = 'rootNavigation.learner';
   introductionMessageKey: string = 'IntroductionSlidesShown';
@@ -52,8 +53,18 @@ export class HomeComponent implements OnInit {
         }
       );
 
-      // TODO: get proper value
-      this.mockTestProgressComponent.update(66);
+      this.storeService.getMockTestsPassed().
+        then(count => {
+
+          if (count > this.mockTestPassTarget)
+            count = this.mockTestPassTarget;
+
+          let percent = (count / this.mockTestPassTarget) * 100;
+
+          this.mockTestProgressComponent.update(percent);
+        }
+      );
+     
 
       this.storeService.getMessage(this.introductionMessageKey)
         .then(message => {
