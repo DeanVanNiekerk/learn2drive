@@ -74,14 +74,11 @@ http://ionicframework.com/docs/v2/
 
 Phase 1
 -------
-- Mock-test - Dean
-    - Scroll to section in results
-- Home page
-    - Mocktest status
+- Checklist - Mock Tests Passed
 - Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides) - Dean
 - Add numbers to Vehicle Controls Image - Dylan 
 - Vet content (intro, checklist more info)
-- Styling 
+- Final Styling 
 - Icons (laucher, intro etc)
 - Build server
 - Final Naming: rename application to Learn2Drive (L2D) not L2D3D Mobile (maybe get rid of space)
@@ -97,6 +94,8 @@ Phase 2
 - Directory
     - http://blog.ionic.io/google-maps-component-in-ionic-creator/
 - Breadcrumb
+- Mock-test
+    - Scroll to section in results
 - Toast on Settings after save (http://ionicframework.com/docs/v2/components/#toast)
 - Search for Content? (http://ionicframework.com/docs/v2/components/#searchbar)
 - Tabs for sections (instead of current home page)
@@ -113,6 +112,7 @@ Done
     - Status on Learners Content - Dean
     - Checklist to top of page (checklist status) - Dean
     - Settings to top menu - Dean
+    - Mocktest status - Dean
 - Checklist - Dean
 - Checklist - info popup for readonly checkboxes - Dean
 - Install ionic on Kate's phone. (She has Gingerbread!)
