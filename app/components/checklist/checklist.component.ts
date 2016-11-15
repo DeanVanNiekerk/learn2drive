@@ -34,6 +34,7 @@ export class ChecklistComponent implements OnInit {
 
   ngOnInit() {
       this.loadContentRead();
+      this.loadMockTestsPassed();
   }
 
 
@@ -49,6 +50,14 @@ export class ChecklistComponent implements OnInit {
               this.contentSectionCount = sectionCount;
           });
       });
+  }
+
+  loadMockTestsPassed() {
+      this.storeService.getMockTestsPassed().
+        then(count => {
+            this.mockTestsPassed = (count >= this.storeService.MOCK_TEST_PASS_TARGET);
+        }
+      );
   }
 
   toggleContentAllRead() {

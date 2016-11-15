@@ -14,6 +14,8 @@ export class StoreService {
 
     private storage: Storage = null;
 
+    MOCK_TEST_PASS_TARGET: number = 3;
+
     // Init an empty DB if it does not exist by now!
     constructor() {
         this.storage = new Storage(SqlStorage, { name: 'l2d3ddatabase' });

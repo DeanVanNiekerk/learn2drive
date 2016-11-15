@@ -38,14 +38,18 @@ export class ProgressService {
                     this.contentService.getContentSectionCount(this.rootNavigationKey)
                     .then(sectionCount => {
 
-                        complete += readCount >= sectionCount ? 1 : 0;
+                        complete += (readCount >= sectionCount) ? 1 : 0;
 
                         // 3. Get Mock Tests Passed count
-                        // TODO
+                        this.storeService.getMockTestsPassed().
+                            then(count => {
 
-                        let progress = new Progress(total, complete);
-                        resolve(progress);
-                        
+                                complete += (count >= this.storeService.MOCK_TEST_PASS_TARGET) ? 1 : 0;
+
+                                let progress = new Progress(total, complete);
+                                resolve(progress);
+                            }
+                        );
                     });
                 });
             });
