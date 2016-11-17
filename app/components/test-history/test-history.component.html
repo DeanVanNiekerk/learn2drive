@@ -11,7 +11,7 @@
             Test History
         </ion-list-header>
         <ion-item *ngFor="let testResult of testResults">
-            {{testResult.resultPercent}}%
+            {{testResult.resultPercent()}}%
             <ion-note item-right>
                 {{testResult.testDate | date}}
             </ion-note>
