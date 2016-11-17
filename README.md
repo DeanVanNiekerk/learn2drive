@@ -74,7 +74,8 @@ http://ionicframework.com/docs/v2/
 
 Phase 1
 -------
-- Checklist - Mock Tests Passed
+
+- Funny issue sometime after showing test info popup? goes into state, maybe add some loading stuffs
 - Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides) - Dean
 - Add numbers to Vehicle Controls Image - Dylan 
 - Vet content (intro, checklist more info)
@@ -114,6 +115,7 @@ Done
     - Settings to top menu - Dean
     - Mocktest status - Dean
 - Checklist - Dean
+- Checklist - Mock Tests Passed
 - Checklist - info popup for readonly checkboxes - Dean
 - Install ionic on Kate's phone. (She has Gingerbread!)
 - Apple App/Bundle ID
