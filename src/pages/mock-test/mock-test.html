@@ -1,0 +1,65 @@
+
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>Mock Test</ion-title>
+  </ion-navbar>
+</ion-header>
+
+  <ion-content class="mock-test">
+
+    <ion-card>
+      <ion-card-header class="section-header">
+        <span color="secondary" class="main">Section A</span>
+        <span class="secondary">8 Questions</span>
+      </ion-card-header>
+    </ion-card>
+
+    <div *ngFor="let question of questionsA; let i = index">
+      <question
+        [question]="question"
+        [questionNumber]="i + 1"
+        (answerChangedEvent)="answerChangedA($event)"></question>
+    </div>
+
+    <ion-card>
+      <ion-card-header class="section-header">
+        <span color="secondary" class="main">Section B</span>
+        <span class="secondary">28 Questions</span>
+      </ion-card-header>
+    </ion-card>
+
+    <div *ngFor="let question of questionsB; let i = index">
+      <question
+        [question]="question"
+        [questionNumber]="i + 1"
+        (answerChangedEvent)="answerChangedB($event)"></question>
+    </div>
+
+    <ion-card>
+      <ion-card-header class="section-header">
+        <span color="secondary" class="main">Section C</span>
+        <span class="secondary">28 Questions</span>
+      </ion-card-header>
+    </ion-card>
+
+    <div *ngFor="let question of questionsC; let i = index">
+      <question
+        [question]="question"
+        [questionNumber]="i + 1"
+        (answerChangedEvent)="answerChangedC($event)"></question>
+    </div>
+
+  </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="secondary">
+
+    <ion-buttons end>
+      <button ion-button outline (click)="markTest()">
+        Mark Test
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-footer>
+

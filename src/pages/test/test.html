@@ -1,0 +1,31 @@
+
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>{{navigationKey | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="test">
+
+    <div *ngFor="let question of questions; let i = index">
+        <question 
+          [question]="question" 
+          [questionNumber]="i + 1"
+          (answerChangedEvent)="answerChanged($event)"></question>
+    </div>
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar color="secondary">
+
+    <ion-buttons end>
+      <button ion-button outline (click)="markTest()">
+        Mark Test
+      </button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-footer>
+

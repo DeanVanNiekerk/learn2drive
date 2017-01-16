@@ -1,0 +1,22 @@
+
+
+.mock-test{
+
+    .section-header {
+
+        background-color: color($colors, dark);
+
+        .main {
+            font-size: 1.2em;
+            color: color($colors, light);
+        }
+
+        .secondary {
+            float:right;
+            font-weight: normal;
+            font-size: 0.9em;
+            color: color($colors, light);
+        }
+
+    }
+}

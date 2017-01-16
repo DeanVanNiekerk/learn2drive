@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-navbar color="primary" [hideBackButton]="true">
+        <ion-title>Learn2Drive</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content class="introduction-slides">
+ 
+    <ion-slides [options]="slideOptions">
+        
+        <ion-slide>
+            <img src="content/images/icon.png" class="slide-image-1"/>
+            <h2 class="slide-title">Welcome to Learn2Drive</h2>
+        </ion-slide>
+
+        <ion-slide>
+            <img src="content/images/introduction/home-checklist.feathered.png" class="slide-image-2"/>
+            <img src="content/images/introduction/checklist-feathered.png" class="slide-image-2"/>
+            <h2 class="slide-title">The Checklist</h2>
+            <p>
+                The <b>Checklist</b> helps you keep track of all the tasks you'll need to do before you write your test.
+            </p>
+        </ion-slide>
+
+
+        <ion-slide>
+            <h2 class="slide-title">Ready to Learn?</h2>
+            <button ion-button large clear icon-right (click)="navigateToHome()">
+                Continue
+                <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+        </ion-slide>
+
+    </ion-slides>
+
+</ion-content>

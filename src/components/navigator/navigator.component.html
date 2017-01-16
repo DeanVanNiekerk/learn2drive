@@ -1,0 +1,13 @@
+
+<ion-list>
+    <ion-item *ngFor="let item of navigationItems" (click)="navigateTo(item)">
+        <h2>{{item.key | translate}}</h2>
+
+        <ion-note item-right>
+            <content-progress
+                [navigationKey]="item.key">
+            </content-progress>
+        </ion-note>
+         
+    </ion-item>
+</ion-list>

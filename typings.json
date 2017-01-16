@@ -1,0 +1,8 @@
+{
+  "dependencies": {},
+  "devDependencies": {},
+  "globalDependencies": {
+    "progressbar": "file:typings/progressbar/progressbar.d.ts",
+    "alasql": "file:node_modules/alasql/dist/alasql.d.ts"
+  }
+}

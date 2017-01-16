@@ -1,0 +1,52 @@
+
+
+<div class="test-result-questions" *ngFor="let question of questions; let i = index">
+        
+        <ion-card>
+
+            <ion-card-header>
+                Question {{i + 1}}
+
+                <ion-icon color="favorite" *ngIf="isQuestionCorrectlyAnswered(question)" name="checkmark-circle-outline"></ion-icon>
+                <ion-icon color="danger" *ngIf="!isQuestionCorrectlyAnswered(question)" name="close-circle"></ion-icon>
+            </ion-card-header>
+
+            <ion-card-content>
+                
+                <p *ngFor="let text of question.text">
+                    {{text}}
+                </p>
+
+                <p *ngFor="let image of question.images">
+                    <img class="image" src="content/images/{{image}}">
+                </p>
+                
+                <br/>
+            
+                <ion-list>
+                    <ion-grid>
+                        <ion-row *ngFor="let answer of question.answers">
+                            <ion-col width-10>
+                                <div *ngIf="isCorrectAnswer(question, answer)">
+                                    <ion-radio color="favorite" checked="true" [hidden]="question.answerId != answer.id"></ion-radio>
+                                </div>
+                                <div *ngIf="!isCorrectAnswer(question, answer) && isUsersAnswer(question, answer)">
+                                    <ion-radio color="danger" checked="true"></ion-radio>
+                                </div>
+                                <div *ngIf="!isCorrectAnswer(question, answer) && !isUsersAnswer(question, answer)">
+                                    <ion-radio></ion-radio>
+                                </div>
+                            </ion-col>
+                            <ion-col width-90>
+                                <p>{{answer.text}}</p>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+
+                </ion-list>
+
+            </ion-card-content>
+
+        </ion-card>
+
+    </div>
