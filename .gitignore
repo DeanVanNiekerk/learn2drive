@@ -22,6 +22,11 @@ node_modules/
 tmp/
 temp/
 hooks/
+www/assets/
+www/build/
+www/index.html
+www/manifest.json
+www/service-worker.js
 platforms/
 plugins/
 plugins/android.json
