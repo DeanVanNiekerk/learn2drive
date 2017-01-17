@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import {NavigationItem} from '../models/navigation-item';
-import {Content} from '../models/content';
-
+import {NavigationItem, Content} from '../models';
+import {StorageService} from '../services';
 
 @Injectable()
 export class ContentService {
@@ -31,7 +30,7 @@ export class ContentService {
   }
 
   // Gets a list of navidation items one level down
-  getNavigationItems(key: string): Promise<NavigationItem[]> {
+  public getNavigationItems(key: string): Promise<NavigationItem[]> {
 
     return new Promise(resolve => {
       this.getData().then(data => {
@@ -65,7 +64,7 @@ export class ContentService {
   }
 
   // Gets all navigations items below
-  getAllNavigationItems(key: string): Promise<NavigationItem[]> {
+  public getAllNavigationItems(key: string): Promise<NavigationItem[]> {
 
       return new Promise(resolve => {
 
@@ -114,7 +113,7 @@ export class ContentService {
       });
   }
 
-  getContent(key: string): Promise<Content[]> {
+  public getContent(key: string): Promise<Content[]> {
 
     return new Promise(resolve => {
       this.getData().then(data => {
@@ -136,7 +135,7 @@ export class ContentService {
     });
   }
 
-  getContentSectionCount(key: string): Promise<number> {
+  public getContentSectionCount(key: string): Promise<number> {
 
     return new Promise(resolve => {
       this.getData().then(data => {

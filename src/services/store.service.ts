@@ -1,23 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { SQLite } from 'ionic-native';
 
-// Models
-import { TestResult } from '../models/test-result';
-import { MockTestResult } from '../models/mock-test-result';
-import { ChecklistItem } from '../models/checklist-item';
-import { Message } from '../models/message';
+import { TestResult, MockTestResult, ChecklistItem, Message } from '../models';
+import {StorageService} from '../services';
 
 @Injectable()
 export class StoreService {
 
     private db: SQLite = null;
+    private storage: StorageService;
 
     public MOCK_TEST_PASS_TARGET: number = 3;
 
     // Init an empty DB if it does not exist by now!
-    constructor() {
+    constructor(storage: StorageService) {
+        this.storage = storage;
         this.db = new SQLite();
         this.createTables();
     }
@@ -93,33 +92,64 @@ export class StoreService {
     public insertContentRead(navigationKey: string): Promise<any> {
 
         return new Promise(resolve => {
-            this.openDb().then(() => {
-                let sql = `INSERT INTO contentRead (navigationKey,readDate) 
-                        VALUES (?,?)`;
-                this.db.executeSql(sql, [navigationKey, new Date().getTime()])
-                    .then(() => {
-                        resolve();
-                    });
-            });
+          this.storage.get(StorageService.KEY_CONTENTREAD)
+            .then((rawData: string) => {
+
+                let data = rawData ? JSON.parse(rawData) : [];
+
+                data.push({ navigationKey: navigationKey, readDate: new Date().getTime() });
+
+                this.storage.set(StorageService.KEY_CONTENTREAD, JSON.stringify(data)).then((result) => {
+                    resolve(result);
+                });
+          });
+
         });
+
+        // return new Promise(resolve => {
+        //     this.openDb().then(() => {
+        //         let sql = `INSERT INTO contentRead (navigationKey,readDate) 
+        //                 VALUES (?,?)`;
+        //         this.db.executeSql(sql, [navigationKey, new Date().getTime()])
+        //             .then(() => {
+        //                 resolve();
+        //             });
+        //     });
+        // });
     }
 
     public getContentReadCount(navigationKey: string): Promise<number> {
 
         return new Promise(resolve => {
 
-            this.openDb().then(() => {
+          this.storage.get(StorageService.KEY_CONTENTREAD)
+            .then((rawData: string) => {
+              let data = JSON.parse(rawData);
 
-                this.db.executeSql(`SELECT COUNT(DISTINCT navigationKey) AS count
-                                FROM contentRead 
-                                WHERE navigationKey LIKE ('${navigationKey}%')`, {})
-                    .then(data => {
-                        resolve(data.res.rows.item(0).count);
-                    });
-            });
+              let result = alasql(`
+                SELECT COUNT(DISTINCT navigationKey) AS readCount
+                FROM ? 
+                WHERE navigationKey LIKE ('${navigationKey}%')`
+                , [data]);
+
+              resolve(result[0].readCount);
+          });
+
         });
-    }
 
+        // return new Promise(resolve => {
+
+        //     this.openDb().then(() => {
+
+        //         this.db.executeSql(`SELECT COUNT(DISTINCT navigationKey) AS count
+        //                         FROM contentRead 
+        //                         WHERE navigationKey LIKE ('${navigationKey}%')`, {})
+        //             .then(data => {
+        //                 resolve(data.res.rows.item(0).count);
+        //             });
+        //     });
+        // });
+    }
     public insertTestResult(testResult: TestResult): Promise<any> {
 
         return new Promise(resolve => {

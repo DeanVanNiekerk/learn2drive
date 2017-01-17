@@ -40,7 +40,7 @@ describe('Question Service', () => {
 
 
     it('getQuestions: one question, one answer', inject(
-        [QuestionService, MockBackend, Http],
+        [QuestionService, MockBackend],
         (service: QuestionService, backend: MockBackend) => {
             backend.connections.subscribe((connection: MockConnection) => {
 
@@ -89,7 +89,7 @@ describe('Question Service', () => {
 
 
     it('getQuestions: one question, multi-text', inject(
-        [QuestionService, MockBackend, Http],
+        [QuestionService, MockBackend],
         (service: QuestionService, backend: MockBackend) => {
             backend.connections.subscribe((connection: MockConnection) => {
 
@@ -133,7 +133,7 @@ describe('Question Service', () => {
         }));
 
     it('getQuestions: multiple questions', inject(
-        [QuestionService, MockBackend, Http],
+        [QuestionService, MockBackend],
         (service: QuestionService, backend: MockBackend) => {
             backend.connections.subscribe((connection: MockConnection) => {
 
@@ -201,7 +201,7 @@ describe('Question Service', () => {
 
 
     it('getQuestions: multiple keys, multiple questions', inject(
-        [QuestionService, MockBackend, Http],
+        [QuestionService, MockBackend],
         (service: QuestionService, backend: MockBackend) => {
             backend.connections.subscribe((connection: MockConnection) => {
 
@@ -268,7 +268,7 @@ describe('Question Service', () => {
         }));
 
     it('getQuestions: one question, multiple images', inject(
-        [QuestionService, MockBackend, Http],
+        [QuestionService, MockBackend],
         (service: QuestionService, backend: MockBackend) => {
             backend.connections.subscribe((connection: MockConnection) => {
 
@@ -309,7 +309,7 @@ describe('Question Service', () => {
 
 
     it('getQuestions: one question, no array', inject(
-        [QuestionService, MockBackend, Http],
+        [QuestionService, MockBackend],
         (service: QuestionService, backend: MockBackend) => {
             backend.connections.subscribe((connection: MockConnection) => {
 

@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler }                   from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { Storage }                                  from '@ionic/storage';
+
 
 import { L2D3DApp }                                 from './app.component';
 
@@ -16,7 +16,8 @@ import { ComponentsModule, HomeMenuComponent }      from '../components';
 
 import { ContentService, QuestionService, 
           ResourceService, TestService, 
-          ProgressService, StoreService }           from '../services';
+          ProgressService, StoreService, 
+          StorageService }           from '../services';
 
 import { PipesModule }                              from '../pipes';
 
@@ -49,13 +50,14 @@ import { PipesModule }                              from '../pipes';
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Storage,
     ContentService,
     QuestionService,
     ResourceService,
     TestService,
     ProgressService,
-    StoreService
+    
+    StorageService,
+    StoreService,
   ],
 })
 

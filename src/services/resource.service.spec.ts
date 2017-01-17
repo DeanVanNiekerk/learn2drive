@@ -39,7 +39,7 @@ describe('Resource Service', () => {
 
   
   it('getResourceIndex: multiple items in index', inject(
-    [ResourceService, MockBackend, Http],
+    [ResourceService, MockBackend],
     (service: ResourceService, backend: MockBackend) => {
       backend.connections.subscribe((connection: MockConnection) => {
 
@@ -64,7 +64,7 @@ describe('Resource Service', () => {
 
 
   it('getResource: multiple items in index', inject(
-    [ResourceService, MockBackend, Http],
+    [ResourceService, MockBackend],
     (service: ResourceService, backend: MockBackend) => {
       backend.connections.subscribe((connection: MockConnection) => {
 

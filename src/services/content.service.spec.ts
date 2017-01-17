@@ -14,7 +14,7 @@ import {
 import { HttpModule } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
-import { ContentService } from './content.service';
+import { ContentService } from './';
 
 const mockHttpProvider = {
   provide: Http,
@@ -39,7 +39,7 @@ describe('Content Service', () => {
   });
 
   it('getNavigationItems: one item', inject(
-    [ContentService, MockBackend, Http],
+    [ContentService, MockBackend],
     (service: ContentService, backend: MockBackend) => {
       backend.connections.subscribe((connection: MockConnection) => {
 
