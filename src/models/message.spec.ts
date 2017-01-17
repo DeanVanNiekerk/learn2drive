@@ -11,17 +11,15 @@ describe('Message Model', () => {
 
         
         // Given
-        let id = 10;
         let key = 'key2';
         let shown = true;
         let showAgain = false;
 
         // When
-        let message = new Message(id, key, shown, showAgain);
+        let message = new Message(key, shown, showAgain);
 
         
         // Then
-        expect(message.id).toBe(id);
         expect(message.key).toBe(key);
         expect(message.shown).toBe(shown);
         expect(message.showAgain).toBe(showAgain);

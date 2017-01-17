@@ -11,7 +11,7 @@ import {ContentPage, ChecklistPage, MockTestPage, IntroductionSlidesPage} from '
 })
 export class HomePage implements OnInit {
 
-  hidden: boolean = false; // TODO: set back to true
+  hidden: boolean = true;
 
   rootNavigationKey: string = 'rootNavigation.learner';
   introductionMessageKey: string = 'IntroductionSlidesShown';

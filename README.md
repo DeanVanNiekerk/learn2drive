@@ -1,6 +1,6 @@
 https://www.raymondcamden.com/2015/04/20/ionic-adds-a-new-state-feature?utm_content=buffer20073&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
 http://stackoverflow.com/questions/37902476/automatic-ordering-of-exports-in-index-ts-makes-app-crash/37907696
-update www includes
+remove import 'rxjs/add/operator/map';
 
 
 

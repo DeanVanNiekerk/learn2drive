@@ -5,145 +5,191 @@ import {StorageServiceMock} from './mocks';
 
 describe('Store Service', () => {
 
-  // it('insertTestResult: test result added', function (done) {
+  it('insertTestResult: test result added', function (done) {
 
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
+    // Given
+    let mock = new StorageServiceMock();
+    let service = new StoreService(<any>mock);
 
-  //   let testResult = new TestResult('nav.key', 100, 75);
+    let testResult = new TestResult('nav.key', 100, 75);
 
-  //   // When
-  //   let promise = service.insertTestResult(testResult);
+    // When
+    let promise = service.insertTestResult(testResult);
 
-  //   promise.then(() => {
+    promise.then((result) => {
 
-  //     service
-  //       .getTestResults(testResult.navigationKey)
-  //       .then(testResults => {
-  //         // Then
-  //         expect(testResults.length).toBe(1);
+      // Then
+      let data = JSON.parse(result.value);
 
-  //         var t1 = testResults[0];
+      // Then
+      expect(data.length).toBe(1);
 
-  //         expect(t1.navigationKey).toBe('nav.key');
-  //         expect(t1.resultPercent()).toBe(75);
-  //         expect(t1.testDate).toBeTruthy(); // Not null
+      var t1 = data[0];
 
-  //         done();
-  //       });
-  //   });
-  // });
+      expect(t1.navigationKey).toBe('nav.key');
+      expect(t1.totalQuestions).toBe(100);
+      expect(t1.correctAnswers).toBe(75);
+      expect(t1.testDate).toBeTruthy(); // Not null
 
-  // it('getTestSectionsPassed: none', function (done) {
+      done();
+    });
+  });
 
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
+  it('getTestResults: multiple items', function (done) {
 
-  //   let testResult = new TestResult('nav.key', 100, 75);
+    // Given
+    let mock = new StorageServiceMock();
+    let mockData = [];
+    mockData.push({ navigationKey: '1.2', totalQuestions: 10, correctAnswers: 5, testDate: new Date().getTime() });
+    mockData.push({ navigationKey: '1.2.3', totalQuestions: 20, correctAnswers: 15, testDate: new Date().getTime() });
+    mock.returnValue = JSON.stringify(mockData);
+    
 
+    let service = new StoreService(<any>mock);
+
+    // When
+    service
+      .getTestResults('1.2')
+      .then(testResults => {
+        // Then
+        expect(testResults.length).toBe(1);
+
+        var t1 = testResults[0];
+
+        expect(t1.navigationKey).toBe('1.2');
+        expect(t1.totalQuestions).toBe(10);
+        expect(t1.correctAnswers).toBe(5);
+        expect(t1.testDate).toBeTruthy(); // Not null
+
+        done();
+      });
+  });
+
+  it('getLatestTestResult: multiple items', function (done) {
+
+    // Given
+    let mock = new StorageServiceMock();
+    let mockData = [];
+    let oldDate = new Date(2000, 1);
+    let newDate = new Date(2020, 1);
+    mockData.push({ navigationKey: '1.2', totalQuestions: 10, correctAnswers: 5, testDate: oldDate.getTime() });
+    mockData.push({ navigationKey: '1.2', totalQuestions: 20, correctAnswers: 15, testDate: newDate.getTime() });
+    mock.returnValue = JSON.stringify(mockData);
+    
+
+    let service = new StoreService(<any>mock);
+
+    // When
+    service
+      .getLatestTestResult('1.2')
+      .then(testResult => {
+        // Then
+        expect(testResult.navigationKey).toBe('1.2');
+        expect(testResult.totalQuestions).toBe(20);
+        expect(testResult.correctAnswers).toBe(15);
+        expect(testResult.testDate).toBeTruthy(); // Not null
+
+        done();
+      });
+  });
+
+  it('getTestSectionsPassed: none', function (done) {
+
+    // Given
+    let mock = new StorageServiceMock();
+    let mockData = [];
+    mockData.push({ navigationKey: '1.2.3', totalQuestions: 20, correctAnswers: 15, testDate: new Date().getTime() });
+    mock.returnValue = JSON.stringify(mockData);
+
+    let service = new StoreService(<any>mock);
+
+    // When
+    service
+      .getTestSectionsPassed()
+      .then(keys => {
+        // Then
+        expect(keys.length).toBe(0);
+        done();
+      });
+  });
+
+   it('getTestSectionsPassed: 2 passed section', function (done) {
+
+    // Given
+    let mock = new StorageServiceMock();
+    let mockData = [];
+    mockData.push({ navigationKey: 'nav.key1', totalQuestions: 100, correctAnswers: 100 });
+    mockData.push({ navigationKey: 'nav.key1', totalQuestions: 100, correctAnswers: 100 });
+    mockData.push({ navigationKey: 'nav.key2', totalQuestions: 100, correctAnswers: 75 });
+    mockData.push({ navigationKey: 'nav.key3', totalQuestions: 100, correctAnswers: 100 });
+    mockData.push({ navigationKey: 'nav.key1', totalQuestions: 100, correctAnswers: 75 });
+    mock.returnValue = JSON.stringify(mockData);
+
+    let service = new StoreService(<any>mock);
+
+    // When
+    service
+      .getTestSectionsPassed()
+      .then(keys => {
+        // Then
+        expect(keys.length).toBe(2);
+        done();
+      });
+
+  });
+
+  it('insertMockTestResult: mock test result added', function (done) {
+
+    // Given
+    let mock = new StorageServiceMock();
+    let service = new StoreService(<any>mock);
+
+    let testResult = new MockTestResult(10, 5, 6, 10, 5, 4, 10, 8, 9);
+
+    // When
+    let promise = service.insertMockTestResult(testResult);
+
+    promise.then((result) => {
+
+      // Then
+      let data = JSON.parse(result.value);
+
+      // Then
+      expect(data.length).toBe(1);
+
+      var t1 = data[0];
+
+      expect(t1.sectionAPassed).toBe(false);
+      expect(t1.sectionBPassed).toBe(true);
+      expect(t1.sectionCPassed).toBe(false);
+      expect(t1.testDate).toBeTruthy(); // Not null
+
+      done();
+    });
    
-  //   let promise = service.insertTestResult(testResult);
+  });
 
-  //   promise.then(() => {
+  it('getMockTestsPassed: 2 passed 1 failed', function (done) {
 
-  //     // When
-  //     service
-  //       .getTestSectionsPassed()
-  //       .then(navigationKeys => {
-          
-  //         // Then
-  //         expect(navigationKeys.length).toBe(0);
+    // Given
+    let mock = new StorageServiceMock();
+    let mockData = [];
+    mockData.push({ sectionAPassed: true, sectionBPassed: true, sectionCPassed: true }); // Pass
+    mockData.push({ sectionAPassed: true, sectionBPassed: false, sectionCPassed: true }); // Fail
+    mockData.push({ sectionAPassed: true, sectionBPassed: true, sectionCPassed: true }); // Pass
+    mock.returnValue = JSON.stringify(mockData);
 
-  //         done();
-  //       });
-  //   });
-  // });
+    let service = new StoreService(<any>mock);
 
-  //  it('getTestSectionsPassed: 2 passed section', function (done) {
-
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
-
-
-  //   service.insertTestResult(new TestResult('nav.key1', 100, 100));
-  //   service.insertTestResult(new TestResult('nav.key1', 100, 100));
-  //   service.insertTestResult(new TestResult('nav.key2', 100, 75));
-  //   service.insertTestResult(new TestResult('nav.key3', 100, 100));
-  //   let promise = service.insertTestResult(new TestResult('nav.key1', 100, 75));
-
-  //   promise.then(() => {
-
-  //     // When
-  //     service
-  //       .getTestSectionsPassed()
-  //       .then(navigationKeys => {
-          
-  //         // Then
-  //         expect(navigationKeys.length).toBe(2);
-
-  //         expect(navigationKeys[0]).toBe('nav.key1');
-  //         expect(navigationKeys[1]).toBe('nav.key3');
-
-  //         done();
-  //       });
-  //   });
-  // });
-
-  // it('insertMockTestResult: mock test result added', function (done) {
-
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
-
-  //   let testResult = new MockTestResult(1, 1, 1, 1, 1, 1, 1, 1, 1);
-
-  //   // When
-  //   let promise = service.insertMockTestResult(testResult);
-
-  //   promise.then(() => {
-
-  //     service
-  //       .getMockTestsPassed()
-  //       .then(count => {
-  //         // Then
-  //         expect(count).toBe(1);
-
-  //         done();
-  //       });
-  //   });
-  // });
-
-  // it('getMockTestsPassed: 2 passed 1 failed', function (done) {
-
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
-
-  //   // When
-  //   service.insertMockTestResult(new MockTestResult(1, 1, 1, 1, 1, 1, 1, 1, 1)); // Pass
-  //   service.insertMockTestResult(new MockTestResult(1, 0, 1, 1, 0, 1, 1, 0, 1)); // Fail
-  //   let promise = service.insertMockTestResult(new MockTestResult(1, 1, 1, 1, 1, 1, 1, 1, 1)); // Pass
-
-  //   promise.then(() => {
-
-  //     service
-  //       .getMockTestsPassed()
-  //       .then(count => {
-  //         // Then
-  //         expect(count).toBe(2);
-
-  //         done();
-  //       });
-  //   });
-  // });
+    // When
+    service
+      .getMockTestsPassed()
+      .then(count => {
+        // Then
+        expect(count).toBe(2);
+        done();
+      });
+  });
 
   it('insertContentRead: content read added', function (done) {
 
@@ -157,9 +203,12 @@ describe('Store Service', () => {
     promise.then((result) => {
 
         // Then
+        let data = JSON.parse(result.value);
+
         expect(result.key).toBe(StorageService.KEY_CONTENTREAD);
-        expect(result.value[0].navigationKey).toBe('nav.key1');
-        expect(result.value[0].readDate).not.toBeNull();
+        expect(data.length).toBe(1);
+        expect(data[0].navigationKey).toBe('nav.key1');
+        expect(data[0].readDate).not.toBeNull();
 
         done();
     });
@@ -193,265 +242,284 @@ describe('Store Service', () => {
   });
 
 
-  // it('clearContentRead: content read cleared', function (done) {
+  it('clearContentRead: content read cleared', function (done) {
 
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
+    // Given
+    let mock = new StorageServiceMock();
+    let service = new StoreService(<any>mock);
 
-  //   service.insertContentRead('nav.key1')
-  //   .then(() => {
+    // When
+    service
+      .clearContentRead()
+      .then(result => {
+        // Then
+        expect(result.key).toBe(StorageService.KEY_CONTENTREAD);
 
-  //     // When
-  //     service
-  //       .clearContentRead()
-  //       .then(() => {
+        done();
+      });
+  });
 
-  //         service.getContentReadCount('')
-  //         .then(count => {
+  it('getChecklistItem: null returned', function (done) {
 
-  //           // Then
-  //           expect(count).toBe(0);
+    // Given
+    let mock = new StorageServiceMock();
+    let service = new StoreService(<any>mock);
 
-  //           done();
+    // When
+    let promise = service.getChecklistItem('key1');
 
-  //         });
-  //       });
-  //   });
-  // });
+    promise.then((item) => {
 
-  // it('getChecklistItem: null returned', function (done) {
+      expect(item).toBe(null);
+      done();
 
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
-
-  //   // When
-  //   let promise = service.getChecklistItem('key1');
-
-  //   promise.then((item) => {
-
-  //     expect(item).toBe(null);
-  //     done();
-
-  //   });
+    });
 
      
-  // });
+  });
+
+  it('getChecklistItem: 1 returned', function (done) {
+
+    // Given
+    let mock = new StorageServiceMock();
+    let mockData = [];
+    mockData.push({ key: 'key1', complete: true });
+    mock.returnValue = JSON.stringify(mockData);
+
+    let service = new StoreService(<any>mock);
+
+    // When
+    let promise = service.getChecklistItem('key1');
+
+    promise.then((item) => {
+
+      expect(item.key).toBe('key1');
+      expect(item.complete).toBe(true);
+      done();
+
+    });
+
+     
+  });
 
   
-  // it('updateChecklistItem: checklist item inserted', function (done) {
+  it('updateChecklistItem: checklist item inserted', function (done) {
 
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
+    // Given
+    let mock = new StorageServiceMock();
+    let service = new StoreService(<any>mock);
 
-  //   // When
-  //   let promise = service.updateChecklistItem('key1', true);
+    // When
+    let promise = service.updateChecklistItem('key1', true);
 
-  //   promise.then(() => {
+    promise.then((result) => {
 
-  //     service
-  //       .getChecklistItem('key1')
-  //       .then(item => {
-          
-  //         // Then
-  //         expect(item.key).toBe('key1');
-  //         expect(item.complete).toBe(true);
+      // Then
+      expect(result.key).toBe(StorageService.KEY_CHECKLIST);
 
-  //         done();
-  //       });
-  //   });
-  // });
+      let data = JSON.parse(result.value);
 
-  // it('updateChecklistItem: checklist item updated', function (done) {
+      expect(data.length).toBe(1);
+      expect(data[0].key).toBe('key1');
+      expect(data[0].complete).toBe(true);
 
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
+      done();
+    });
+  });
 
-  //   // When
-  //   let promise = service.updateChecklistItem('key1', true);
+  it('updateChecklistItem: checklist item updated', function (done) {
 
-  //   promise.then(() => {
+    // Given
+    let mock = new StorageServiceMock();
+    let mockData = [];
+    mockData.push({ key: 'key1', complete: true });
+    mock.returnValue = JSON.stringify(mockData);
 
-  //     service.updateChecklistItem('key1', false).then(() => {
+    let service = new StoreService(<any>mock);
 
-  //       service
-  //       .getChecklistItem('key1')
-  //       .then(item => {
-          
-  //         // Then
-  //         expect(item.key).toBe('key1');
-  //         expect(item.complete).toBe(false);
+    service.updateChecklistItem('key1', false)
+      .then((result) => {
 
-  //         done();
-  //       });
+        // Then
+        expect(result.key).toBe(StorageService.KEY_CHECKLIST);
 
-  //     });
+        let data = JSON.parse(result.value);
 
-  //   });
-  // });
+        expect(data.length).toBe(1);
+        expect(data[0].key).toBe('key1');
+        expect(data[0].complete).toBe(false);
+
+        done();
+
+      });
+  });
 
 
-  // it('getCompleteChecklistItemCount: no checklist items', function (done) {
+  it('getCompleteChecklistItemCount: no checklist items', function (done) {
 
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
+    // Given
+    let mock = new StorageServiceMock();
+    let service = new StoreService(<any>mock);
 
-  //   // When
-  //   let promise = service.getCompleteChecklistItemCount();
+    // When
+    let promise = service.getCompleteChecklistItemCount();
 
-  //   promise.then((count) => {
+    promise.then((count) => {
 
-  //     expect(count).toBe(0);
-  //     done();
+      expect(count).toBe(0);
+      done();
 
-  //   });
+    });
      
-  // });
+  });
 
 
-  // it('getCompleteChecklistItemCount: 1 checklist item, not complete', function (done) {
+  it('getCompleteChecklistItemCount: 1 checklist item, not complete', function (done) {
 
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
+    // Given
+    let mock = new StorageServiceMock();
+    let mockData = [];
+    mockData.push({ key: 'key1', complete: false });
+    mock.returnValue = JSON.stringify(mockData);
 
-  //   // When
-  //   let promise = service.updateChecklistItem('key1', false);
+    let service = new StoreService(<any>mock);
 
-  //   promise.then(() => {
+    // When
+    service.getCompleteChecklistItemCount()
+      .then((count) => {
 
-  //     service.getCompleteChecklistItemCount().then((count) => {
+        expect(count).toBe(0);
+        done();
 
-  //       expect(count).toBe(0);
-  //       done();
-
-  //     });
-  //   });
+      });
      
-  // });
+  });
 
 
-  // it('getCompleteChecklistItemCount: 2 checklist items, 1 complete', function (done) {
+  it('getCompleteChecklistItemCount: 2 checklist items, 1 complete', function (done) {
 
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
+    // Given
+    let mock = new StorageServiceMock();
+    let mockData = [];
+    mockData.push({ key: 'key1', complete: false });
+    mockData.push({ key: 'key2', complete: true });
+    mock.returnValue = JSON.stringify(mockData);
 
-  //   // When
-  //   service.updateChecklistItem('key1', false);
-  //   let promise = service.updateChecklistItem('key2', true);
+    let service = new StoreService(<any>mock);
 
-  //   promise.then(() => {
+    // When
+    service.getCompleteChecklistItemCount()
+      .then((count) => {
 
-  //     service.getCompleteChecklistItemCount().then((count) => {
+        expect(count).toBe(1);
+        done();
 
-  //       expect(count).toBe(1);
-  //       done();
-
-  //     });
-  //   });
+      });
      
-  // });
+  });
 
 
-  // it('getMessage: default returned', function (done) {
+  it('getMessage: default returned', function (done) {
 
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
+    // Given
+    let mock = new StorageServiceMock();
+    let service = new StoreService(<any>mock);
 
-  //   // When
-  //   let promise = service.getMessage('key1');
+    // When
+    let promise = service.getMessage('key1');
 
-  //   promise.then((message) => {
+    promise.then((message) => {
 
-  //     expect(message.id).toBe(null);
-  //     expect(message.key).toBe('key1');
-  //     expect(message.shown).toBe(false);
-  //     expect(message.showAgain).toBe(true);
-  //     done();
+      expect(message.key).toBe('key1');
+      expect(message.shown).toBe(false);
+      expect(message.showAgain).toBe(true);
+      done();
 
-  //   });
+    });
 
      
-  // });
+  });
 
-  // it('updateMessage: message inserted', function (done) {
+  it('getMessage: returned', function (done) {
 
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
+    // Given
+    let mock = new StorageServiceMock();
+    let mockData = [];
+    mockData.push({ key: 'key2', shown: true, showAgain: false });
+    mock.returnValue = JSON.stringify(mockData);
 
-  //   let message = new Message(null, 'key1', true, false);
+    let service = new StoreService(<any>mock);
 
-  //   // When
-  //   let promise = service.updateMessage(message);
+    // When
+    let promise = service.getMessage('key2');
 
-  //   promise.then(() => {
+    promise.then((message) => {
 
-  //     service
-  //       .getMessage(message.key)
-  //       .then(actual => {
-          
-  //         // Then
-  //         expect(actual.id).toBe(1);
-  //         expect(actual.key).toBe(message.key);
-  //         expect(actual.shown).toBe(message.shown);
-  //         expect(actual.showAgain).toBe(message.showAgain);
+      expect(message.key).toBe('key2');
+      expect(message.shown).toBe(true);
+      expect(message.showAgain).toBe(false);
+      done();
 
-  //         done();
-  //       });
-  //   });
-  // });
+    });
 
-  // it('updateMessage: message updated', function (done) {
+     
+  });
 
-  //   // Given
-  //   let service = new StoreService();
-  //   service.dropTables();
-  //   service.createTables();
+  it('updateMessage: message inserted', function (done) {
 
-  //   let message = new Message(null, 'key2', false, true);
+    // Given
+    let mock = new StorageServiceMock();
+    let service = new StoreService(<any>mock);
 
-  //   // When
-  //   let promise = service.updateMessage(message);
+    let message = new Message('key1', true, false);
 
-  //   promise.then(() => {
+    // When
+    service.updateMessage(message)
+      .then((result) => {
 
-  //     message.shown = true;
-  //     message.showAgain = false;
+        // Then
+        expect(result.key).toBe(StorageService.KEY_MESSAGES);
 
-  //     service.updateMessage(message).then(() => {
+        let data = JSON.parse(result.value);
 
-  //       service
-  //       .getMessage(message.key)
-  //       .then(actual => {
-          
-  //         // Then
-  //         expect(actual.id).toBe(1);
-  //         expect(actual.key).toBe(message.key);
-  //         expect(actual.shown).toBe(message.shown);
-  //         expect(actual.showAgain).toBe(message.showAgain);
+        expect(data.length).toBe(1);
+        expect(data[0].key).toBe(message.key);
+        expect(data[0].shown).toBe(message.shown);
+        expect(data[0].showAgain).toBe(message.showAgain);
 
-  //         done();
-  //       });
+        done();
+    });
+  });
 
-  //     });
+  it('updateMessage: message updated', function (done) {
 
-  //   });
-  // });
+    // Given
+    let mock = new StorageServiceMock();
+    let mockData = [];
+    mockData.push({ key: 'key1', shown: false, showAgain: true });
+    mock.returnValue = JSON.stringify(mockData);
+
+    let service = new StoreService(<any>mock);
+
+    let message = new Message('key1', true, false);
+
+    // When
+    service.updateMessage(message)
+      .then((result) => {
+
+        // Then
+        expect(result.key).toBe(StorageService.KEY_MESSAGES);
+
+        let data = JSON.parse(result.value);
+
+        expect(data.length).toBe(1);
+        expect(data[0].key).toBe(message.key);
+        expect(data[0].shown).toBe(message.shown);
+        expect(data[0].showAgain).toBe(message.showAgain);
+
+        done();
+    });
+
+  });
   
 });

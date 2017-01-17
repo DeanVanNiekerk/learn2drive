@@ -10,15 +10,13 @@ describe('Checklist Item Model', () => {
     it('Instantiate', () => {
 
         // Given
-        let id = 1;
         let key = 'gotId';
         let complete = true;
 
         // When
-        let item = new ChecklistItem(id, key, complete);
+        let item = new ChecklistItem(key, complete);
 
         // Then
-        expect(item.id).toBe(id);
         expect(item.key).toBe(key);
         expect(item.complete).toBe(complete);
 

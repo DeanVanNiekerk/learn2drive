@@ -1,11 +1,9 @@
 export class ChecklistItem {
     
-    id: number;
     key: string;
     complete: boolean;
     
-    constructor(id: number, key: string, complete: boolean) {
-        this.id = id;
+    constructor(key: string, complete: boolean) {
         this.key = key;
         this.complete = complete;
     }

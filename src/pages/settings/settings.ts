@@ -71,8 +71,7 @@ export class SettingsPage {
         {
           text: 'Yes',
           handler: () => {
-            this.storeService.dropTables();
-            this.storeService.createTables();
+            this.storeService.clearAll();
           }
         }
       ]

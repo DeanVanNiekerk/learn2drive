@@ -20,7 +20,7 @@ export class IntroductionSlidesPage {
 
     navigateToHome() {
 
-        let message = new Message(0, this.introductionMessageKey, true, false);
+        let message = new Message(this.introductionMessageKey, true, false);
 
         this.storeService.updateMessage(message)
             .then(() => {

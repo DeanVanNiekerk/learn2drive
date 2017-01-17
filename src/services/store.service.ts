@@ -1,7 +1,5 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-
-import { SQLite } from 'ionic-native';
 
 import { TestResult, MockTestResult, ChecklistItem, Message } from '../models';
 import {StorageService} from '../services';
@@ -9,84 +7,11 @@ import {StorageService} from '../services';
 @Injectable()
 export class StoreService {
 
-    private db: SQLite = null;
-    private storage: StorageService;
-
     public MOCK_TEST_PASS_TARGET: number = 3;
 
     // Init an empty DB if it does not exist by now!
-    constructor(storage: StorageService) {
+    constructor(private storage: StorageService) {
         this.storage = storage;
-        this.db = new SQLite();
-        this.createTables();
-    }
-
-    private openDb(): Promise<any> {
-        return this.db.openDatabase({
-            name: 'l2d3d.db',
-            location: 'default'
-        });
-    }
-
-    public createTables() {
-
-        this.openDb().then(() => {
-
-            // Create the tests results table
-            this.db.executeSql(`CREATE TABLE IF NOT EXISTS 
-                                    testResult (
-                                        id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                                        navigationKey TEXT, 
-                                        totalQuestions INTEGER,
-                                        correctAnswers INTEGER,
-                                        testDate TEXT
-                                    )`, {});
-
-            this.db.executeSql(`CREATE TABLE IF NOT EXISTS 
-                                    mockTestResult (
-                                        id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                                        sectionAPassed INTEGER,
-                                        sectionBPassed INTEGER,
-                                        sectionCPassed INTEGER,
-                                        testDate TEXT
-                                    )`, {});
-
-            this.db.executeSql(`CREATE TABLE IF NOT EXISTS 
-                                    contentRead (
-                                        id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                                        navigationKey TEXT, 
-                                        readDate TEXT
-                                    )`, {});
-
-            this.db.executeSql(`CREATE TABLE IF NOT EXISTS 
-                                    checklist (
-                                        id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                                        key TEXT, 
-                                        complete INTEGER
-                                    )`, {});
-
-            this.db.executeSql(`CREATE TABLE IF NOT EXISTS 
-                                    message (
-                                        id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                                        key TEXT,
-                                        shown INTEGER, 
-                                        showAgain INTEGER
-                                    )`, {});
-        });
-
-
-    }
-
-    public dropTables() {
-
-        this.openDb().then(() => {
-            this.db.executeSql(`DROP TABLE IF EXISTS testResult`, {});
-            this.db.executeSql(`DROP TABLE IF EXISTS mockTestResult`, {});
-            this.db.executeSql(`DROP TABLE IF EXISTS contentRead`, {});
-            this.db.executeSql(`DROP TABLE IF EXISTS checklist`, {});
-            this.db.executeSql(`DROP TABLE IF EXISTS message`, {});
-        });
-
     }
 
     public insertContentRead(navigationKey: string): Promise<any> {
@@ -105,17 +30,6 @@ export class StoreService {
           });
 
         });
-
-        // return new Promise(resolve => {
-        //     this.openDb().then(() => {
-        //         let sql = `INSERT INTO contentRead (navigationKey,readDate) 
-        //                 VALUES (?,?)`;
-        //         this.db.executeSql(sql, [navigationKey, new Date().getTime()])
-        //             .then(() => {
-        //                 resolve();
-        //             });
-        //     });
-        // });
     }
 
     public getContentReadCount(navigationKey: string): Promise<number> {
@@ -124,7 +38,7 @@ export class StoreService {
 
           this.storage.get(StorageService.KEY_CONTENTREAD)
             .then((rawData: string) => {
-              let data = JSON.parse(rawData);
+              let data = rawData ? JSON.parse(rawData) : [];
 
               let result = alasql(`
                 SELECT COUNT(DISTINCT navigationKey) AS readCount
@@ -137,53 +51,53 @@ export class StoreService {
 
         });
 
-        // return new Promise(resolve => {
-
-        //     this.openDb().then(() => {
-
-        //         this.db.executeSql(`SELECT COUNT(DISTINCT navigationKey) AS count
-        //                         FROM contentRead 
-        //                         WHERE navigationKey LIKE ('${navigationKey}%')`, {})
-        //             .then(data => {
-        //                 resolve(data.res.rows.item(0).count);
-        //             });
-        //     });
-        // });
     }
+
     public insertTestResult(testResult: TestResult): Promise<any> {
 
         return new Promise(resolve => {
+          this.storage.get(StorageService.KEY_TESTRESULTS)
+            .then((rawData: string) => {
 
-            this.openDb().then(() => {
+                let data = rawData ? JSON.parse(rawData) : [];
 
-                let sql = `INSERT INTO testResult (navigationKey,totalQuestions,correctAnswers,testDate) 
-                        VALUES (?,?,?,?)`;
-                this.db.executeSql(sql, [testResult.navigationKey, testResult.totalQuestions, testResult.correctAnswers, new Date().getTime()])
-                    .then(() => {
-                        resolve();
-                    });
-            });
+                data.push({ 
+                    navigationKey: testResult.navigationKey, 
+                    totalQuestions: testResult.totalQuestions,
+                    correctAnswers: testResult.correctAnswers,
+                    testDate: new Date().getTime() 
+                });
+
+                this.storage.set(StorageService.KEY_TESTRESULTS, JSON.stringify(data)).then((result) => {
+                    resolve(result);
+                });
+          });
 
         });
-
-
     }
 
     public getLatestTestResult(navigationKey: string): Promise<TestResult> {
 
         return new Promise(resolve => {
 
-            this.openDb().then(() => {
-                this.db.executeSql(`SELECT navigationKey,totalQuestions,correctAnswers,testDate 
-                                        FROM testResult
-                                        WHERE navigationKey = '${navigationKey}'
-                                        ORDER BY testDate DESC
-                                        LIMIT 1`, {})
-                    .then(data => {
-                        let testResults = this.mapTestResults(data);
-                        resolve(testResults[0]);
-                    });
-            });
+          this.storage.get(StorageService.KEY_TESTRESULTS)
+            .then((rawData: string) => {
+                let data = rawData ? JSON.parse(rawData) : [];
+
+                let result = alasql(`
+                    SELECT TOP 1 navigationKey,totalQuestions,correctAnswers,testDate 
+                    FROM ?
+                    WHERE navigationKey = '${navigationKey}'
+                    ORDER BY testDate DESC`
+                    , [data]);
+
+                let testResults: Array<TestResult> = result.map((r) => {
+                    return this.mapTestResults(r);
+                });
+                
+                resolve(testResults.length > 0 ? testResults[0] : null);
+          });
+
         });
     }
 
@@ -191,64 +105,75 @@ export class StoreService {
 
         return new Promise(resolve => {
 
-            this.openDb().then(() => {
-                this.db.executeSql(`SELECT navigationKey,totalQuestions,correctAnswers,testDate
-                                        FROM testResult
-                                        WHERE navigationKey = '${navigationKey}'
-                                        ORDER BY testDate DESC`, {})
-                    .then(data => {
-                        let testResults = this.mapTestResults(data);
-                        resolve(testResults);
-                    });
-            });
+          this.storage.get(StorageService.KEY_TESTRESULTS)
+            .then((rawData: string) => {
+                let data = rawData ? JSON.parse(rawData) : [];
+
+                let result = alasql(`
+                    SELECT navigationKey,totalQuestions,correctAnswers,testDate
+                    FROM ?
+                    WHERE navigationKey = '${navigationKey}'
+                    ORDER BY testDate DESC`
+                    , [data]);
+
+                let testResults = result.map((r) => {
+                    return this.mapTestResults(r);
+                });
+                
+                resolve(testResults);
+          });
+
         });
     }
 
-    private mapTestResults(data: any): TestResult[] {
-        let testResults = [];
-        if (data.res.rows.length > 0) {
-            for (var i = 0; i < data.res.rows.length; i++) {
-                let item = data.res.rows.item(i);
-                testResults.push(new TestResult(item.navigationKey, item.totalQuestions, item.correctAnswers, new Date(parseInt(item.testDate))));
-            }
-        }
-        return testResults;
+    private mapTestResults(r: any): TestResult {
+        return new TestResult(r.navigationKey, r.totalQuestions, r.correctAnswers, r.testDate);
     }
 
     public getTestSectionsPassed(): Promise<Array<string>> {
 
         return new Promise(resolve => {
-            this.openDb().then(() => {
-                this.db.executeSql(`SELECT DISTINCT navigationKey
-                                        FROM testResult
-                                        WHERE totalQuestions = correctAnswers`, {})
-                    .then(data => {
-                        let keys = [];
-                        if (data.res.rows.length > 0) {
-                            for (var i = 0; i < data.res.rows.length; i++) {
-                                let item = data.res.rows.item(i);
-                                keys.push(item.navigationKey);
-                            }
-                        }
-                        resolve(keys);
-                    });
-            });
+
+          this.storage.get(StorageService.KEY_TESTRESULTS)
+            .then((rawData: string) => {
+                let data = rawData ? JSON.parse(rawData) : [];
+
+                let result = alasql(`
+                    SELECT DISTINCT navigationKey
+                    FROM ?
+                    WHERE totalQuestions = correctAnswers`
+                    , [data]);
+
+                let keys = result.map((r) => {
+                    return r.navigationKey;
+                });
+                
+                resolve(keys);
+          });
 
         });
-
     }
 
-    public insertMockTestResult(result: MockTestResult): Promise<any> {
+    public insertMockTestResult(testResult: MockTestResult): Promise<any> {
 
         return new Promise(resolve => {
-            this.openDb().then(() => {
-                let sql = `INSERT INTO mockTestResult (sectionAPassed,sectionBPassed,sectionCPassed,testDate) 
-                        VALUES (?,?,?,?)`;
-                this.db.executeSql(sql, [result.sectionAPassed() ? 1 : 0, result.sectionAPassed() ? 1 : 0, result.sectionAPassed() ? 1 : 0, new Date().getTime()])
-                    .then(() => {
-                        resolve();
-                    });
-            });
+          this.storage.get(StorageService.KEY_MOCKTESTRESULTS)
+            .then((rawData: string) => {
+
+                let data = rawData ? JSON.parse(rawData) : [];
+
+                data.push({ 
+                    sectionAPassed: testResult.sectionAPassed(), 
+                    sectionBPassed: testResult.sectionBPassed(),
+                    sectionCPassed: testResult.sectionCPassed(),
+                    testDate: new Date().getTime() 
+                });
+
+                this.storage.set(StorageService.KEY_MOCKTESTRESULTS, JSON.stringify(data)).then((result) => {
+                    resolve(result);
+                });
+          });
+
         });
 
     }
@@ -256,67 +181,75 @@ export class StoreService {
     public getMockTestsPassed(): Promise<number> {
 
         return new Promise(resolve => {
-            this.openDb().then(() => {
-                this.db.executeSql(`SELECT COUNT(*) AS count
-                                        FROM mockTestResult
-                                        WHERE sectionAPassed = 1
-                                        AND sectionBPassed = 1
-                                        AND sectionCPassed = 1`, {})
-                    .then(data => {
-                        resolve(data.res.rows.item(0).count);
-                    });
-            });
+
+          this.storage.get(StorageService.KEY_MOCKTESTRESULTS)
+            .then((rawData: string) => {
+                let data = rawData ? JSON.parse(rawData) : [];
+
+                let result = alasql(`
+                    SELECT COUNT(*) AS mockTestsPassed
+                    FROM ?
+                    WHERE sectionAPassed = true
+                    AND sectionBPassed = true
+                    AND sectionCPassed = true`
+                    , [data]);
+
+                resolve(result[0].mockTestsPassed);
+          });
 
         });
-
     }
 
     public updateChecklistItem(key: string, complete: boolean): Promise<any> {
 
         return new Promise(resolve => {
-            this.openDb().then(() => {
-                this.getChecklistItem(key)
-                    .then(item => {
-                        let promise = null;
 
-                        if (item == null) {
+            this.getChecklistItem(key)
+                .then(item => {
+
+                     this.storage.get(StorageService.KEY_CHECKLIST)
+                        .then((rawData: string) => {
+
+                            let data: Array<any> = rawData ? JSON.parse(rawData) : [];
 
                             // Insert
-                            let sql = `INSERT INTO checklist (key,complete) VALUES (?,?)`;
-                            promise = this.db.executeSql(sql, [key, complete ? 1 : 0]).then(() => { resolve(); });
-
-                        } else {
-
+                            if (item == null) {
+                                data.push({ key: key, complete: complete});
+                            } 
                             // Update
-                            let sql = `UPDATE checklist 
-                                    SET complete = ${complete ? 1 : 0}
-                                    WHERE key = '${key}'`;
-                            promise = this.db.executeSql(sql, {});
-                        }
+                            else {
+                                data.forEach((item) => {
+                                    if (item.key === key)
+                                        item.complete = complete;
+                                });
+                            }
 
-                        promise.then(() => { resolve(); });
-                    });
-            });
+                            this.storage.set(StorageService.KEY_CHECKLIST, JSON.stringify(data)).then((result) => {
+                                resolve(result);
+                            });
 
+
+                        });
+                });
         });
     }
 
     public getCompleteChecklistItemCount(): Promise<number> {
 
-        return new Promise(resolve => {
-            this.openDb().then(() => {
-                this.db.executeSql(`SELECT COUNT(*) AS count
-                                        FROM checklist
-                                        WHERE complete = 1`, {})
-                    .then(data => {
-                        let count = 0;
-                        if (data.res.rows.length > 0) {
-                            let item = data.res.rows.item(0);
-                            count = item.count;
-                        }
-                        resolve(count);
-                    });
-            });
+         return new Promise(resolve => {
+
+          this.storage.get(StorageService.KEY_CHECKLIST)
+            .then((rawData: string) => {
+                let data = rawData ? JSON.parse(rawData) : [];
+
+                let result = alasql(`
+                    SELECT COUNT(*) AS itemCount
+                    FROM ?
+                    WHERE complete = true`
+                    , [data]);
+
+                resolve(result[0].itemCount);
+          });
 
         });
     }
@@ -325,20 +258,26 @@ export class StoreService {
     public getChecklistItem(key: string): Promise<ChecklistItem> {
 
         return new Promise(resolve => {
-            this.openDb().then(() => {
-                this.db.executeSql(`SELECT id, key, complete
-                    FROM checklist
-                    WHERE key = '${key}'`, {})
-                    .then(data => {
-                        let checklistitem = null;
-                        if (data.res.rows.length > 0) {
-                            let item = data.res.rows.item(0);
-                            checklistitem = new ChecklistItem(item.id, item.key, item.complete === 1);
-                        }
 
-                        resolve(checklistitem);
-                    });
-            });
+          this.storage.get(StorageService.KEY_CHECKLIST)
+            .then((rawData: string) => {
+                let data = rawData ? JSON.parse(rawData) : [];
+
+                let result = alasql(`
+                    SELECT [key], [complete]
+                     FROM ?
+                     WHERE [key] = '${key}'`
+                    , [data]);
+
+                let checklistitem = null;
+                if (result.length > 0) {
+                    let item = result[0];
+                    checklistitem = new ChecklistItem(item.key, item.complete);
+                }
+                
+                resolve(checklistitem);
+          });
+
         });
     }
 
@@ -346,77 +285,91 @@ export class StoreService {
 
         return new Promise(resolve => {
 
-            this.openDb().then(() => {
-                this.getMessage(message.key)
-                    .then(m => {
-                        let promise = null;
+            this.getMessageQuery(message.key)
+                .then((result: any) => {
+                   
+                     this.storage.get(StorageService.KEY_MESSAGES)
+                        .then((rawData: string) => {
 
-                        if (m.id == null) {
+                            let data: Array<any> = rawData ? JSON.parse(rawData) : [];
 
                             // Insert
-                            let sql = `INSERT INTO message (key,shown,showAgain) VALUES (?,?,?)`;
-                            promise = this.db.executeSql(sql, [message.key, message.shown ? 1 : 0, message.showAgain ? 1 : 0]).then(() => { resolve(); });
-
-                        } else {
-
+                            if (result.length === 0) {
+                                data.push({ key: message.key, shown: message.shown, showAgain: message.showAgain});
+                            } 
                             // Update
-                            let sql = `UPDATE message 
-                                    SET shown = ${message.shown ? 1 : 0},
-                                    showAgain = ${message.showAgain ? 1 : 0}
-                                    WHERE key = '${message.key}'`;
-                            promise = this.db.executeSql(sql, {});
-                        }
+                            else {
+                                data.forEach((item) => {
+                                    if (item.key === message.key) {
+                                        item.shown = message.shown;
+                                        item.showAgain = message.showAgain;
+                                    }
+                                });
+                            }
 
-                        promise.then(() => { resolve(); });
-                    });
-            });
+                            this.storage.set(StorageService.KEY_MESSAGES, JSON.stringify(data)).then((result) => {
+                                resolve(result);
+                            });
 
+                        });
+                });
         });
     }
 
     public getMessage(key: string): Promise<Message> {
 
         return new Promise(resolve => {
-            this.openDb().then(() => {
-                this.db.executeSql(`SELECT id, key, shown, showAgain
-                    FROM message
-                    WHERE key = '${key}'`, {})
-                    .then(data => {
-                        let message = null;
-                        if (data.res.rows.length > 0) {
-                            let item = data.res.rows.item(0);
-                            message = new Message(item.id, item.key, item.shown === 1, item.showAgain === 1);
-                        } else {
-                            message = new Message(null, key, false, true);
-                        }
 
-                        resolve(message);
-                    });
-            });
+          this.getMessageQuery(key)
+            .then((result: any) => {
+
+                let message = null;
+                if (result.length > 0) {
+                    let item = result[0];
+                    message = new Message(item.key, item.shown, item.showAgain);
+                }
+                else {
+                    // Default
+                    message = new Message(key, false, true);
+                }
+                
+                resolve(message);
+          });
+
+        });
+    }
+
+    private getMessageQuery(key: string): Promise<Array<any>> {
+
+        return new Promise(resolve => {
+
+          this.storage.get(StorageService.KEY_MESSAGES)
+            .then((rawData: string) => {
+                let data = rawData ? JSON.parse(rawData) : [];
+
+                let result = alasql(`
+                     SELECT [key], [shown], [showAgain]
+                     FROM ?
+                     WHERE [key] = '${key}'`
+                    , [data]);
+
+                resolve(result);
+          });
 
         });
     }
 
     public clearTestResults(): Promise<any> {
-        return new Promise(resolve => {
-            this.openDb().then(() => {
-                this.db.executeSql(`DELETE FROM testResult`, {});
-            }).then(() => {
-                resolve();
-            });
-        });
-
+        return this.storage.remove(StorageService.KEY_TESTRESULTS);
     }
 
     public clearContentRead(): Promise<any> {
-        return new Promise(resolve => {
-            this.openDb().then(() => {
-                this.db.executeSql(`DELETE FROM contentRead`, {}).then(() => {
-                    resolve();
-                });
-            });
-        });
+        return this.storage.remove(StorageService.KEY_CONTENTREAD);
+    }
 
+    // KILLS ALL DATA
+    public clearAll(): Promise<any> {
+        return this.storage.clear();
     }
 
 }

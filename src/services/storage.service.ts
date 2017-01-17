@@ -8,6 +8,10 @@ export class StorageService {
   private storage: Storage;
 
   public static KEY_CONTENTREAD: string = 'CONTENT_READ';
+  public static KEY_TESTRESULTS: string = 'TEST_RESULTS';
+  public static KEY_MOCKTESTRESULTS: string = 'MOCK_TEST_RESULTS';
+  public static KEY_CHECKLIST: string = 'CHECKLIST';
+  public static KEY_MESSAGES: string = 'MESSAGES';
 
   constructor() {
     this.storage = StorageService.initStorage();
@@ -27,5 +31,9 @@ export class StorageService {
 
   public remove(key: string): Promise<{}> {
     return this.storage.remove(key);
+  }
+
+  public clear(): Promise<{}> {
+    return this.storage.clear();
   }
 }
