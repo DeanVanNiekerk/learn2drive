@@ -1,20 +1,39 @@
 
+<ion-menu [content]="homeMenu">
+    <ion-header>
+        <ion-toolbar color="dark">
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-list>
+            <button ion-item menuClose (click)="navigateToSettings()">
+                Settings
+            </button>
+            <button ion-item menuClose (click)="navigateToAbout()">
+                About
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav #homeMenu side="right" [root]="rootPage"></ion-nav>
+
 <ion-header>
   <ion-navbar color='primary'>
     <ion-title>Learn2Drive</ion-title>
 
     <ion-buttons end>
-      <button ion-button icon-only (click)="showHomeMenu($event)">
-        <ion-icon name="more"></ion-icon>
-      </button>
+        <button ion-button icon-only (click)="openMenu()">
+            <ion-icon name="more"></ion-icon>
+        </button>
     </ion-buttons>
     
   </ion-navbar>
 </ion-header>
 
-
 <ion-content class="home" [hidden]="hidden">
-
 
     <ion-card class="checklist" (click)="navigateToChecklist()">
          <ion-card-content>
@@ -87,5 +106,8 @@
     </ion-card>
 
 </ion-content>
+
+
+
 
 

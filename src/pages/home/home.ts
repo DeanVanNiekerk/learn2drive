@@ -1,10 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {NavController, ViewController, PopoverController} from 'ionic-angular';
+import {NavController, ViewController, PopoverController, MenuController} from 'ionic-angular';
 
 // Services
 import {ProgressService, StoreService} from '../../services';
-import {HomeMenuComponent, ProgressBarComponent} from '../../components';
-import {ContentPage, ChecklistPage, MockTestPage, IntroductionSlidesPage} from '../';
+import {ProgressBarComponent} from '../../components';
+import {ContentPage, ChecklistPage, 
+        MockTestPage, IntroductionSlidesPage,
+        SettingsPage, AboutPage } from '../';
 
 @Component({
   templateUrl: './home.html'
@@ -24,7 +26,8 @@ export class HomePage implements OnInit {
       private viewCtrl: ViewController,
       private popoverCtrl: PopoverController,
       private progressService: ProgressService,
-      private storeService: StoreService) {
+      private storeService: StoreService,
+      public menuCtrl: MenuController) {
   }
 
   ngOnInit() {
@@ -70,6 +73,10 @@ export class HomePage implements OnInit {
     }); 
   }
 
+  openMenu() {
+    this.menuCtrl.open();
+  }
+
   navigateToContent() {
     this.navCtrl.push(ContentPage, {
       navigationKey: 'rootNavigation.learner'
@@ -88,11 +95,12 @@ export class HomePage implements OnInit {
     this.navCtrl.push(ChecklistPage);
   }
 
-  showHomeMenu(event: Event) {
-    let popover = this.popoverCtrl.create(HomeMenuComponent);
-    popover.present({
-      ev: event
-    });
+  navigateToSettings() {
+    this.navCtrl.push(SettingsPage);
+  }
+
+  navigateToAbout() {
+    this.navCtrl.push(AboutPage);
   }
   
 }

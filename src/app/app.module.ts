@@ -10,14 +10,14 @@ import { PagesModule, HomePage,
           ChecklistItemInfoPage, AboutPage,
           SettingsPage, MockTestPage,
           MockTestResultPage, IntroductionSlidesPage,
-          TestHistoryPage } from '../pages';
+          TestHistoryPage }                         from '../pages';
 
-import { ComponentsModule, HomeMenuComponent }      from '../components';
+import { ComponentsModule }                         from '../components';
 
 import { ContentService, QuestionService, 
           ResourceService, TestService, 
           ProgressService, StoreService, 
-          StorageService }           from '../services';
+          StorageService }                          from '../services';
 
 import { PipesModule }                              from '../pipes';
 
@@ -44,9 +44,7 @@ import { PipesModule }                              from '../pipes';
     MockTestPage,
     MockTestResultPage,
     IntroductionSlidesPage,
-    TestHistoryPage,
-
-    HomeMenuComponent
+    TestHistoryPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

@@ -7,8 +7,7 @@ import { PipesModule }                                  from '../pipes';
 import { LearnComponent, NavigatorComponent, 
           ContentProgressComponent, QuestionComponent,
           TestResultQuestionsComponent, ChecklistItemComponent,
-          ChecklistProgressComponent, HomeMenuComponent,
-          ProgressBarComponent } from './';
+          ChecklistProgressComponent, ProgressBarComponent } from './';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,6 @@ import { LearnComponent, NavigatorComponent,
     TestResultQuestionsComponent,
     ChecklistItemComponent,
     ChecklistProgressComponent, 
-    HomeMenuComponent,
     ProgressBarComponent
   ],
   imports: [
@@ -36,7 +34,6 @@ import { LearnComponent, NavigatorComponent,
     TestResultQuestionsComponent,
     ChecklistItemComponent,
     ChecklistProgressComponent, 
-    HomeMenuComponent,
     ProgressBarComponent
   ],
   entryComponents: [],
