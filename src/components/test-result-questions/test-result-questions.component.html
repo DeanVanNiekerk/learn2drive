@@ -13,11 +13,11 @@
 
             <ion-card-content>
                 
-                <p *ngFor="let text of question.text">
+                <p ion-text *ngFor="let text of question.text">
                     {{text}}
                 </p>
 
-                <p *ngFor="let image of question.images">
+                <p ion-text *ngFor="let image of question.images">
                     <img class="image" src="content/images/{{image}}">
                 </p>
                 
@@ -38,7 +38,7 @@
                                 </div>
                             </ion-col>
                             <ion-col width-90>
-                                <p>{{answer.text}}</p>
+                                <p ion-text>{{answer.text}}</p>
                             </ion-col>
                         </ion-row>
                     </ion-grid>

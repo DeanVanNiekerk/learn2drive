@@ -76,6 +76,7 @@ Run on device:
 * [Unit testing walkthrough](http://lathonez.com/2016/ionic-2-unit-testing/)
 * [E2E testing walkthrough](http://lathonez.com/2016/ionic-2-e2e-testing/)
 * [Removing assets from the APK](http://lathonez.com/2016/cordova-remove-assets/)
+* [State](https://www.raymondcamden.com/2015/04/20/ionic-adds-a-new-state-feature?utm_content=buffer20073&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer)
 
 
 ## Based on Clicker Starter Template
@@ -87,21 +88,17 @@ https://github.com/lathonez/clicker
 Phase 1
 -------
 
-- remove import 'rxjs/add/operator/map';
 - Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides) - Dean
 - Add numbers to Vehicle Controls Image - Dylan 
-- Vet content (intro, checklist more info)
-- Final Styling 
-- Icons (laucher, intro etc)
-- Build server
-- Final Naming: rename application to Learn2Drive (L2D) not L2D3D Mobile (maybe get rid of space)
-- https://www.raymondcamden.com/2015/04/20/ionic-adds-a-new-state-feature?utm_content=buffer20073&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+- Icons (laucher etc)
+
 
 
 Phase 2
 --------
 - Whats next?
- Home page
+- Build server
+- Home page
     - Restyle home page
         - Progress Dials like http://blog.ionic.io/built-with-ionic-neumob/
             or http://progressbarjs.readthedocs.io/en/latest/
@@ -118,6 +115,8 @@ Phase 2
     - http://blog.ionic.io/localize-your-app-with-ng2-translate/
 - Use gulp to copy alasql and progressbar.js from nodemodules into the www/dependencies folder 
 - Check for progressbar.js typings file (doesnt currently exit) 
+- Styling Updates? 
+- Final Naming: rename application to Learn2Drive (L2D) not L2D3D Mobile (maybe get rid of space)
 
 
 Done
@@ -141,6 +140,8 @@ Done
 - Store service tests, promises not resolving - Dylan (Done)
 - Content Read Tracking - Dean
 - Funny issue sometime after showing test info popup? goes into state, maybe add some loading stuffs - fixed after v2
+- remove import 'rxjs/add/operator/map';
+- Vet content (intro, checklist more info)
 
 Testing on iPhone 5
 - Navigateion into an item seems sluggish and locks up sometimes half way through screen change.

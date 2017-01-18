@@ -4,18 +4,11 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content class="content">
   
   <navigator></navigator>
   
   <learn></learn>
-
-  <ion-fab right bottom class="test-button" *ngIf="sectionHasTestQuestions">
-    <button ion-fab color="secondary" (click)="startTest()" class="test-button">
-      <ion-icon name="school"></ion-icon>
-    </button>
-  </ion-fab>
 
 </ion-content>
 
@@ -23,11 +16,11 @@
 <ion-footer class="content-footer">
   <ion-toolbar *ngIf="sectionHasTestQuestions">
       
-      <p padding-left outline *ngIf="lastTestResult != null" color="secondary">
+      <p ion-text padding-left outline *ngIf="lastTestResult != null" color="secondary">
         Last Test Result for this Section: <b>{{lastTestResult.resultPercent()}}%</b>
       </p>
 
-      <p padding-left color="secondary" outline *ngIf="noTestWrittenForSection" color="secondary">
+      <p ion-text padding-left outline *ngIf="noTestWrittenForSection" color="secondary">
         No Test Written for this Section yet
       </p>
 
@@ -39,3 +32,10 @@
  
   </ion-toolbar>
 </ion-footer>
+
+
+<ion-fab right bottom class="test-button" *ngIf="sectionHasTestQuestions" style="bottom: 70px">
+  <button ion-fab color="secondary" (click)="startTest()" class="test-button">
+    <ion-icon name="school"></ion-icon>
+  </button>
+</ion-fab>
