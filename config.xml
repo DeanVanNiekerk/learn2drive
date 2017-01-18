@@ -2,7 +2,7 @@
 <widget id="mobi.learn2drive3d" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Learn2Drive3D</name>
     <description>K53 learner's license study material and mock test.</description>
-    <author email="info@learn2drive3d.net" href="http://www.learn2drive3d.net">Learn2Drive3D</author>
+    <author email="info@learn2drive3d.net" href="http://www.learn2drive3d.net">Learn2Drive</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
