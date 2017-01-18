@@ -1,5 +1,4 @@
 import { NgModule }                                     from '@angular/core';
-import { FormsModule, ReactiveFormsModule }             from '@angular/forms'; // TODO: takeout?
 import { IonicModule }                                  from 'ionic-angular';
 
 import { PipesModule }                                  from '../pipes';
@@ -22,9 +21,7 @@ import { LearnComponent, NavigatorComponent,
   ],
   imports: [
     PipesModule,
-    FormsModule, // TODO: delete
-    IonicModule, // TODO: delete
-    ReactiveFormsModule, // TODO: delete
+    IonicModule,
   ],
   exports: [
     LearnComponent,

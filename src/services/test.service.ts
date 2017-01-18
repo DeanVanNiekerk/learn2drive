@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/map';
 
 // Models
-import {Question} from '../models/question';
-import {AnsweredQuestion} from '../models/answered-question';
-import {TestResult} from '../models/test-result';
-import {MockTestResult} from '../models/mock-test-result';
+import {Question, AnsweredQuestion, TestResult, MockTestResult} from '../models';
+
 
 @Injectable()
 export class TestService {

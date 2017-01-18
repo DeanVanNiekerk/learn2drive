@@ -1,37 +1,20 @@
-https://www.raymondcamden.com/2015/04/20/ionic-adds-a-new-state-feature?utm_content=buffer20073&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
-http://stackoverflow.com/questions/37902476/automatic-ordering-of-exports-in-index-ts-makes-app-crash/37907696
-remove import 'rxjs/add/operator/map';
+# Project Name
 
+Learn2Drive3D Mobile Version
 
+## Installation
 
-## Ionic 2 Demo / Seed Project : Karma + Protractor + Travis
-[![Build Status](https://travis-ci.org/lathonez/clicker.svg?branch=master)](https://travis-ci.org/lathonez/clicker) [![Build status](https://ci.appveyor.com/api/projects/status/github/lathonez/clicker?svg=true)](https://ci.appveyor.com/project/lathonez/clicker) [![codecov.io](https://codecov.io/github/lathonez/clicker/coverage.svg?branch=master)](https://codecov.io/github/lathonez/clicker?branch=master) [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT) [![Dependency Status](https://david-dm.org/lathonez/clicker/status.svg)](https://david-dm.org/lathonez/clicker) [![devDependency Status](https://david-dm.org/lathonez/clicker/dev-status.svg)](https://david-dm.org/lathonez/clicker#info=devDependencies)
-<p align="center">
-  <img src="http://lathonez.github.io/images/ionic2_unit_testing/clicker.gif" alt=""/>
-</p>
+1. Make sure NodeJS is installed. (NodeJS > v5)
+2. npm install -g ionic cordova
+3. npm install
 
-## Install & Start
+## Usage
 
-You need to be running [the latest node LTS](https://nodejs.org/en/download/) or newer
+```npm start```
 
-```bash
-git clone https://github.com/lathonez/clicker.git
-cd clicker
-npm install       # or `npm run reinstall` if you get an error
-npm start         # start the application (ionic serve)
-```
+## Run Tests
 
-Running as root? You probably shouldn't be. If you need to: `npm run postinstall` before `npm start`. [#111](https://github.com/lathonez/clicker/issues/111) for more info.
-
-## Build for a specific environment (#135)
-```bash
-ENV=qa ionic build android    # uses ./config.xml and ./config/config.ts from ./config/qa
-```
-
-## Run Unit Tests
-```bash
-npm test          # run unit tests
-```
+```npm test```
 
 ## Run E2E
 ```
@@ -42,34 +25,128 @@ npm start
 npm run e2e
 ```
 
-## Blog Topics
+## Compile for Android
 
+To set up build on windows, open cmd window browse to app root folder and run
+
+set ANDROID_HOME=C:\Program Files (x86)\Android\android-sdk
+
+set PATH=%PATH%;%ANDROID\_HOME%\tools;%ANDROID\_HOME%\platform-tools
+
+
+## Run on iOS for development
+
+You must have an Apple Developer account which costs $99 a year and generate a developer certificate.
+
+Watch out for permission denied errors. You might need to run the following when in the project directory:
+ 
+ ```sudo chown -R dylan:admin /usr/local```
+ ```sudo chown -R dylan:staff ./```
+
+Add build hooks
+
+```ionic hooks add```
+
+
+### With XCode
+
+Build:
+```ionic build ios```
+
+Open the `./build/ios/L3D3D Mobile.xcodeproj`
+
+
+### With ios-deploy
+
+```npm install --unsafe-perm=true -g ios-deploy```
+
+Build:
+```ionic build ios```
+
+Run on emultor:
+```ionic run ios```
+
+Run on device:
+```ionic run ios --device```
+
+
+## Links
+
+* [Ionic2](http://ionicframework.com/docs/v2/)
 * [Unit testing walkthrough](http://lathonez.com/2016/ionic-2-unit-testing/)
 * [E2E testing walkthrough](http://lathonez.com/2016/ionic-2-e2e-testing/)
 * [Removing assets from the APK](http://lathonez.com/2016/cordova-remove-assets/)
 
-## Contribute
-PRs are welcome, see the [roadmap sticky](https://github.com/lathonez/clicker/issues/38)
 
-## Help
+## Based on Clicker Starter Template
+https://github.com/lathonez/clicker
 
-* If you can't get the testing working, raise an issue
-* If you have a general question about unit testing (e.g. how can I write a unit test for `some-module`), see [#191](https://github.com/lathonez/clicker/issues/191)
 
-## Acks
+## TODO
 
-* This started out as a fork of [Angular 2 Seed](https://github.com/mgechev/angular2-seed) and would not be possible without it
-* @bengro for the lightweightify inspiration (#68)
-* @ric9176 and @DanielaGSB for E2E tests (#50)
-* @tja4472 for the ngrx implementation (#133)
-* [Everyone else](https://github.com/lathonez/clicker/graphs/contributors) for the advice, help, PRs etc
+Phase 1
+-------
 
-## Changelog
+- remove import 'rxjs/add/operator/map';
+- Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides) - Dean
+- Add numbers to Vehicle Controls Image - Dylan 
+- Vet content (intro, checklist more info)
+- Final Styling 
+- Icons (laucher, intro etc)
+- Build server
+- Final Naming: rename application to Learn2Drive (L2D) not L2D3D Mobile (maybe get rid of space)
+- https://www.raymondcamden.com/2015/04/20/ionic-adds-a-new-state-feature?utm_content=buffer20073&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
 
-See the changelog [here](https://github.com/lathonez/clicker/blob/master/CHANGELOG.md)
 
-## Dependencies
+Phase 2
+--------
+- Whats next?
+ Home page
+    - Restyle home page
+        - Progress Dials like http://blog.ionic.io/built-with-ionic-neumob/
+            or http://progressbarjs.readthedocs.io/en/latest/
+- Directory
+    - http://blog.ionic.io/google-maps-component-in-ionic-creator/
+- Breadcrumb
+- Mock-test
+    - Scroll to section in results
+- Toast on Settings after save (http://ionicframework.com/docs/v2/components/#toast)
+- Search for Content? (http://ionicframework.com/docs/v2/components/#searchbar)
+- Tabs for sections (instead of current home page)
+- Free and Paid Versions (lite version)
+- Multi Language
+    - http://blog.ionic.io/localize-your-app-with-ng2-translate/
+- Use gulp to copy alasql and progressbar.js from nodemodules into the www/dependencies folder 
+- Check for progressbar.js typings file (doesnt currently exit) 
 
-* **@Angular:** 2.2.1
-* **angular-cli**: 1.0.0-beta.24
-* **Ionic:** 2.0.0-rc.4
+
+Done
+-------
+- Home page
+    - Status on Learners Content - Dean
+    - Checklist to top of page (checklist status) - Dean
+    - Settings to top menu - Dean
+    - Mocktest status - Dean
+- Checklist - Dean
+- Checklist - Mock Tests Passed
+- Checklist - info popup for readonly checkboxes - Dean
+- Install ionic on Kate's phone. (She has Gingerbread!)
+- Apple App/Bundle ID
+- Check out competition
+- Navigation 
+    - Content Read Progress - Dean 
+    - Test Progress - Dean 
+- Vehicle Controls - Dean (Done)
+- Running on iOS - Dylan (Done)
+- Store service tests, promises not resolving - Dylan (Done)
+- Content Read Tracking - Dean
+- Funny issue sometime after showing test info popup? goes into state, maybe add some loading stuffs - fixed after v2
+
+Testing on iPhone 5
+- Navigateion into an item seems sluggish and locks up sometimes half way through screen change.
+- Noticed a crash or two
+- Radio buttons in test do not show next to options. Can see a tick when one is selected.
+
+
+
+

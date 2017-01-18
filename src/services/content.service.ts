@@ -1,6 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
 
 import {NavigationItem, Content} from '../models';
 import {StorageService} from '../services';

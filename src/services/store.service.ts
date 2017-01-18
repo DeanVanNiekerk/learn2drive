@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/map';
 
 import { TestResult, MockTestResult, ChecklistItem, Message } from '../models';
 import {StorageService} from '../services';

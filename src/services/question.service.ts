@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
 
 import { Question, Answer } from '../models';
 
@@ -73,6 +72,16 @@ export class QuestionService {
 
   public getQuestions(key: string, count: number): Promise<Question[]> {
     return this.getQuestionsByKeys([key], count);
+  }
+
+
+  public hasQuestions(key: string): Promise<boolean> {
+    return new Promise(resolve => {
+      this.getQuestionsByKeys([key], 1)
+      .then(questions => {
+        resolve(questions.length > 0);
+      });
+    });
   }
 
   private getRandomQuestions(questions: Question[], max): Question[] {

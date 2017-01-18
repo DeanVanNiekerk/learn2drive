@@ -85,7 +85,8 @@ describe('Question Service', () => {
                     expect(question.answers[0].id).toEqual('A');
                     expect(question.answers[0].text).toEqual('Answer 1');
                 });
-        }));
+        })
+    );
 
 
     it('getQuestions: one question, multi-text', inject(
@@ -339,6 +340,58 @@ describe('Question Service', () => {
 
                     let question = questions[0];
                     expect(question.id).toEqual(1);
+                });
+        })
+    );
+
+    it('hasQuestions: one question, true', inject(
+        [QuestionService, MockBackend],
+        (service: QuestionService, backend: MockBackend) => {
+            backend.connections.subscribe((connection: MockConnection) => {
+
+                // Given
+                let items: any[] = [
+                    {
+                        'navPath': '1.2',
+                        'question': [ ]
+                    }
+                ];
+
+                let response = new ResponseOptions({ body: JSON.stringify(items) });
+                connection.mockRespond(new Response(response));
+            });
+
+            // When
+            service.hasQuestions('1.2')
+                .then(hasQuestions => {
+                    // Then
+                    expect(hasQuestions).toBe(true);
+                });
+        })
+    );
+
+    it('hasQuestions: one question, false', inject(
+        [QuestionService, MockBackend],
+        (service: QuestionService, backend: MockBackend) => {
+            backend.connections.subscribe((connection: MockConnection) => {
+
+                // Given
+                let items: any[] = [
+                    {
+                        'navPath': '1.2',
+                        'question': [ ]
+                    }
+                ];
+
+                let response = new ResponseOptions({ body: JSON.stringify(items) });
+                connection.mockRespond(new Response(response));
+            });
+
+            // When
+            service.hasQuestions('1.3')
+                .then(hasQuestions => {
+                    // Then
+                    expect(hasQuestions).toBe(false);
                 });
         })
     );
