@@ -2,7 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {NavController} from 'ionic-angular';
 
 // Services
-import {ProgressService} from '../../services/progress.service';
+import {ProgressService} from '../../services';
 
 
 @Component({

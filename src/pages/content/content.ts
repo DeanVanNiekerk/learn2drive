@@ -4,8 +4,8 @@ import {NavController, NavParams} from 'ionic-angular';
 import {ContentService, StoreService} from '../../services';
 import {NavigationItem, Content, TestResult} from '../../models';
 import {LearnComponent, NavigatorComponent} from '../../components';
-import {TestPage} from '../../pages';
-// import {TestHistoryComponent} from '../test-history/test-history.component';
+import {TestPage, TestHistoryPage} from '../../pages';
+
 
 @Component({
   templateUrl: './content.html'
@@ -50,8 +50,8 @@ export class ContentPage implements OnInit {
   }
 
   navigateToTestHistory() {
-    //this.navCtrl.push(TestHistoryComponent, {
-    //  navigationKey: this.navigationKey
-    //});
+    this.navCtrl.push(TestHistoryPage, {
+      navigationKey: this.navigationKey
+    });
   }
 }
