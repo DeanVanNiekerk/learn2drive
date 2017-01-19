@@ -69,6 +69,14 @@ Run on emultor:
 Run on device:
 ```ionic run ios --device```
 
+## Build for Release
+
+https://ionicframework.com/docs/guide/publishing.html
+
+cordova build --release android --env=prod
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore learn2drive-key.keystore android-release-unsigned.apk learn2drive
+zipalign -v 4 android-release-unsigned.apk learn2drive.apk
+
 
 ## Links
 
