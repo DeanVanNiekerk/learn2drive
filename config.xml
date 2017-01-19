@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="mobi.learn2drive3d" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Learn2Drive3D</name>
+<widget id="learn2drive.k35" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Learn2Drive</name>
     <description>K53 learner's license study material and mock test.</description>
-    <author email="info@learn2drive3d.net" href="http://www.learn2drive3d.net">Learn2Drive</author>
+    <author email="dean@alchemysoftware.co.za" href="http://www.alchemysoftware.co.za">Alchemy Software</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -13,6 +13,21 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <icon src="resources/icon.png" />
+        <!--
+            ldpi    : 36x36 px
+            mdpi    : 48x48 px
+            hdpi    : 72x72 px
+            xhdpi   : 96x96 px
+            xxhdpi  : 144x144 px
+            xxxhdpi : 192x192 px
+        -->
+        <!--<icon src="resources/icon.png" density="ldpi" />
+        <icon src="resources/icon.png" density="mdpi" />
+        <icon src="resources/icon.png" density="hdpi" />
+        <icon src="resources/icon.png" density="xhdpi" />
+        <icon src="resources/icon.png" density="xxhdpi" />
+        <icon src="resources/icon.png" density="xxxhdpi" />-->
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
