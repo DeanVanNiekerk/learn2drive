@@ -1,7 +1,7 @@
 {
-  "name": "Learn2DriveApp",
+  "name": "Learn2Drive",
   "author": "Alchemy Software",
-  "homepage": "https://learn2drive3d.net",
+  "homepage": "http://alchemysoftare.co.za",
   "private": true,
   "scripts": {
     "ionic:build": "ionic-app-scripts build",

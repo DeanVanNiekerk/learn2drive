@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="mobi.learn2drive3d" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Learn2Drive3D</name>
+<widget id="learn2drive.k35" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Learn2Drive</name>
     <description>K53 learner's license study material and mock test.</description>
-    <author email="info@learn2drive3d.net" href="http://www.learn2drive3d.net">Learn2Drive3D</author>
+    <author email="dean@alchemysoftware.co.za" href="http://www.alchemysoftware.co.za">Alchemy Software</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

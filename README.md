@@ -1,6 +1,6 @@
 # Project Name
 
-Learn2Drive3D Mobile Version
+Learn2Drive
 
 ## Installation
 
