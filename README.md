@@ -95,6 +95,7 @@ https://github.com/lathonez/clicker
 
 Phase 1
 -------
+- Cancel Test/Mock Test confirmation - Dean
 - Add numbers to Vehicle Controls Image - Dylan 
 - Icons (laucher etc)
 

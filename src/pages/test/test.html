@@ -1,7 +1,7 @@
 
 <ion-header>
   <ion-navbar color="secondary">
-    <ion-title>{{navigationKey | translate}}</ion-title>
+    <ion-title>{{navigationKey | translate}} Test</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -18,9 +18,15 @@
 
 
 <ion-footer>
-  <ion-toolbar color="secondary">
+  <ion-toolbar color="dark">
 
-    <ion-buttons end>
+    <ion-buttons left>
+      <button ion-button (click)="navigateBack()">
+        Cancel
+      </button>
+    </ion-buttons>
+
+    <ion-buttons right>
       <button ion-button outline (click)="markTest()">
         Mark Test
       </button>
