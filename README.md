@@ -95,8 +95,6 @@ https://github.com/lathonez/clicker
 
 Phase 1
 -------
-
-- Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides) - Dean
 - Add numbers to Vehicle Controls Image - Dylan 
 - Icons (laucher etc)
 
@@ -104,6 +102,7 @@ Phase 1
 
 Phase 2
 --------
+- Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides) - Dean
 - Whats next?
 - Build server
 - Home page
@@ -123,8 +122,9 @@ Phase 2
     - http://blog.ionic.io/localize-your-app-with-ng2-translate/
 - Use gulp to copy alasql and progressbar.js from nodemodules into the www/dependencies folder 
 - Check for progressbar.js typings file (doesnt currently exit) 
-- Styling Updates? 
-- Final Naming: rename application to Learn2Drive (L2D) not L2D3D Mobile (maybe get rid of space)
+- Google Login and Cloud storage
+    - https://docs.ionic.io/services/auth/google-auth.html
+
 
 
 Done

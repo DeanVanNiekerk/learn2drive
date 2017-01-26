@@ -19,11 +19,14 @@ export class L2D3DApp {
   }
 
   private initializeApp(): void {
-    this.platform.ready().then(() => {
+    
+  this.platform.ready().then(() => {
 
       this.rootPage = HomePage;
+
       StatusBar.styleDefault();
       Splashscreen.hide();
+
       console.log('production: ' + environment.production);
     });
   }
