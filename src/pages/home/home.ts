@@ -63,9 +63,9 @@ export class HomePage implements OnInit {
 
       this.storeService.getMessage(this.introductionMessageKey)
         .then(message => {
-          //if (message.showAgain === true) 
+          // if (message.showAgain === true) 
           //  this.navigateToIntroductionSlides(); 
-          //else 
+          // else 
             this.hidden = false;
         }
       ); 

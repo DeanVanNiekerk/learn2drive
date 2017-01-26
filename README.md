@@ -77,6 +77,11 @@ cordova build --release android --env=prod
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore learn2drive-key.keystore android-release-unsigned.apk learn2drive
 zipalign -v 4 android-release-unsigned.apk learn2drive.apk
 
+## Installing Android SDK Licence
+
+mkdir "%ANDROID_HOME%\licenses"
+echo |set /p="8933bad161af4178b1185d1a37fbf41ea5269c55" > "%ANDROID_HOME%\licenses\android-sdk-license"
+
 
 ## Links
 
