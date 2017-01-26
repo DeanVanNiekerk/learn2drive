@@ -65,6 +65,8 @@ export class MockTestPage implements OnInit {
 
   ngOnInit() {
 
+      this.viewCtrl.showBackButton(false);
+
       this.questionService.getQuestions('rootNavigation.learner.vehicleControls', this.questionCountA)
       .then(questions => {
         this.questionsA = questions;
@@ -157,6 +159,43 @@ export class MockTestPage implements OnInit {
           text: 'Yes',
           handler: () => {
             this.navigateToTestResults(answerQuestionListA, answerQuestionListB, answerQuestionListC);
+          }
+        }
+      ]
+    });
+
+    confirmAlert.present();
+  }
+
+  navigateBack() {
+
+    let answeredQuestions = this.getAnsweredQuestionsList(this.answeredQuestionsA).length
+                              + this.getAnsweredQuestionsList(this.answeredQuestionsB).length
+                              + this.getAnsweredQuestionsList(this.answeredQuestionsC).length;
+    
+    if (answeredQuestions > 0) {
+      // Show modal
+      this.showNavigateBackConfirmation();
+      return;
+    }
+
+    this.navCtrl.pop();
+  }
+
+  showNavigateBackConfirmation() {
+
+     let confirmAlert = this.alertCtrl.create({
+      title: 'Hold up!',
+      message: 'Are you sure you want to quit writing this test?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => { }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.navCtrl.pop();
           }
         }
       ]

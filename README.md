@@ -77,6 +77,11 @@ cordova build --release android --env=prod
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore learn2drive-key.keystore android-release-unsigned.apk learn2drive
 zipalign -v 4 android-release-unsigned.apk learn2drive.apk
 
+## Installing Android SDK Licence
+
+mkdir "%ANDROID_HOME%\licenses"
+echo |set /p="8933bad161af4178b1185d1a37fbf41ea5269c55" > "%ANDROID_HOME%\licenses\android-sdk-license"
+
 
 ## Links
 
@@ -95,8 +100,7 @@ https://github.com/lathonez/clicker
 
 Phase 1
 -------
-
-- Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides) - Dean
+- Cancel Test/Mock Test confirmation - Dean
 - Add numbers to Vehicle Controls Image - Dylan 
 - Icons (laucher etc)
 
@@ -104,6 +108,7 @@ Phase 1
 
 Phase 2
 --------
+- Introduction Slides on first use (http://ionicframework.com/docs/v2/components/#slides) - Dean
 - Whats next?
 - Build server
 - Home page
@@ -123,8 +128,9 @@ Phase 2
     - http://blog.ionic.io/localize-your-app-with-ng2-translate/
 - Use gulp to copy alasql and progressbar.js from nodemodules into the www/dependencies folder 
 - Check for progressbar.js typings file (doesnt currently exit) 
-- Styling Updates? 
-- Final Naming: rename application to Learn2Drive (L2D) not L2D3D Mobile (maybe get rid of space)
+- Google Login and Cloud storage
+    - https://docs.ionic.io/services/auth/google-auth.html
+
 
 
 Done
