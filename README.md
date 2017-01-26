@@ -82,6 +82,12 @@ zipalign -v 4 android-release-unsigned.apk learn2drive.apk
 mkdir "%ANDROID_HOME%\licenses"
 echo |set /p="8933bad161af4178b1185d1a37fbf41ea5269c55" > "%ANDROID_HOME%\licenses\android-sdk-license"
 
+## Resolving Git Conflits
+
+- List: git diff --name-only --diff-filter=U
+- Add: git add config.xml
+- Commit: git commit -m "Merged master fixed conflict."
+
 
 ## Links
 
