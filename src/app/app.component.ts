@@ -24,26 +24,46 @@ export class L2D3DApp {
       StatusBar.styleDefault();
       Splashscreen.hide();
 
-      // Registration of push in Android and Windows Phone
+      this.handlePhysicalBackButton();
+
+      console.log('production: ' + environment.production);
+    });
+  }
+
+  private handlePhysicalBackButton(): void {
+
+    // Registration of push in Android and Windows Phone
       this.platform.registerBackButtonAction(() => {
         
         let nav = this.app.getRootNav();
         let view = nav.getActive();
 
+        // Handle back on test page
         if (view.instance instanceof TestPage) {
           let testPage = view.instance as TestPage;
           testPage.navigateBack();
+          return;
         }
 
+        // Handle back on mock test page
         if (view.instance instanceof MockTestPage) {
           let testPage = view.instance as MockTestPage;
           testPage.navigateBack();
+          return;
         }
+
+        //Default back handler
+        if (nav.canGoBack()) { 
+          //Go back if we can
+          nav.pop();
+        } else {
+          // Exit from app
+          this.platform.exitApp();
+        }
+
         
       });
 
-      console.log('production: ' + environment.production);
-    });
   }
  
 }
