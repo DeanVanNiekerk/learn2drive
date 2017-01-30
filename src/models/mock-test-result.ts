@@ -58,6 +58,6 @@ export class MockTestResult {
      }
 
      passed(): boolean {
-         return this.sectionAPassed() && this.sectionBPassed() && this.sectionCPassed()
+         return this.sectionAPassed() && this.sectionBPassed() && this.sectionCPassed();
      }
 }

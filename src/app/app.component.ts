@@ -52,9 +52,9 @@ export class L2D3DApp {
           return;
         }
 
-        //Default back handler
+        // Default back handler
         if (nav.canGoBack()) { 
-          //Go back if we can
+          // Go back if we can
           nav.pop();
         } else {
           // Exit from app
