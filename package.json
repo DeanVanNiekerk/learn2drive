@@ -33,7 +33,7 @@
     "zone.js": "0.6.26"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "0.0.47",
+    "@ionic/app-scripts": "^1.0.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "6.0.42",
     "angular-cli": "1.0.0-beta.24",
@@ -61,7 +61,9 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "cordova-sqlite-storage",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    "cordova-sqlite-storage@~2.0.1",
+    "cordova-plugin-app-version@~0.1.9"
   ],
   "cordovaPlatforms": []
 }
