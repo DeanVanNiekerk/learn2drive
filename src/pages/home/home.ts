@@ -1,8 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NavController, ViewController, PopoverController, MenuController} from 'ionic-angular';
+import { AppRate } from 'ionic-native';
 
 // Services
-import {ProgressService, StoreService} from '../../services';
+import {ProgressService, StoreService, RateService} from '../../services';
 import {ProgressBarComponent} from '../../components';
 import {ContentPage, ChecklistPage, 
         MockTestPage, IntroductionSlidesPage,
@@ -27,10 +28,13 @@ export class HomePage implements OnInit {
       private popoverCtrl: PopoverController,
       private progressService: ProgressService,
       private storeService: StoreService,
+      private rateService: RateService,
       public menuCtrl: MenuController) {
   }
 
   ngOnInit() {
+
+    this.rateService.promptForRating(false);
 
     this.viewCtrl.didEnter.subscribe(() => {
 
@@ -101,6 +105,10 @@ export class HomePage implements OnInit {
 
   navigateToAbout() {
     this.navCtrl.push(AboutPage);
+  }
+
+  rateApp() {
+    this.rateService.promptForRating(true);
   }
   
 }

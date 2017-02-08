@@ -17,7 +17,7 @@ import { ComponentsModule }                         from '../components';
 import { ContentService, QuestionService, 
           ResourceService, TestService, 
           ProgressService, StoreService, 
-          StorageService }                          from '../services';
+          StorageService, RateService }             from '../services';
 
 import { PipesModule }                              from '../pipes';
 
@@ -53,6 +53,7 @@ import { PipesModule }                              from '../pipes';
     ResourceService,
     TestService,
     ProgressService,
+    RateService,    
     
     StorageService,
     StoreService,
