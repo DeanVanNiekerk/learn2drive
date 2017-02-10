@@ -31,12 +31,15 @@
 
 
 import {Component, OnInit} from '@angular/core';
-import {NavController, ViewController, NavParams, AlertController} from 'ionic-angular';
+import {NavController, ViewController, NavParams, AlertController, LoadingController} from 'ionic-angular';
+import { AdMob } from 'ionic-native';
 
 import {QuestionService, TestService} from '../../services';
 import {Question, Answer, AnsweredQuestion, TestResult} from '../../models';
 import {QuestionComponent} from '../../components';
 import {MockTestResultPage} from '../';
+
+
 
 @Component({
   templateUrl: './mock-test.html'
@@ -59,11 +62,24 @@ export class MockTestPage implements OnInit {
   constructor(private navCtrl: NavController,
               private viewCtrl: ViewController,
               private alertCtrl: AlertController,
+              private loadingCtrl: LoadingController,
               private questionService: QuestionService,
               private testService: TestService) {
   }
 
   ngOnInit() {
+
+      // let loading = this.loadingCtrl.create({
+      //   content: 'Loading test...'
+      // });
+
+      // loading.present();
+
+      AdMob.prepareInterstitial('ca-app-pub-8418396680963201/8587373373')
+      .then(() => { 
+        // loading.dismiss(); 
+        AdMob.showInterstitial();
+      });
 
       this.viewCtrl.showBackButton(false);
 
