@@ -32,7 +32,7 @@
 
 import {Component, OnInit} from '@angular/core';
 import {NavController, ViewController, NavParams, AlertController, LoadingController} from 'ionic-angular';
-import { AdMob } from 'ionic-native';
+import {AdMob} from 'ionic-native';
 
 import {QuestionService, TestService} from '../../services';
 import {Question, Answer, AnsweredQuestion, TestResult} from '../../models';
@@ -69,18 +69,6 @@ export class MockTestPage implements OnInit {
 
   ngOnInit() {
 
-      // let loading = this.loadingCtrl.create({
-      //   content: 'Loading test...'
-      // });
-
-      // loading.present();
-
-      AdMob.prepareInterstitial('ca-app-pub-8418396680963201/8587373373')
-      .then(() => { 
-        // loading.dismiss(); 
-        AdMob.showInterstitial();
-      });
-
       this.viewCtrl.showBackButton(false);
 
       this.questionService.getQuestions('rootNavigation.learner.vehicleControls', this.questionCountA)
@@ -102,6 +90,11 @@ export class MockTestPage implements OnInit {
           'rootNavigation.learner.roadMarkings'], this.questionCountC)
       .then(questions => {
         this.questionsC = questions;
+      });
+
+      AdMob.prepareInterstitial({
+        adId: 'ca-app-pub-8418396680963201/8587373373', 
+        autoShow: false
       });
 
   }
@@ -143,6 +136,8 @@ export class MockTestPage implements OnInit {
   }
 
   navigateToTestResults(answerQuestionListA: AnsweredQuestion[], answerQuestionListB: AnsweredQuestion[], answerQuestionListC: AnsweredQuestion[]) {
+
+    AdMob.showInterstitial();
 
     this.navCtrl.push(MockTestResultPage, {
       questionsA: this.questionsA,
@@ -228,5 +223,4 @@ export class MockTestPage implements OnInit {
     }
     return answeredQuestions;
   }
-  
 }

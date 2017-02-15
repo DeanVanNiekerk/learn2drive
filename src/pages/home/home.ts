@@ -34,9 +34,9 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
 
-    this.rateService.promptForRating(false);
-
     this.viewCtrl.didEnter.subscribe(() => {
+
+      this.rateService.promptForRating(false);
 
       this.progressService.getChecklistProgress().
         then(progress => {

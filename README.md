@@ -69,9 +69,16 @@ Run on emultor:
 Run on device:
 ```ionic run ios --device```
 
+## Build for Debug
+
+NB: ionic serve first!
+cordova build --debug android
+
 ## Build for Release
 
 https://ionicframework.com/docs/guide/publishing.html
+
+NB: ionic serve first!
 
 cordova build --release android --env=prod
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore learn2drive-key.keystore android-release-unsigned.apk learn2drive

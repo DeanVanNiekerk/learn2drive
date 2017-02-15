@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController, ViewController, NavParams, AlertController} from 'ionic-angular';
 
+import {AdMob} from 'ionic-native';
+
 import {QuestionService, TestService, StoreService, ResourceService} from '../../services';
 import {Question, Answer, AnsweredQuestion, TestResult, Message} from '../../models';
 import {QuestionComponent} from '../../components';
@@ -46,6 +48,11 @@ export class TestPage implements OnInit {
           if (message.showAgain === true) 
             this.showTestInformation(message);
       });  
+
+    AdMob.prepareInterstitial({
+        adId: 'ca-app-pub-8418396680963201/8587373373', 
+        autoShow: false
+      });
     
   }
 
@@ -68,6 +75,8 @@ export class TestPage implements OnInit {
   }
 
   navigateToTestResults() {
+
+    AdMob.showInterstitial();
 
     this.navCtrl.push(TestResultPage, {
       navigationKey: this.navigationKey,
