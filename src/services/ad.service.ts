@@ -8,7 +8,7 @@ export class AdService {
 
     public prepareInterstitial() {
 
-        //if (!environment.production)
+        // if (!environment.production)
         //    return;
 
         AdMob.prepareInterstitial({
@@ -19,9 +19,8 @@ export class AdService {
 
     public showInterstitial() {
 
-        //if (!environment.production)
-         //   return;
-
+        // if (!environment.production)
+        //   return;
 
         AdMob.showInterstitial();
     }
