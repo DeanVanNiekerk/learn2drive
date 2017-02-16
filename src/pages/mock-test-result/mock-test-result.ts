@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 
-import {TestService, StoreService} from '../../services';
+import {TestService, StoreService, AdService} from '../../services';
 import {TestResultQuestionsComponent} from '../../components';
 import {Question, Answer, AnsweredQuestion, MockTestResult} from '../../models';
 
@@ -24,7 +24,8 @@ export class MockTestResultPage implements OnInit {
 
   constructor(private navParams: NavParams,
     private testService: TestService,
-    private storeService: StoreService) { 
+    private storeService: StoreService,
+    private adService: AdService) { 
 
       this.questionsA = navParams.get('questionsA');
       this.questionsB = navParams.get('questionsB');
@@ -44,5 +45,7 @@ export class MockTestResultPage implements OnInit {
     this.testPassed = this.result.passed();
 
     this.storeService.insertMockTestResult(this.result);
+
+    this.adService.showInterstitial();
   }
 }

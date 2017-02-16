@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "457218391796",
+    "firebase_url": "https://learn2drive-51762.firebaseio.com",
+    "project_id": "learn2drive-51762",
+    "storage_bucket": "learn2drive-51762.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457218391796:android:3adf69c51ae1934e",
+        "android_client_info": {
+          "package_name": "mobi.learn2drive3d"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "457218391796-ck7i6l7aaqpnf6sejqgtkj4u2nbq65jj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTQ80LfnMy-Gol6D01YdCdPfbfiJ_Ug7M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

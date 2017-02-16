@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 
 // Services
-import {TestService} from '../../services/test.service';
-import {StoreService} from '../../services/store.service';
+import {StoreService, AdService, TestService} from '../../services';
 
 // Components
 import {TestResultQuestionsComponent} from '../../components';
@@ -25,7 +24,8 @@ export class TestResultPage implements OnInit {
   constructor(private navCtrl: NavController,
     private navParams: NavParams,
     private testService: TestService,
-    private storeService: StoreService) { 
+    private storeService: StoreService,
+    private adService: AdService) { 
 
       this.navigationKey = navParams.get('navigationKey');
       this.questions = navParams.get('questions');
@@ -39,6 +39,8 @@ export class TestResultPage implements OnInit {
     this.resultPercent = result.resultPercent();
 
     this.storeService.insertTestResult(result);
+
+    this.adService.showInterstitial();
 
   }
 }

@@ -72,8 +72,6 @@ export class TestPage implements OnInit {
 
   navigateToTestResults() {
 
-    this.adService.showInterstitial();
-
     this.navCtrl.push(TestResultPage, {
       navigationKey: this.navigationKey,
       questions: this.questions,

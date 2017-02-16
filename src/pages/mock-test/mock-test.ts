@@ -134,8 +134,6 @@ export class MockTestPage implements OnInit {
 
   navigateToTestResults(answerQuestionListA: AnsweredQuestion[], answerQuestionListB: AnsweredQuestion[], answerQuestionListC: AnsweredQuestion[]) {
 
-    this.adService.showInterstitial();
-
     this.navCtrl.push(MockTestResultPage, {
       questionsA: this.questionsA,
       questionsB: this.questionsB,
