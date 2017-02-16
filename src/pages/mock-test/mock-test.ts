@@ -32,9 +32,8 @@
 
 import {Component, OnInit} from '@angular/core';
 import {NavController, ViewController, NavParams, AlertController, LoadingController} from 'ionic-angular';
-import {AdMob} from 'ionic-native';
 
-import {QuestionService, TestService} from '../../services';
+import {QuestionService, TestService, AdService} from '../../services';
 import {Question, Answer, AnsweredQuestion, TestResult} from '../../models';
 import {QuestionComponent} from '../../components';
 import {MockTestResultPage} from '../';
@@ -64,7 +63,8 @@ export class MockTestPage implements OnInit {
               private alertCtrl: AlertController,
               private loadingCtrl: LoadingController,
               private questionService: QuestionService,
-              private testService: TestService) {
+              private testService: TestService,
+              private adService: AdService) {
   }
 
   ngOnInit() {
@@ -92,10 +92,7 @@ export class MockTestPage implements OnInit {
         this.questionsC = questions;
       });
 
-      AdMob.prepareInterstitial({
-        adId: 'ca-app-pub-8418396680963201/8587373373', 
-        autoShow: false
-      });
+      this.adService.prepareInterstitial();
 
   }
 
@@ -137,7 +134,7 @@ export class MockTestPage implements OnInit {
 
   navigateToTestResults(answerQuestionListA: AnsweredQuestion[], answerQuestionListB: AnsweredQuestion[], answerQuestionListC: AnsweredQuestion[]) {
 
-    AdMob.showInterstitial();
+    this.adService.showInterstitial();
 
     this.navCtrl.push(MockTestResultPage, {
       questionsA: this.questionsA,

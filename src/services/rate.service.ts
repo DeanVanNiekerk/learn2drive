@@ -13,9 +13,9 @@ export class RateService {
                 },
                 usesUntilPrompt: 12,
                 customLocale: {
-                    title: 'Please take a moment to give us feedback?',
-                    message: 'Feedback helps us improve the app',
-                    rateButtonLabel: 'Give feedback',
+                    title: 'Please take a moment to rate our app?',
+                    message: 'Ratings help us put food on the table :)',
+                    rateButtonLabel: 'Rate app!',
                     laterButtonLabel: 'Maybe later',
                     cancelButtonLabel: 'No thanks'
                 }

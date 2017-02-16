@@ -113,9 +113,9 @@ https://github.com/lathonez/clicker
 
 Phase 1
 -------
-- Cancel Test/Mock Test confirmation - Dean
-- Add numbers to Vehicle Controls Image - Dylan 
 - Icons (laucher etc)
+- Add numbers to Vehicle Controls Image - Dylan 
+- Mock test info popup
 
 
 
@@ -148,6 +148,7 @@ Phase 2
 
 Done
 -------
+- Cancel Test/Mock Test confirmation - Dean
 - Home page
     - Status on Learners Content - Dean
     - Checklist to top of page (checklist status) - Dean

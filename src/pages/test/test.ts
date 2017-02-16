@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController, ViewController, NavParams, AlertController} from 'ionic-angular';
 
-import {AdMob} from 'ionic-native';
-
-import {QuestionService, TestService, StoreService, ResourceService} from '../../services';
+import {QuestionService, TestService, StoreService, ResourceService, AdService} from '../../services';
 import {Question, Answer, AnsweredQuestion, TestResult, Message} from '../../models';
 import {QuestionComponent} from '../../components';
 import {TestResultPage} from '../';
@@ -28,7 +26,8 @@ export class TestPage implements OnInit {
     private questionService: QuestionService,
     private testService: TestService,
     private storeService: StoreService,
-    private resourceService: ResourceService) { 
+    private resourceService: ResourceService,
+    private adService: AdService) { 
 
       // Get the supplied navigation key
       this.navigationKey = navParams.get('navigationKey');
@@ -49,10 +48,7 @@ export class TestPage implements OnInit {
             this.showTestInformation(message);
       });  
 
-    AdMob.prepareInterstitial({
-        adId: 'ca-app-pub-8418396680963201/8587373373', 
-        autoShow: false
-      });
+    this.adService.prepareInterstitial();
     
   }
 
@@ -76,7 +72,7 @@ export class TestPage implements OnInit {
 
   navigateToTestResults() {
 
-    AdMob.showInterstitial();
+    this.adService.showInterstitial();
 
     this.navCtrl.push(TestResultPage, {
       navigationKey: this.navigationKey,
