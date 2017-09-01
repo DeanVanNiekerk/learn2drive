@@ -1,6 +1,6 @@
 {
   "name": "learn2drive.mobi",
   "app_id": "6a73b450",
-  "typescript": true,
-  "v2": true
+  "integrations": {},
+  "type": "ionic-angular"
 }

@@ -26,7 +26,7 @@ export class L2D3DApp {
 
       this.handlePhysicalBackButton();
 
-      console.log('production: ' + environment.production);
+      //console.log('production: ' + environment.production);
     });
   }
 

@@ -8,9 +8,6 @@ export class AdService {
 
     public prepareInterstitial() {
 
-        // if (!environment.production)
-        //    return;
-
         AdMob.prepareInterstitial({
             adId: 'ca-app-pub-8418396680963201/8587373373', 
             autoShow: false
@@ -18,9 +15,6 @@ export class AdService {
     }
 
     public showInterstitial() {
-
-        // if (!environment.production)
-        //   return;
 
         AdMob.showInterstitial();
     }
