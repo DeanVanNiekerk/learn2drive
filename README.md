@@ -1,6 +1,4 @@
-# Project Name
-
-Learn2Drive
+# Learn2Drive
 
 ## Installation
 
@@ -16,14 +14,6 @@ Learn2Drive
 
 ```npm test```
 
-## Run E2E
-```
-# e2e (aka. end-to-end, integration) - In two different shell windows
-# Make sure you don't have a global instance of Protractor
-
-npm start
-npm run e2e
-```
 
 ## Compile for Android
 
@@ -89,24 +79,13 @@ zipalign -v 4 android-release-unsigned.apk learn2drive.apk
 mkdir "%ANDROID_HOME%\licenses"
 echo |set /p="8933bad161af4178b1185d1a37fbf41ea5269c55" > "%ANDROID_HOME%\licenses\android-sdk-license"
 
-## Resolving Git Conflits
-
-- List: git diff --name-only --diff-filter=U
-- Add: git add config.xml
-- Commit: git commit -m "Merged master fixed conflict."
-
 
 ## Links
 
 * [Ionic2](http://ionicframework.com/docs/v2/)
 * [Unit testing walkthrough](http://lathonez.com/2016/ionic-2-unit-testing/)
-* [E2E testing walkthrough](http://lathonez.com/2016/ionic-2-e2e-testing/)
 * [Removing assets from the APK](http://lathonez.com/2016/cordova-remove-assets/)
 * [State](https://www.raymondcamden.com/2015/04/20/ionic-adds-a-new-state-feature?utm_content=buffer20073&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer)
-
-
-## Based on Clicker Starter Template
-https://github.com/lathonez/clicker
 
 
 ## TODO
@@ -116,8 +95,6 @@ Phase 1
 - Icons (laucher etc)
 - Add numbers to Vehicle Controls Image - Dylan 
 - Mock test info popup
-
-
 
 Phase 2
 --------
