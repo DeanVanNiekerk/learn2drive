@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Platform} from 'ionic-angular';
-import {AppVersion} from 'ionic-native';
+import { AppVersion } from '@ionic-native/app-version';
 
 @Component({
     providers: [AppVersion],
@@ -10,13 +10,13 @@ export class AboutPage implements OnInit {
 
     version: string = '';
 
-    constructor(private platform: Platform) {
+    constructor(private platform: Platform, private appVersion: AppVersion) {
     }
 
     ngOnInit() {
 
         if (this.platform.is('cordova')) {
-            AppVersion.getVersionNumber().then((s) => {
+            this.appVersion.getVersionNumber().then((s) => {
                 this.version = s;
             });
         }

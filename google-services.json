@@ -15,6 +15,18 @@
       },
       "oauth_client": [
         {
+          "client_id": "457218391796-8go1t66fht0slqskge6nlq4nncahci7h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mobi.learn2drive3d",
+            "certificate_hash": "ad8ea150bb571f6800c192f4363cc258c393f5aa"
+          }
+        },
+        {
+          "client_id": "457218391796-ck7i6l7aaqpnf6sejqgtkj4u2nbq65jj.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
           "client_id": "457218391796-ck7i6l7aaqpnf6sejqgtkj4u2nbq65jj.apps.googleusercontent.com",
           "client_type": 3
         }

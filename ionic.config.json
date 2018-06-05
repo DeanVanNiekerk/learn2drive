@@ -1,6 +1,8 @@
 {
   "name": "learn2drive.mobi",
   "app_id": "6a73b450",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

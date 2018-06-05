@@ -13,6 +13,7 @@ log.txt
 npm-debug.log*
 
 .idea/
+.sourcemaps/
 .sass-cache/
 .tmp/
 .versions/
@@ -22,20 +23,13 @@ node_modules/
 tmp/
 temp/
 hooks/
-www/assets/
-www/build/
-www/index.html
-www/manifest.json
-www/service-worker.js
 platforms/
 plugins/
 plugins/android.json
 plugins/ios.json
+#www/
 $RECYCLE.BIN/
-
-# e2e
-/e2e/*.js
-/e2e/*.map
+signing/
 
 .DS_Store
 Thumbs.db

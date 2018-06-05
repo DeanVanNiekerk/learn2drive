@@ -1,11 +1,9 @@
 'use strict';
 import { Injectable } from '@angular/core';
-import { Storage }    from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class StorageService {
-
-  private storage: Storage;
 
   public static KEY_CONTENTREAD: string = 'CONTENT_READ';
   public static KEY_TESTRESULTS: string = 'TEST_RESULTS';
@@ -13,12 +11,7 @@ export class StorageService {
   public static KEY_CHECKLIST: string = 'CHECKLIST';
   public static KEY_MESSAGES: string = 'MESSAGES';
 
-  constructor() {
-    this.storage = StorageService.initStorage();
-  }
-
-  public static initStorage(): Storage {
-    return new Storage();
+  constructor(private storage: Storage) {
   }
 
   public get(key: string): Promise<{}> {
@@ -33,7 +26,7 @@ export class StorageService {
     return this.storage.remove(key);
   }
 
-  public clear(): Promise<{}> {
+  public clear(): Promise<void> {
     return this.storage.clear();
   }
 }

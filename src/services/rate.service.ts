@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { AppRate } from 'ionic-native';
-import { Platform } from 'ionic-angular';
+import { AppRate } from '@ionic-native/app-rate';
+
 
 @Injectable()
 export class RateService {
 
-    constructor() {
-        AppRate.preferences = {
+    constructor(private appRate: AppRate) {
+        this.appRate.preferences = {
                 storeAppURL: {
                     // ios: '849930087',
                     android: 'market://details?id=mobi.learn2drive3d'
@@ -23,7 +23,7 @@ export class RateService {
     }
 
     public promptForRating(immediate: boolean) {
-        AppRate.promptForRating(immediate);
+        this.appRate.promptForRating(immediate);
     }
 
 }

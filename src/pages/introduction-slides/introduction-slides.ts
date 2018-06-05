@@ -11,10 +11,6 @@ export class IntroductionSlidesPage {
 
     introductionMessageKey: string = 'IntroductionSlidesShown';
 
-    slideOptions = {
-        pager: true
-    };
-
     constructor(private navCtrl: NavController,
                     private storeService: StoreService) { }
 
